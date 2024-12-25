@@ -6,6 +6,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
     public List<Characters> characters = new List<Characters>();
+    public Characters player;
     // Start is called before the first frame update
     public void Awake()
     {

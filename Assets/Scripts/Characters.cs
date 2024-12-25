@@ -7,7 +7,7 @@ using UnityEngine;
 public class Characters : ScriptableObject
 {
     public GameObject playableCharacter;
-    public GameObject object_to_Display;
+    public GameObject imageDisplay;
     public String nameDisplay;
 
     // Start is called before the first frame update
