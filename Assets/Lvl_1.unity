@@ -384,7 +384,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06bcccfb05b25574ab841a794b2f9b67, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefab: {fileID: 2548770757460197881, guid: 5c5f7a8870c8dd4498c70f6f15c5a953, type: 3}
+  prefabs:
+  - {fileID: 2548770757460197881, guid: 5c5f7a8870c8dd4498c70f6f15c5a953, type: 3}
+  jsonFile: {fileID: 4900000, guid: d8a2e8075bad61a4b80ad68a138c8dcc, type: 3}
+  world:
+    levels: []
 --- !u!95 &197098398
 Animator:
   serializedVersion: 5
