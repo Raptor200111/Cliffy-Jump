@@ -1,0 +1,424 @@
+{
+  "levels": [
+    {
+      "blocks": [
+        {
+          "gameObjType": 0,
+          "pos": {
+            "x": -12,
+            "y": 0,
+            "z": -4
+          }
+        },
+        {
+          "gameObjType": 0,
+          "pos": {
+            "x": -10,
+            "y": 0,
+            "z": -4
+          }
+        },
+        {
+          "gameObjType": 0,
+          "pos": {
+            "x": -8,
+            "y": 0,
+            "z": -4
+          }
+        },
+        {
+          "gameObjType": 0,
+          "pos": {
+            "x": -6,
+            "y": 0,
+            "z": -4
+          }
+        },
+        {
+          "gameObjType": 0,
+          "pos": {
+            "x": -4,
+            "y": 0,
+            "z": -4
+          }
+        },
+        {
+          "gameObjType": 0,
+          "pos": {
+            "x": -2,
+            "y": 0,
+            "z": -4
+          }
+        },
+        {
+          "gameObjType": 0,
+          "pos": {
+            "x": 0,
+            "y": 0,
+            "z": -4
+          }
+        },
+        {
+          "gameObjType": 0,
+          "pos": {
+            "x": 2,
+            "y": 0,
+            "z": -4
+          }
+        },
+        {
+          "gameObjType": 0,
+          "pos": {
+            "x": 4,
+            "y": 0,
+            "z": -4
+          }
+        },
+        {
+          "gameObjType": 0,
+          "pos": {
+            "x": 6,
+            "y": 0,
+            "z": -4
+          }
+        },
+        {
+          "gameObjType": 0,
+          "pos": {
+            "x": 6,
+            "y": 0,
+            "z": -2
+          }
+        },
+        {
+          "gameObjType": 0,
+          "pos": {
+            "x": 6,
+            "y": 0,
+            "z": 0
+          }
+        },
+        {
+          "gameObjType": 0,
+          "pos": {
+            "x": 6,
+            "y": 0,
+            "z": 2
+          }
+        },
+        {
+          "gameObjType": 0,
+          "pos": {
+            "x": 6,
+            "y": 0,
+            "z": 4
+          }
+        },
+        {
+          "gameObjType": 0,
+          "pos": {
+            "x": 8,
+            "y": 0,
+            "z": 4
+          }
+        },
+        {
+          "gameObjType": 0,
+          "pos": {
+            "x": 10,
+            "y": 0,
+            "z": 4
+          }
+        },
+        {
+          "gameObjType": 0,
+          "pos": {
+            "x": 12,
+            "y": 0,
+            "z": 4
+          }
+        }
+      ]
+    },
+    {
+      "blocks": [
+        {
+          "gameObjType": 0,
+          "pos": {
+            "x": -12,
+            "y": 0,
+            "z": -4
+          }
+        },
+        {
+          "gameObjType": 0,
+          "pos": {
+            "x": -12,
+            "y": 0,
+            "z": -2
+          }
+        },
+        {
+          "gameObjType": 0,
+          "pos": {
+            "x": -12,
+            "y": 0,
+            "z": 0
+          }
+        },
+        {
+          "gameObjType": 0,
+          "pos": {
+            "x": -12,
+            "y": 0,
+            "z": 2
+          }
+        },
+        {
+          "gameObjType": 0,
+          "pos": {
+            "x": -12,
+            "y": 0,
+            "z": 4
+          }
+        },
+        {
+          "gameObjType": 0,
+          "pos": {
+            "x": -10,
+            "y": 0,
+            "z": 4
+          }
+        },
+        {
+          "gameObjType": 0,
+          "pos": {
+            "x": -8,
+            "y": 0,
+            "z": 4
+          }
+        },
+        {
+          "gameObjType": 0,
+          "pos": {
+            "x": -6,
+            "y": -2,
+            "z": 4
+          }
+        },
+        {
+          "gameObjType": 0,
+          "pos": {
+            "x": -4,
+            "y": 0,
+            "z": 4
+          }
+        },
+        {
+          "gameObjType": 0,
+          "pos": {
+            "x": -2,
+            "y": 0,
+            "z": 4
+          }
+        },
+        {
+          "gameObjType": 0,
+          "pos": {
+            "x": 0,
+            "y": 0,
+            "z": 4
+          }
+        },
+        {
+          "gameObjType": 0,
+          "pos": {
+            "x": 2,
+            "y": -2,
+            "z": 4
+          }
+        },
+        {
+          "gameObjType": 0,
+          "pos": {
+            "x": 4,
+            "y": 0,
+            "z": 4
+          }
+        },
+        {
+          "gameObjType": 0,
+          "pos": {
+            "x": 6,
+            "y": 0,
+            "z": 4
+          }
+        },
+        {
+          "gameObjType": 0,
+          "pos": {
+            "x": 8,
+            "y": 0,
+            "z": 4
+          }
+        },
+        {
+          "gameObjType": 0,
+          "pos": {
+            "x": 10,
+            "y": -2,
+            "z": 4
+          }
+        },
+        {
+          "gameObjType": 0,
+          "pos": {
+            "x": 12,
+            "y": 0,
+            "z": 4
+          }
+        }
+      ]
+    },
+    {
+      "blocks": [
+        {
+          "gameObjType": 0,
+          "pos": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          }
+        },
+        {
+          "gameObjType": 0,
+          "pos": {
+            "x": 2,
+            "y": 0,
+            "z": 0
+          }
+        },
+        {
+          "gameObjType": 0,
+          "pos": {
+            "x": 2,
+            "y": 0,
+            "z": 2
+          }
+        },
+        {
+          "gameObjType": 0,
+          "pos": {
+            "x": -2,
+            "y": 0,
+            "z": 0
+          }
+        },
+        {
+          "gameObjType": 0,
+          "pos": {
+            "x": -2,
+            "y": 0,
+            "z": -2
+          }
+        },
+        {
+          "gameObjType": 0,
+          "pos": {
+            "x": -2,
+            "y": 0,
+            "z": -4
+          }
+        },
+        {
+          "gameObjType": 0,
+          "pos": {
+            "x": -2,
+            "y": 0,
+            "z": -6
+          }
+        },
+        {
+          "gameObjType": 0,
+          "pos": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          }
+        },
+        {
+          "gameObjType": 0,
+          "pos": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          }
+        },
+        {
+          "gameObjType": 0,
+          "pos": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          }
+        },
+        {
+          "gameObjType": 0,
+          "pos": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          }
+        },
+        {
+          "gameObjType": 0,
+          "pos": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          }
+        },
+        {
+          "gameObjType": 0,
+          "pos": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          }
+        },
+        {
+          "gameObjType": 0,
+          "pos": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          }
+        },
+        {
+          "gameObjType": 0,
+          "pos": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          }
+        },
+        {
+          "gameObjType": 0,
+          "pos": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          }
+        },
+        {
+          "gameObjType": 0,
+          "pos": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          }
+        }
+      ]
+    }
+  ]
+}
