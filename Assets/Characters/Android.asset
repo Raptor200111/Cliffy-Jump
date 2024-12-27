@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Android
   m_EditorClassIdentifier: 
   playableCharacter: {fileID: 0}
-  imageDisplay: {fileID: 7585999003141909634, guid: ae72dbada6d542f4f8edfd4132203572,
+  imageDisplay: {fileID: 418110409745940137, guid: ae72dbada6d542f4f8edfd4132203572,
     type: 3}
   nameDisplay: Android
