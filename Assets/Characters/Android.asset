@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb2921cb30317b645ac1f0c244b8d7c5, type: 3}
   m_Name: Android
   m_EditorClassIdentifier: 
-  playableCharacter: {fileID: 0}
-  imageDisplay: {fileID: 418110409745940137, guid: ae72dbada6d542f4f8edfd4132203572,
+  character: {fileID: 418110409745940137, guid: ae72dbada6d542f4f8edfd4132203572,
     type: 3}
   nameDisplay: Android

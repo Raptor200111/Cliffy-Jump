@@ -12,8 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb2921cb30317b645ac1f0c244b8d7c5, type: 3}
   m_Name: Whale
   m_EditorClassIdentifier: 
-  playableCharacter: {fileID: 1851584277810661044, guid: 13277063f4b1ece42a670e19abb774af,
-    type: 3}
-  imageDisplay: {fileID: 1851584277810661044, guid: 13277063f4b1ece42a670e19abb774af,
+  character: {fileID: 1851584277810661044, guid: 13277063f4b1ece42a670e19abb774af,
     type: 3}
   nameDisplay: Whale

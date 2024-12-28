@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -15,8 +16,8 @@ public enum StageName
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
-    public List<Characters> characters = new List<Characters>();
-    public Characters player;
+    [SerializeField] private List<Characters> characters = new List<Characters>();
+    [SerializeField] private GameObject player;
     public StageName stageName;
     private SoundManager soundManager;
     // Start is called before the first frame update
@@ -30,7 +31,7 @@ public class GameManager : MonoBehaviour
             soundManager.SetBackgroundMusic(stageName);
             if (characters != null)
             {
-                player = characters[0];
+                player = characters[0].character;
             }
             DontDestroyOnLoad(gameObject);
         }
@@ -40,6 +41,17 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public Transform GetPlayerTransform()
+    {
+        return player.transform;
+    }
+
+    public void SetPlayer(int i_indexPlayer)
+    {
+        player = characters[i_indexPlayer].character;
+    }
+
+    public List<Characters> GetCharacters() { return characters; }
     // Update is called once per frame
     void Update()
     {

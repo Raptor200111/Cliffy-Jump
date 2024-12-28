@@ -10,13 +10,14 @@ public class MenuCharSelect : MonoBehaviour
     [SerializeField] private GameObject charImage;
     [SerializeField] private TMP_Text charName;
     private GameManager gameManager;
-
+    private List<Characters> characters = new List<Characters>();
     // Start is called before the first frame update
     void Start()
     {
         gameManager = GameManager.Instance;
         index = PlayerPrefs.GetInt("CharIndex");
-        if (index > gameManager.characters.Count -1)
+        characters = gameManager.GetCharacters();
+        if (index > characters.Count -1)
         {
             index = 0;
         }
@@ -27,8 +28,8 @@ public class MenuCharSelect : MonoBehaviour
     {
         PlayerPrefs.GetInt("CharIndex", index);
 
-        GameObject newPrefab = gameManager.characters[index].imageDisplay;
-        charName.text = gameManager.characters[index].nameDisplay;
+        GameObject newPrefab = characters[index].character;
+        charName.text = characters[index].nameDisplay;
 
         foreach (Transform child in charImage.transform)
         {
@@ -47,7 +48,7 @@ public class MenuCharSelect : MonoBehaviour
 
     public void NextChar() 
     {
-        if (index == gameManager.characters.Count - 1)
+        if (index == characters.Count - 1)
         {
             index = 0;
         }
@@ -63,7 +64,7 @@ public class MenuCharSelect : MonoBehaviour
     {
         if (index == 0)
         {
-            index = gameManager.characters.Count - 1;
+            index = characters.Count - 1;
         }
         else
         {
@@ -75,7 +76,8 @@ public class MenuCharSelect : MonoBehaviour
 
     public void SelectChar()
     {
-        gameManager.player = gameManager.characters[index];
+        gameManager.SetPlayer(index);
+        PlayerPrefs.SetInt("CharIndex", index);
         SceneManager.LoadScene(0);
     }
 
