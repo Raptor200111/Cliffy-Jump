@@ -133,8 +133,7 @@ public class DynamicStructures : MonoBehaviour
         {
 
             Quaternion quat = Quaternion.Euler(0, world.levels[screen].obs[i].Yrotation, 0);
-            allObstacles[i].transform.SetPositionAndRotation(PosToVec3(world.levels[screen].obs[i].pos), quat);
-
+            allObstacles[i].transform.SetLocalPositionAndRotation(PosToVec3(world.levels[screen].obs[i].pos), quat);
             //allObstacles[i].transform.localPosition = PosToVec3(world.levels[screen].obs[i].pos);
             //allObstacles[i].GetComponent<TurnScript>().rotation = world.levels[screen].obs[i].Yrotation;
         }
@@ -142,8 +141,7 @@ public class DynamicStructures : MonoBehaviour
         for (int i = 0; i < allDecoration.Length; i++)
         {
             Quaternion quat = Quaternion.Euler(0, world.levels[screen].dec[i].Yrotation, 0);
-            allObstacles[i].transform.SetPositionAndRotation(PosToVec3(world.levels[screen].dec[i].pos), quat);
-
+            allObstacles[i].transform.SetLocalPositionAndRotation(PosToVec3(world.levels[screen].dec[i].pos), quat);
             //allObstacles[i].transform.localPosition = PosToVec3(world.levels[screen].dec[i].pos);
             //allObstacles[i].GetComponent<TurnScript>().rotation = world.levels[screen].dec[i].Yrotation;
         }
