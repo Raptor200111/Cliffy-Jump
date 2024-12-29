@@ -27,6 +27,10 @@ public class DynamicStructures : MonoBehaviour
     public List<GameObject> prefabs;
     public TextAsset jsonFile;
 
+    //Liliu
+    [SerializeField] private GameObject birdPrefab;
+    [SerializeField] private DynamicBirds dynamicBirds;
+
     [System.Serializable]
     public class World
     {
@@ -156,4 +160,14 @@ public class DynamicStructures : MonoBehaviour
     }
 
     public GameObject[] GetAllBlocks() { return allBlocks; }
+    public void onRaiseComplete()
+    {
+        dynamicBirds.CreateDetails(allBlocks, StageName.LVL_1);
+    }
+
+    public void onHiddenComplete()
+    {
+        dynamicBirds.DestroyDetails();
+    }
+
 }

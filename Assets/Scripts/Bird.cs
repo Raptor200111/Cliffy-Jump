@@ -66,19 +66,7 @@ public class Bird : MonoBehaviour
 
             if (distanceToPlayer <= detectionRange)
             {
-                // Generate random direction for ascent
-                randomDirection = new Vector3(
-                    Random.Range(-1f, 1f),
-                    1f,
-                    Random.Range(-1f, 1f)
-                ).normalized;
-
-                if (!isRuningAway)
-                {
-                    StartCoroutine(FlyToSky(randomDirection));
-                    isRuningAway = true;
-
-                }
+                FlyAway();                
             }
         }
     }
@@ -91,6 +79,23 @@ public class Bird : MonoBehaviour
         }
 
         Destroy(gameObject);
+    }
+
+    public void FlyAway()
+    {
+        // Generate random direction for ascent
+        randomDirection = new Vector3(
+            Random.Range(-1f, 1f),
+            1f,
+            Random.Range(-1f, 1f)
+        ).normalized;
+
+        if (!isRuningAway)
+        {
+            StartCoroutine(FlyToSky(randomDirection));
+            isRuningAway = true;
+
+        }
     }
 
     private void OnDrawGizmos()

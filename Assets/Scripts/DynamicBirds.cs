@@ -9,31 +9,48 @@ using UnityEngine.TextCore.Text;
 using static DynamicStructures;
 
 
+/*
+ bird:
+public float skyHeight = 10f;
+private int maxGroupCount = 4;
+private int maxBirdCount = 5;
+CalcBirdOffset
+//apears on top
+
+lizard:
+public flost maxy = 5f - 2.5f;
+appear 1
+//appears on side
+
+eyes:
+maxy 
+
+ */
+
+
 public class DynamicBirds : MonoBehaviour
 {
     [SerializeField] GameObject birdPrefab;
-    [SerializeField] GameObject dynamicStructures;
-    private GameObject[] blocks;
     List<int> ocupiedBlocks = new List<int>();
 
-    [SerializeField] private int numStars; 
-    [SerializeField] private int numCoins;
+    [SerializeField] private int numStars = 3; 
+    [SerializeField] private int numCoins = 3;
     private GameManager gameManager;
     private List<Vector3> circuitCubes = new List<Vector3>();
-    private float startGen;
     public float skyHeight = 10f;
     private int maxGroupCount = 4;
     private int maxBirdCount = 5;
-    private float timeAppearCube = 1.8f;
-    private bool created = false;
 
-    private float debug = 0f;
+
+    private bool is_ok;
+    private GameObject coinStarsGO;
+    private GameObject movDecoGO;
+
     // Start is called before the first frame update
     void Start()
     {
         gameManager = GameManager.Instance;
-        startGen = 0f;
-        if (birdPrefab == null || gameManager == null || dynamicStructures == null)
+        if (birdPrefab == null || gameManager == null)
         {
             Debug.LogError("Bird prefab or circuit not assigned!");
             return;
@@ -47,83 +64,90 @@ public class DynamicBirds : MonoBehaviour
 
     }
 
-    private void FixedUpdate()
+    public void CreateDetails(GameObject[] blocks, StageName lvl)
     {
-        if (startGen < timeAppearCube) {
-            startGen += Time.deltaTime;
-        }
-        else if (startGen <= 10) 
+        for (int i = 0; i < blocks.Count(); i++)
         {
-
-            blocks = dynamicStructures.GetComponent<DynamicStructures>().GetAllBlocks();
-
-            for (int i = 0; i < blocks.Count(); i++)
+            if (blocks[i].transform.position.x < 90)
             {
-                if (blocks[i].transform.position.x < 90)
-                {
-                    Collider col = blocks[i].GetComponent<Collider>();
-                    Bounds bounds = col.bounds; // Get the bounds in world space
-                    Vector3 top = bounds.center + new Vector3(0, bounds.extents.y, 0); // Top position of this collider
-                    circuitCubes.Add(top);
-                }
+                Collider col = blocks[i].GetComponent<Collider>();
+                Bounds bounds = col.bounds; // Get the bounds in world space
+                Vector3 top = bounds.center + new Vector3(0, bounds.extents.y, 0); // Top position of this collider
+                circuitCubes.Add(top);
             }
-
-            if (circuitCubes.Count == 0)
-            {
-                Debug.LogError("No cubes found in the circuit!");
-                return;
-            }
-            startGen = 100;
         }
-        if (circuitCubes.Count != 0 && !created)
+
+        if (circuitCubes.Count != 0)
         {
             if (birdPrefab != null)// && gameManager.stageName == StageName.LVL_1)
             {
-                CreateCoinStar();
-                CreateBirdGroups();
+                if(lvl == StageName.LVL_1)
+                {
+                    int groupCount = UnityEngine.Random.Range(1, maxGroupCount); // Generate 1 to 3 groups
+                    int birdCount = UnityEngine.Random.Range(1, maxBirdCount);
+                    is_ok = circuitCubes.Count > (numCoins + numStars + groupCount);
+                    coinStarsGO = new GameObject();
+                    CreateCoinStar(coinStarsGO);
+                    movDecoGO = new GameObject();
+                    CreateBirdGroups(movDecoGO, groupCount, birdCount);
+                }
             }
-            created = true;
+        }
+    }
+
+    public void DestroyDetails()
+    {
+        AnimationScript[] starcoins = coinStarsGO.GetComponentsInChildren<AnimationScript>();
+        foreach (AnimationScript script in starcoins)
+        {
+            script.DestroyAnimation();
+        }
+        Bird[] birdScripts = movDecoGO.GetComponentsInChildren<Bird>();
+        foreach (Bird birdscript in birdScripts)
+        {
+            birdscript.FlyAway();
         }
     }
 
     private int SelectBlock()
     {
         int indexBlock = UnityEngine.Random.Range(0, circuitCubes.Count);
-        while (ocupiedBlocks.Contains(indexBlock))
+        if(is_ok)
         {
-            indexBlock = UnityEngine.Random.Range(0, circuitCubes.Count);
+            while (ocupiedBlocks.Contains(indexBlock))
+            {
+                indexBlock = UnityEngine.Random.Range(0, circuitCubes.Count);
 
+            }
         }
+
         ocupiedBlocks.Add(indexBlock);
         return indexBlock;
     }
 
-    private void CreateCoinStar()
+    private void CreateCoinStar(GameObject paretnGO)
     {
         for (int i = 0; i < numStars; i++)
         {
             int indexBlock = SelectBlock();
             Vector3 starPos = circuitCubes[indexBlock] + new Vector3(0f, 1, 0f);
-            GameObject star = Instantiate(gameManager.GetStarPrefab(), starPos, Quaternion.identity, this.transform);
+            GameObject star = Instantiate(gameManager.GetStarPrefab(), starPos, Quaternion.identity, paretnGO.transform);
         }
         for (int j = 0; j < numCoins; j++)
         {
             int indexBlock = SelectBlock();
-            GameObject coin = Instantiate(gameManager.GetCoinPrefab(), circuitCubes[indexBlock], Quaternion.identity, this.transform);
+            GameObject coin = Instantiate(gameManager.GetCoinPrefab(), circuitCubes[indexBlock], Quaternion.identity, paretnGO.transform);
         }
 
     }
 
-    private void CreateBirdGroups()
+    private void CreateBirdGroups(GameObject paretnGO, int groupCount, int birdCount)
     {
-        int groupCount = UnityEngine.Random.Range(1, maxGroupCount); // Generate 1 to 3 groups
 
         for (int i = 0; i < groupCount; i++)
         {
             int indexCube = SelectBlock();
             Vector3 cubePos = circuitCubes[indexCube];
-            // Generate a random number of birds for this group
-            int birdCount = UnityEngine.Random.Range(1, maxBirdCount);
 
             for (int j = 0; j < birdCount; j++)
             {
@@ -134,7 +158,7 @@ public class DynamicBirds : MonoBehaviour
                     cubePos.z + UnityEngine.Random.Range(-2f, 2f)
                 );
                 Quaternion rotation = Quaternion.Euler(0, UnityEngine.Random.Range(0f, 355f), 0);
-                GameObject bird = Instantiate(birdPrefab, skyPosition, rotation, this.transform);
+                GameObject bird = Instantiate(birdPrefab, skyPosition, rotation, paretnGO.transform);
                 Bird birdScript = bird.GetComponent<Bird>();
 
                 if (birdScript != null)
