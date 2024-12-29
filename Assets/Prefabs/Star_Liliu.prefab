@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2444167023529120968}
   - component: {fileID: 763880945259495958}
   - component: {fileID: 5915354121048627877}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Star_Liliu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -121,12 +121,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isAnimated: 1
   isRotating: 1
-  isFloating: 1
   isScaling: 1
-  rotationAngle: {x: 0, y: 10, z: 0}
   rotationSpeed: 10
-  floatSpeed: 0.04
-  floatRate: 0.5
   startScale: {x: 4, y: 1, z: 1}
   endScale: {x: 4, y: 3, z: 3}
   scaleSpeed: 1
