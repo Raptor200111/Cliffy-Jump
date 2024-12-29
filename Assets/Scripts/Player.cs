@@ -9,7 +9,7 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     enum State {Waiting, Moving, Jumping};
-    State playerState;// = State.Waiting;
+    State playerState;
     Vector3 velocity;
     Collider Collider;
     Rigidbody Rigidbody;
@@ -18,15 +18,16 @@ public class Player : MonoBehaviour
     int obstaclesLayer;
     int collecteblesLayer;
 
-    //public LayerMask LayerMask;
-
     public float jumpSpeed = 200.0f;
     public float groundSpeed = 0.12f;
     public float gravity = -100f;
 
+    public GameObject startPoint;
 
     void Start()
     {
+        transform.position = startPoint.transform.position;
+
         blockLayer = LayerMask.NameToLayer("Blocks");
         obstaclesLayer = LayerMask.NameToLayer("Obstacles");
         collecteblesLayer = LayerMask.NameToLayer("Collectebles");
@@ -59,8 +60,6 @@ public class Player : MonoBehaviour
         }
     }
 
-    
-
     void FixedUpdate()
     {
         transform.position += velocity;
@@ -78,7 +77,6 @@ public class Player : MonoBehaviour
             }
         }
     }
-    
 
     private void OnCollisionEnter(Collision collision)
     {
@@ -97,6 +95,16 @@ public class Player : MonoBehaviour
         }
     }
 
+    public void PlayerStart()
+    {
+        transform.position = startPoint.transform.position;
+        ChangePlayerState(State.Moving);
+    }
+
+    public void PlayerStop()
+    {
+        ChangePlayerState(State.Waiting);
+    }
 
     void ChangePlayerState(State newState)
     {

@@ -4,17 +4,11 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class TurnScript : MonoBehaviour
+public class Turn : MonoBehaviour
 {
     public int rotation = 0;
     bool changed = false;
 
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
     void Update()
     {
         
