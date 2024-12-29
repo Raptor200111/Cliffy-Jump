@@ -96,7 +96,7 @@ public class DynamicStructures : MonoBehaviour
                 allDecoration[i] = Instantiate(prefabs[world.decType[i]], pos000, Quaternion.identity, this.transform);
             }
 
-            screen = -1;
+            screen -= 1;
             HiddenObjectsChange();
         }
         catch 

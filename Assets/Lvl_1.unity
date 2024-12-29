@@ -210,8 +210,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 157207112}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.38268343, y: 0, z: 0, w: 0.92387956}
-  m_LocalPosition: {x: 0, y: 49.8, z: -42.8}
+  m_LocalRotation: {x: -0.34329146, y: 0.32583913, z: -0.12835144, w: -0.87149626}
+  m_LocalPosition: {x: 35.52, y: 35.43, z: -34.63}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -384,6 +384,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06bcccfb05b25574ab841a794b2f9b67, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  screen: 9
   prefabs:
   - {fileID: 2548770757460197881, guid: 5c5f7a8870c8dd4498c70f6f15c5a953, type: 3}
   - {fileID: 8544952872848645659, guid: 7fe963b68af04194594caa291771ce42, type: 3}
