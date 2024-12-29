@@ -105,12 +105,9 @@ public class DynamicStructures : MonoBehaviour
         }
     }
 
-    void Update()
+    public void NextScreen()
     {
-        if (Input.GetKeyUp(KeyCode.S)) 
-        {
-            //animator.SetTrigger("hide");
-        }
+        animator.SetTrigger("hide");
     }
 
     public void HiddenObjectsChange()
@@ -119,7 +116,7 @@ public class DynamicStructures : MonoBehaviour
 
         if (screen == numberOfScreens)
         {
-            GameManager.Instance.WorldComplete();
+            WorldManager.Instance.WorldComplete();
             return;
         }
 
@@ -157,7 +154,7 @@ public class DynamicStructures : MonoBehaviour
 
     public void DoneRising()
     {
-        GameManager.Instance.DoneRising();
+        WorldManager.Instance.DoneRising();
     }
 
     Vector3 PosToVec3(Pos pos)

@@ -1,22 +1,16 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    //enum State { Loading, Moving, Jumping };
-
     public static GameManager Instance;
     public List<Characters> characters = new List<Characters>();
-
-    public Player player;
-    public DynamicStructures dynamicStructures;
-
+    // Start is called before the first frame update
     public void Awake()
     {
-        if (GameManager.Instance == null) 
-        { 
+        if (GameManager.Instance == null)
+        {
             GameManager.Instance = this;
             DontDestroyOnLoad(gameObject);
         }
@@ -26,19 +20,9 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void DoneRising()
+    // Update is called once per frame
+    void Update()
     {
-        player.PlayerStart();
-    }
 
-    public void ScreenComplete()
-    {
-        player.PlayerStop();
-        dynamicStructures.HiddenObjectsChange();
-    }
-
-    public void WorldComplete()
-    {
-        UnityEngine.Debug.Log("World Complete");
     }
 }

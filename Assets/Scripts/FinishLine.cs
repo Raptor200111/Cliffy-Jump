@@ -20,7 +20,7 @@ public class FinishLine : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            GameManager.Instance.ScreenComplete();
+            WorldManager.Instance.ScreenComplete();
         }
     }
 }
