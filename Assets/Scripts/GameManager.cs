@@ -27,6 +27,8 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private List<Characters> characters = new List<Characters>();
     [SerializeField] private GameObject player;
+    [SerializeField] private GameObject CoinPrefab;
+    [SerializeField] private GameObject StarPrefab;
     public StageName stageName { get; private set; } = StageName.MENU;
     private SoundManager soundManager;
     // Start is called before the first frame update
@@ -121,6 +123,9 @@ public class GameManager : MonoBehaviour
     }
 
     public List<Characters> GetCharacters() { return characters; }
+
+    public GameObject GetStarPrefab() { return StarPrefab; }
+    public GameObject GetCoinPrefab() { return CoinPrefab; }
     // Update is called once per frame
     void Update()
     {

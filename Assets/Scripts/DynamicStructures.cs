@@ -153,4 +153,6 @@ public class DynamicStructures : MonoBehaviour
     {
         return new Vector3(pos.x, pos.y, pos.z);
     }
+
+    public GameObject[] GetAllBlocks() { return allBlocks; }
 }

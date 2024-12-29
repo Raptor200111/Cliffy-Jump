@@ -49,3 +49,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 65502b086adce6f4a9eda50878ea0f4a, type: 2}
   - {fileID: 11400000, guid: c1056a3f7c57611458eb9cc7da63f43e, type: 2}
   player: {fileID: 0}
+  CoinPrefab: {fileID: 3315043596747767852, guid: f502fd8610337f648ba79bea1d455bbe,
+    type: 3}
+  StarPrefab: {fileID: 4813581339930940020, guid: 578cadfe8c05f274d899ff6847f8b393,
+    type: 3}
