@@ -1,0 +1,84 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using TMPro;
+using UnityEngine.SceneManagement;
+
+public class MenuCharSelect : MonoBehaviour
+{
+    private int index;
+    [SerializeField] private GameObject charImage;
+    [SerializeField] private TMP_Text charName;
+    private GameManager gameManager;
+    private List<Characters> characters = new List<Characters>();
+    // Start is called before the first frame update
+    void Start()
+    {
+        gameManager = GameManager.Instance;
+        index = PlayerPrefs.GetInt("CharIndex", 0);
+        characters = gameManager.GetCharacters();
+        if (index > characters.Count -1)
+        {
+            index = 0;
+        }
+        ChangeChar();
+    }
+
+    private void ChangeChar() 
+    {
+        GameObject newPrefab = characters[index].character;
+        charName.text = characters[index].nameDisplay;
+
+        foreach (Transform child in charImage.transform)
+        {
+            Destroy(child.gameObject);
+        }
+
+        // Instantiate the new prefab as a child of imageObject
+        GameObject newInstance = Instantiate(newPrefab, charImage.transform);
+
+        // Optionally, reset the position, rotation, and scale of the new instance
+        newInstance.transform.localPosition = Vector3.zero;
+        newInstance.transform.localScale = new Vector3(10, 10, 10);
+
+    }
+
+    public void NextChar() 
+    {
+        if (index == characters.Count - 1)
+        {
+            index = 0;
+        }
+        else
+        {
+            index++;
+        }
+        ChangeChar();
+    }
+
+
+    public void PreviousChar()
+    {
+        if (index == 0)
+        {
+            index = characters.Count - 1;
+        }
+        else
+        {
+            index--;
+        }
+        ChangeChar();
+    }
+
+
+    public void SelectChar()
+    {
+        gameManager.SetPlayer(index);        
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        
+    }
+}
