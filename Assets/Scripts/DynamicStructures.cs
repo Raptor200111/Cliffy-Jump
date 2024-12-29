@@ -39,6 +39,7 @@ public class DynamicStructures : MonoBehaviour
     [System.Serializable]
     public class Level
     {
+        public int usefulBlocks;
         public List<Pos> blocks;
         public List<RotObject> turnings;
         public List<RotObject> obs;

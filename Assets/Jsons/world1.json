@@ -1,6 +1,7 @@
 {
   "levels": [
     {
+      "usefulBlocks": 17,
       "blocks": [
         {
           "x": -12,
@@ -486,6 +487,7 @@
       "dec": null
     },
     {
+      "usefulBlocks": 17,
       "blocks": [
         {
           "x": -12,
@@ -966,6 +968,7 @@
       "dec": null
     },
     {
+      "usefulBlocks": 21,
       "blocks": [
         {
           "x": -12,
@@ -1446,6 +1449,7 @@
       "dec": null
     },
     {
+      "usefulBlocks": 40,
       "blocks": [
         {
           "x": -12,
@@ -1931,6 +1935,7 @@
       "dec": null
     },
     {
+      "usefulBlocks": 33,
       "blocks": [
         {
           "x": -12,
@@ -2416,6 +2421,7 @@
       "dec": null
     },
     {
+      "usefulBlocks": 37,
       "blocks": [
         {
           "x": -12,
@@ -2901,6 +2907,7 @@
       "dec": null
     },
     {
+      "usefulBlocks": 46,
       "blocks": [
         {
           "x": -12,
@@ -3386,6 +3393,7 @@
       "dec": null
     },
     {
+      "usefulBlocks": 31,
       "blocks": [
         {
           "x": -12,
@@ -3871,6 +3879,7 @@
       "dec": null
     },
     {
+      "usefulBlocks": 51,
       "blocks": [
         {
           "x": -12,
@@ -4356,6 +4365,7 @@
       "dec": null
     },
     {
+      "usefulBlocks": 59,
       "blocks": [
         {
           "x": -12,
