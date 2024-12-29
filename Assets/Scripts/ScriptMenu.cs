@@ -20,8 +20,6 @@ public class ScriptMenu : MonoBehaviour
     [SerializeField] private Toggle onMusicToggle;
     [SerializeField] private Sprite offImage;
 
-    private MusicSoundParams defaultMusicSoundParams;
-
     private GameManager gameManager;
     private SoundManager soundManager;
     public int level;
@@ -54,12 +52,14 @@ public class ScriptMenu : MonoBehaviour
 
     public void playLevel()
     {
-        SceneManager.LoadScene(level);
-    }
-    public void goToMenu()
-    {
-        SceneManager.LoadScene(0);
-        soundManager.SetBackgroundMusic(StageName.MENU);
+        if(level == 1)
+        {
+            gameManager.changeScene(StageName.LVL_1);
+        }
+        else
+        {
+            gameManager.changeScene(StageName.LVL_2);
+        }
     }
     public void ShowConfigPopUp()
     {
@@ -68,8 +68,7 @@ public class ScriptMenu : MonoBehaviour
 
     public void showSelectPlayer()
     {
-        SceneManager.LoadScene(3);
-
+        gameManager.changeScene(StageName.PLYR_SELECT);
     }
     public void ExitConfigPopUp()
     {
@@ -78,7 +77,6 @@ public class ScriptMenu : MonoBehaviour
     public void ChangeMusicVolume(float newVolume)
     {
         soundManager.SetMusicVolume(newVolume);
-        soundManager.SetBackgroundMusic(gameManager.stageName);
     }
     private void SetToggleImage(Toggle toggle, bool isOn)
     {

@@ -18,7 +18,6 @@ public class DynamicBirds : MonoBehaviour
     public float skyHeight = 10f;
     private int maxGroupCount = 4;
     private int maxBirdCount = 5;
-    private float birdScale = 0.1f;
     private float timeAppearCube = 1.8f;
     private bool created = false;
  
@@ -67,7 +66,10 @@ public class DynamicBirds : MonoBehaviour
         }
         if (circuitCubes.Count != 0 && !created)
         {
-            CreateBirdGroups();
+            if (birdPrefab != null && gameManager.stageName == StageName.LVL_1)
+            {
+                CreateBirdGroups();
+            }
             created = true;
         }
     }
@@ -101,12 +103,11 @@ public class DynamicBirds : MonoBehaviour
                 );
                 Quaternion rotation = Quaternion.Euler(0, UnityEngine.Random.Range(0f, 355f), 0);
                 GameObject bird = Instantiate(birdPrefab, skyPosition, rotation, this.transform);
-                bird.transform.localScale = new Vector3(birdScale, birdScale, birdScale);
                 Bird birdScript = bird.GetComponent<Bird>();
 
                 if (birdScript != null)
                 {
-                    Vector3 sincosb = CalcBirdOffset(bird.GetComponent<BoxCollider>(), birdCount, j);
+                    Vector3 sincosb = CalcBirdOffset(bird, birdCount, j);
                     Vector3 targetPosition = cubePos + sincosb;
 
                     birdScript.SetLandingPosition(targetPosition);
@@ -123,12 +124,11 @@ public class DynamicBirds : MonoBehaviour
         }
     }
 
-    private Vector3 CalcBirdOffset(BoxCollider birdCollider, int birdCount, int index)
+    private Vector3 CalcBirdOffset(GameObject bird, int birdCount, int index)
     {
-        float playerBottomOffset = birdCollider.center.y / 2f * birdScale; //birdCollider.bounds.extents.y
-        if(birdCount == 1) { return new Vector3(0f, playerBottomOffset, 0f); }
+        if(birdCount == 1) { return Vector3.zero; }
         float angle = 2f * Mathf.PI / (float)birdCount * index;
         float radius = 1f;
-        return new Vector3(Mathf.Cos(angle) * radius, playerBottomOffset, Mathf.Sin(angle) * radius);
+        return new Vector3(Mathf.Cos(angle) * radius, 0f, Mathf.Sin(angle) * radius);
     }
 }

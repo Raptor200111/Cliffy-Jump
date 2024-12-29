@@ -15,7 +15,7 @@ public class MenuCharSelect : MonoBehaviour
     void Start()
     {
         gameManager = GameManager.Instance;
-        index = PlayerPrefs.GetInt("CharIndex");
+        index = PlayerPrefs.GetInt("CharIndex", 0);
         characters = gameManager.GetCharacters();
         if (index > characters.Count -1)
         {
@@ -26,8 +26,6 @@ public class MenuCharSelect : MonoBehaviour
 
     private void ChangeChar() 
     {
-        PlayerPrefs.GetInt("CharIndex", index);
-
         GameObject newPrefab = characters[index].character;
         charName.text = characters[index].nameDisplay;
 
@@ -41,7 +39,6 @@ public class MenuCharSelect : MonoBehaviour
 
         // Optionally, reset the position, rotation, and scale of the new instance
         newInstance.transform.localPosition = Vector3.zero;
-        newInstance.transform.localRotation = Quaternion.identity;
         newInstance.transform.localScale = new Vector3(10, 10, 10);
 
     }
@@ -76,9 +73,7 @@ public class MenuCharSelect : MonoBehaviour
 
     public void SelectChar()
     {
-        gameManager.SetPlayer(index);
-        PlayerPrefs.SetInt("CharIndex", index);
-        SceneManager.LoadScene(0);
+        gameManager.SetPlayer(index);        
     }
 
     // Update is called once per frame

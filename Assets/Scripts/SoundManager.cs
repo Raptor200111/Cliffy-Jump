@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
 
+
+// TO DO: add sounds && MusicSoundParams=> playerprefs
 public enum SoundType
 {
     JUMP
@@ -46,15 +48,22 @@ public class SoundManager : MonoBehaviour
             // Configure the music source
             musicSource.loop = true; // Ensures the background music loops
             musicSource.volume = Instance.musicsoundparams.soundVolume* backgroundMusicVolume;
-
-            if (bgMusics != null)
-            {
-                musicSource.clip = bgMusics[0].sound;
-                musicSource.Play(); // Start playing the music
-            }
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject); 
         }
     }
-   
+
+    private void Start()
+    {
+        if (bgMusics != null && musicsoundparams.onMusic)
+        {
+            musicSource.clip = bgMusics[0].sound;
+            musicSource.Play(); // Start playing the music
+        }
+    }
     public static void PlaySound(SoundType sound, AudioSource source = null)
     {
         SoundList sL = Instance.soundList[(int)sound];
@@ -114,39 +123,44 @@ public class SoundManager : MonoBehaviour
     }
 
 
-
-#if UNITY_EDITOR
-    private void OnEnable()
+    private void PopulateSongList(string[] names, SoundList[] list)
     {
-        string[] names = Enum.GetNames(typeof(SoundType));
-        bool differentSize = names.Length != soundList.Length;
+        bool differentSize = names.Length != list.Length;
 
         Dictionary<string, SoundList> sounds = new();
 
         if (differentSize)
         {
-            for (int i = 0; i < soundList.Length; ++i)
+            for (int i = 0; i < list.Length; ++i)
             {
-                sounds.Add(soundList[i].name, soundList[i]);
+                sounds.Add(list[i].name, list[i]);
             }
         }
 
-        Array.Resize(ref soundList, names.Length);
-        for (int i = 0; i < soundList.Length; i++)
+        int oldLength = list.Length;
+        Array.Resize(ref list, names.Length);
+
+        // Initialize new elements
+        for (int i = oldLength; i < list.Length; i++)
+        {
+            list[i] = new SoundList(); 
+        }
+
+        for (int i = 0; i < list.Length; i++)
         {
             string currentName = names[i];
-            soundList[i].name = currentName;
-            if (soundList[i].volume == 0) soundList[i].volume = 1;
+            list[i].name = currentName;
+            if (list[i].volume == 0) list[i].volume = 1;
 
             if (differentSize)
             {
                 if (sounds.ContainsKey(currentName))
                 {
                     SoundList current = sounds[currentName];
-                    UpdateElement(ref soundList[i], current.volume, current.sound, current.mixer);
+                    UpdateElement(ref list[i], current.volume, current.sound, current.mixer);
                 }
                 else
-                    UpdateElement(ref soundList[i], 1, null, null);
+                    UpdateElement(ref list[i], 1, null, null);
 
                 static void UpdateElement(ref SoundList element, float volume, AudioClip sound, AudioMixerGroup mixer)
                 {
@@ -157,13 +171,23 @@ public class SoundManager : MonoBehaviour
             }
         }
     }
+
+#if UNITY_EDITOR
+    private void OnEnable()
+    {
+        string[] names = Enum.GetNames(typeof(SoundType));
+        PopulateSongList(names, soundList);
+        string[] bgnames = Enum.GetNames(typeof(StageName));
+        PopulateSongList(bgnames, bgMusics);        
+    }
 #endif
 }
+
 
 [Serializable]
 public struct SoundList
 {
-    [ReadOnly] public string name;
+    [ReadOnly, SerializeField] public string name;
     [Range(0, 1)] public float volume;
     public AudioMixerGroup mixer;
     public AudioClip sound;
