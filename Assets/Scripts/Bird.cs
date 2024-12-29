@@ -5,8 +5,8 @@ using UnityEngine;
 
 public class Bird : MonoBehaviour
 {
-    [SerializeField] private float descendSpeed = 5f;
-    [SerializeField] private float ascendSpeed = 8f;
+    [SerializeField] private float appearSpeed = 5f;
+    [SerializeField] private float disappearSpeed = 8f;
     [SerializeField] private float detectionRange = 2f;
     [SerializeField] private float destroyHeight = 20f;
 
@@ -28,10 +28,8 @@ public class Bird : MonoBehaviour
         posBackUp = landingPosition;
     }
 
-    public void SetLandingPosition(Vector3 targetPos)
-    {
-        landingPosition = targetPos;
-        posBackUp = targetPos;
+    public void AppearAnim(Vector3 targetPos)
+    {;
         StartCoroutine(FlyToTarget(targetPos));
     }
 
@@ -39,7 +37,7 @@ public class Bird : MonoBehaviour
     {
         while (Vector3.Distance(transform.position, targetPos) > 0.1f)
         {
-            transform.position = Vector3.MoveTowards(transform.position, targetPos, descendSpeed * Time.deltaTime);
+            transform.position = Vector3.MoveTowards(transform.position, targetPos, appearSpeed * Time.deltaTime);
             yield return null;
         }
 
@@ -66,7 +64,7 @@ public class Bird : MonoBehaviour
 
             if (distanceToPlayer <= detectionRange)
             {
-                FlyAway();                
+                DisappearAnim();                
             }
         }
     }
@@ -74,14 +72,14 @@ public class Bird : MonoBehaviour
     {
         while (transform.position.y <= destroyHeight)
         {
-            transform.position += randomDirection * ascendSpeed * Time.deltaTime;
+            transform.position += randomDirection * disappearSpeed * Time.deltaTime;
             yield return null;
         }
 
         Destroy(gameObject);
     }
 
-    public void FlyAway()
+    public void DisappearAnim()
     {
         // Generate random direction for ascent
         randomDirection = new Vector3(

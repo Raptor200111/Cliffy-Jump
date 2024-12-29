@@ -30,6 +30,7 @@ public class DynamicStructures : MonoBehaviour
     //Liliu
     [SerializeField] private GameObject birdPrefab;
     [SerializeField] private DynamicBirds dynamicBirds;
+    private int lvl_L;
 
     [System.Serializable]
     public class World
@@ -69,6 +70,7 @@ public class DynamicStructures : MonoBehaviour
 
     void Start()
     {
+        lvl_L = 2;
         animator = GetComponent<Animator>();
         try
         {
@@ -162,12 +164,12 @@ public class DynamicStructures : MonoBehaviour
     public GameObject[] GetAllBlocks() { return allBlocks; }
     public void onRaiseComplete()
     {
-        dynamicBirds.CreateDetails(allBlocks, StageName.LVL_1);
+        dynamicBirds.CreateDetails(allBlocks, lvl_L);
     }
 
     public void onHiddenComplete()
     {
-        dynamicBirds.DestroyDetails();
+        dynamicBirds.DestroyDetails(lvl_L);
     }
 
 }

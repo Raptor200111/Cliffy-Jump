@@ -68,7 +68,7 @@ public class AnimationScript : MonoBehaviour {
         }
 	}
 
-    public void DestroyAnimation()
+    public void DisappearAnim()
     {
         Destroy(gameObject);
     }

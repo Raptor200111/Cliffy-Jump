@@ -11,16 +11,10 @@ using static DynamicStructures;
 
 /*
  bird:
-public float skyHeight = 10f;
-private int maxGroupCount = 4;
-private int maxBirdCount = 5;
-CalcBirdOffset
-//apears on top
+animations, fix offset
 
 lizard:
-public flost maxy = 5f - 2.5f;
-appear 1
-//appears on side
+//appear inside??
 
 eyes:
 maxy 
@@ -30,21 +24,28 @@ maxy
 
 public class DynamicBirds : MonoBehaviour
 {
-    [SerializeField] GameObject birdPrefab;
+    private List<Vector3> circuitCubes = new List<Vector3>();
+    private bool is_ok;
     List<int> ocupiedBlocks = new List<int>();
 
-    [SerializeField] private int numStars = 3; 
-    [SerializeField] private int numCoins = 3;
-    private GameManager gameManager;
-    private List<Vector3> circuitCubes = new List<Vector3>();
+    private GameObject movDecoGO;
+
+    [SerializeField] GameObject birdPrefab;
     public float skyHeight = 10f;
     private int maxGroupCount = 4;
     private int maxBirdCount = 5;
 
 
-    private bool is_ok;
+    [SerializeField] GameObject lizardPrefab;
+    private int maxLizardCount = 9;
+    private int minLizardCount = 4;
+    private float yLizardStart = -4f;
+    private float yLizardMargin = -2.2f;
+
+    private GameManager gameManager;
     private GameObject coinStarsGO;
-    private GameObject movDecoGO;
+    [SerializeField] private int numStars = 3; 
+    [SerializeField] private int numCoins = 3;
 
     // Start is called before the first frame update
     void Start()
@@ -64,7 +65,7 @@ public class DynamicBirds : MonoBehaviour
 
     }
 
-    public void CreateDetails(GameObject[] blocks, StageName lvl)
+    public void CreateDetails(GameObject[] blocks, int lvl)
     {
         for (int i = 0; i < blocks.Count(); i++)
         {
@@ -79,33 +80,51 @@ public class DynamicBirds : MonoBehaviour
 
         if (circuitCubes.Count != 0)
         {
-            if (birdPrefab != null)// && gameManager.stageName == StageName.LVL_1)
+            
+            coinStarsGO = new GameObject();
+            movDecoGO = new GameObject();
+
+            if (lvl == 1 && birdPrefab != null)
             {
-                if(lvl == StageName.LVL_1)
-                {
-                    int groupCount = UnityEngine.Random.Range(1, maxGroupCount); // Generate 1 to 3 groups
-                    int birdCount = UnityEngine.Random.Range(1, maxBirdCount);
-                    is_ok = circuitCubes.Count > (numCoins + numStars + groupCount);
-                    coinStarsGO = new GameObject();
-                    CreateCoinStar(coinStarsGO);
-                    movDecoGO = new GameObject();
-                    CreateBirdGroups(movDecoGO, groupCount, birdCount);
-                }
+                int groupCount = UnityEngine.Random.Range(1, maxGroupCount); // Generate 1 to 3 groups
+                int birdCount = UnityEngine.Random.Range(1, maxBirdCount);
+                is_ok = circuitCubes.Count > (numCoins + numStars + groupCount);
+                CreateCoinStar(coinStarsGO);
+                CreateBirdGroups(movDecoGO, groupCount, birdCount);
             }
+            else if(lvl == 2 && lizardPrefab != null)
+            {
+                int lizardCount = UnityEngine.Random.Range(minLizardCount, maxLizardCount);
+                is_ok = circuitCubes.Count > (numCoins + numStars + lizardCount);
+                CreateCoinStar(coinStarsGO);
+                CreateLizards(movDecoGO, lizardCount);
+            }
+            
         }
     }
 
-    public void DestroyDetails()
+    public void DestroyDetails(int lvl)
     {
         AnimationScript[] starcoins = coinStarsGO.GetComponentsInChildren<AnimationScript>();
         foreach (AnimationScript script in starcoins)
         {
-            script.DestroyAnimation();
+            script.DisappearAnim();
         }
-        Bird[] birdScripts = movDecoGO.GetComponentsInChildren<Bird>();
-        foreach (Bird birdscript in birdScripts)
+        if (lvl == 1)
         {
-            birdscript.FlyAway();
+            Bird[] birdScripts = movDecoGO.GetComponentsInChildren<Bird>();
+            foreach (Bird birdscript in birdScripts)
+            {
+                birdscript.DisappearAnim();
+            }
+        }
+        else if(lvl == 2)
+        {
+            LizardAnimation[] lizardScripts = movDecoGO.GetComponentsInChildren<LizardAnimation>();
+            foreach (LizardAnimation lizardScript in lizardScripts)
+            {
+                lizardScript.DisappearAnim();
+            }
         }
     }
 
@@ -141,7 +160,45 @@ public class DynamicBirds : MonoBehaviour
 
     }
 
-    private void CreateBirdGroups(GameObject paretnGO, int groupCount, int birdCount)
+    private void CreateLizards(GameObject parentGO, int lizardCount)
+    {
+        for(int i = 0;i < lizardCount;i++)
+        {
+            int indexBlock = SelectBlock();
+            int option = i % 4;//UnityEngine.Random.Range(0, 4);
+            Vector3 offset;
+            float yRotation;
+            float halfCube = 1f;
+            switch (option)
+            {
+                case 0:
+                    offset = new Vector3(0f, yLizardStart, -halfCube);
+                    yRotation = 0f;
+                    break;
+                case 1:
+                    offset = new Vector3(0f, yLizardStart, halfCube);
+                    yRotation = 180f;
+                    break;
+                case 2:
+                    offset = new Vector3(-halfCube, yLizardStart, -0f);
+                    yRotation = 90f;
+                    break;  
+                default:
+                    offset = new Vector3(halfCube, yLizardStart, 0f);
+                    yRotation = -90f;
+                    break;
+            }
+            Quaternion rotation = Quaternion.Euler(new Vector3(0f, yRotation, 0f));
+            Vector3 lizardPos = circuitCubes[indexBlock] + offset;
+            GameObject lizard = Instantiate(lizardPrefab, lizardPos, rotation, parentGO.transform);
+            float yoffset = circuitCubes[indexBlock].y + yLizardMargin - (i % 4) * 0.5f;
+            Vector3 targetPos = new Vector3(lizardPos.x, yoffset, lizardPos.z);
+            lizard.GetComponent<LizardAnimation>().AppearAnim(targetPos);
+        }
+    }
+
+
+    private void CreateBirdGroups(GameObject parentGO, int groupCount, int birdCount)
     {
 
         for (int i = 0; i < groupCount; i++)
@@ -158,7 +215,7 @@ public class DynamicBirds : MonoBehaviour
                     cubePos.z + UnityEngine.Random.Range(-2f, 2f)
                 );
                 Quaternion rotation = Quaternion.Euler(0, UnityEngine.Random.Range(0f, 355f), 0);
-                GameObject bird = Instantiate(birdPrefab, skyPosition, rotation, paretnGO.transform);
+                GameObject bird = Instantiate(birdPrefab, skyPosition, rotation, parentGO.transform);
                 Bird birdScript = bird.GetComponent<Bird>();
 
                 if (birdScript != null)
@@ -166,7 +223,7 @@ public class DynamicBirds : MonoBehaviour
                     Vector3 sincosb = CalcBirdOffset(bird, birdCount, j);
                     Vector3 targetPosition = cubePos + sincosb;
 
-                    birdScript.SetLandingPosition(targetPosition);
+                    birdScript.AppearAnim(targetPosition);
 
                     Debug.Log($"cubePos: {cubePos}");
                     Debug.Log($"sincosb: {sincosb}, birdCount: {birdCount}, index: {j}");
