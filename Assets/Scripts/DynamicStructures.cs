@@ -39,6 +39,7 @@ public class DynamicStructures : MonoBehaviour
     [System.Serializable]
     public class Level
     {
+        public int usefulBlocks;
         public List<Pos> blocks;
         public List<RotObject> turnings;
         public List<RotObject> obs;
@@ -161,4 +162,6 @@ public class DynamicStructures : MonoBehaviour
     {
         return new Vector3(pos.x, pos.y, pos.z);
     }
+
+    public GameObject[] GetAllBlocks() { return allBlocks; }
 }
