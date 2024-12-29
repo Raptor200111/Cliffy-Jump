@@ -6,8 +6,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName ="NewCharacter", menuName = "Character")]
 public class Characters : ScriptableObject
 {
-    public GameObject playableCharacter;
-    public GameObject object_to_Display;
+    public GameObject character;
     public String nameDisplay;
 
     // Start is called before the first frame update
