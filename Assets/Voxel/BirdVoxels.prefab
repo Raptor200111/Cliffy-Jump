@@ -11,7 +11,9 @@ GameObject:
   - component: {fileID: 5854565810223971644}
   - component: {fileID: 7185085183677806728}
   - component: {fileID: 3437961516024818956}
-  m_Layer: 9
+  - component: {fileID: 1699752498901915973}
+  - component: {fileID: 7932668398342956354}
+  m_Layer: 10
   m_Name: BirdVoxels
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -53,11 +55,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed63ffb3eb0ecb74093b8a72d1dcc9ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  descendSpeed: 5
-  ascendSpeed: 8
-  detectionRange: 2
+  appearSpeed: 5
+  disappearSpeed: 8
   destroyHeight: 20
-  posBackUp: {x: 0, y: 0, z: 0}
 --- !u!65 &3437961516024818956
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -79,6 +79,54 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 3, y: 5, z: 3}
   m_Center: {x: 0, y: 2, z: 0}
+--- !u!135 &1699752498901915973
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7054857334590879415}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 15
+  m_Center: {x: 0, y: 2, z: 0}
+--- !u!54 &7932668398342956354
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7054857334590879415}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1001 &257885717620574774
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -145,12 +193,12 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 40c34d458c43d05419e0b10722ff5da9,
         type: 3}
       propertyPath: m_Layer
-      value: 9
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 8164078558771037576, guid: 40c34d458c43d05419e0b10722ff5da9,
         type: 3}
       propertyPath: m_Layer
-      value: 9
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -229,12 +277,12 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 8e23adfaad97c8648ac4b28d07d17935,
         type: 3}
       propertyPath: m_Layer
-      value: 9
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 8164078558771037576, guid: 8e23adfaad97c8648ac4b28d07d17935,
         type: 3}
       propertyPath: m_Layer
-      value: 9
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -313,12 +361,12 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: e407b73ae4280dc4284c1e66062142cd,
         type: 3}
       propertyPath: m_Layer
-      value: 9
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 8164078558771037576, guid: e407b73ae4280dc4284c1e66062142cd,
         type: 3}
       propertyPath: m_Layer
-      value: 9
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -397,12 +445,12 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: a8480639de81aed4c9c8ad227435ee38,
         type: 3}
       propertyPath: m_Layer
-      value: 9
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 8164078558771037576, guid: a8480639de81aed4c9c8ad227435ee38,
         type: 3}
       propertyPath: m_Layer
-      value: 9
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -481,12 +529,12 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 30dd9ae899bea2a4890d1dbbde299707,
         type: 3}
       propertyPath: m_Layer
-      value: 9
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 8164078558771037576, guid: 30dd9ae899bea2a4890d1dbbde299707,
         type: 3}
       propertyPath: m_Layer
-      value: 9
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -565,12 +613,12 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 36a0ee6c5f6b6824b9cecad673f2f380,
         type: 3}
       propertyPath: m_Layer
-      value: 9
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 8164078558771037576, guid: 36a0ee6c5f6b6824b9cecad673f2f380,
         type: 3}
       propertyPath: m_Layer
-      value: 9
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -649,12 +697,12 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 5c0e4af104e58b347bb7935b60e7698b,
         type: 3}
       propertyPath: m_Layer
-      value: 9
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 8164078558771037576, guid: 5c0e4af104e58b347bb7935b60e7698b,
         type: 3}
       propertyPath: m_Layer
-      value: 9
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -733,12 +781,12 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: bb33da5da3012b54892b790ba31f8c78,
         type: 3}
       propertyPath: m_Layer
-      value: 9
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 8164078558771037576, guid: bb33da5da3012b54892b790ba31f8c78,
         type: 3}
       propertyPath: m_Layer
-      value: 9
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -27,6 +27,10 @@ public class DynamicStructures : MonoBehaviour
     public List<GameObject> prefabs;
     public TextAsset jsonFile;
 
+    //Liliu
+    [SerializeField] private DynamicDetails dynamicDetails;
+    private int lvl_L;
+
     [System.Serializable]
     public class World
     {
@@ -65,6 +69,7 @@ public class DynamicStructures : MonoBehaviour
 
     void Start()
     {
+        lvl_L = 3;
         animator = GetComponent<Animator>();
         try
         {
@@ -164,4 +169,14 @@ public class DynamicStructures : MonoBehaviour
     }
 
     public GameObject[] GetAllBlocks() { return allBlocks; }
+    public void onRaiseComplete()
+    {
+        dynamicDetails.CreateDetails(allBlocks, lvl_L);
+    }
+
+    public void onHiddenComplete()
+    {
+        dynamicDetails.DestroyDetails(lvl_L);
+    }
+
 }

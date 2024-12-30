@@ -1,23 +1,32 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
-public class LizardAnimation : MonoBehaviour
+public class BirdController : MonoBehaviour
 {
-    private float appearSpeed = 0.5f;
-    private float disappearSpeed = 1f;
+    [SerializeField] private float appearSpeed = 5f;
+    [SerializeField] private float disappearSpeed = 8f;
+    [SerializeField] private float destroyHeight = 20f;
+
     private bool disappear = false;
-    // Start is called before the first frame update
-    void Start()
+    private Vector3 landingPosition;
+    private Vector3 randomDirection;
+    private void Start()
     {
+        randomDirection = new Vector3(
+            Random.Range(-1f, 1f),
+            1f,
+            Random.Range(-1f, 1f)
+        ).normalized;
     }
 
     public void AppearAnim(Vector3 targetPos)
-    {
-        StartCoroutine(ClimbToTarget(targetPos));
+    {;
+        StartCoroutine(FlyToTarget(targetPos));
     }
 
-    private IEnumerator ClimbToTarget(Vector3 targetPos)
+    private IEnumerator FlyToTarget(Vector3 targetPos)
     {
         while (Vector3.Distance(transform.position, targetPos) > 0.1f)
         {
@@ -29,20 +38,22 @@ public class LizardAnimation : MonoBehaviour
         if (targetPos != Vector3.one)
         {
             transform.position = targetPos;
+            landingPosition = targetPos;
         }
         else
         {
             UnityEngine.Debug.LogWarning("ERROR targetPos BORD LANDING");
         }
+        
     }
-    // Update is called once per frame
-    void Update()
+
+    private void Update()
     {
-        if(disappear)
+        if (disappear)
         {
-            if (transform.position.y >= 0f)
+            if (transform.position.y <= destroyHeight)
             {
-                transform.position += new Vector3(0f, -1f, 0f) * disappearSpeed * Time.deltaTime;                
+                transform.position += randomDirection * disappearSpeed * Time.deltaTime;
             }
             else
             {
@@ -62,14 +73,13 @@ public class LizardAnimation : MonoBehaviour
 
     public void DisappearAnim()
     {
-        StartCoroutine(DescentToWater());
+        StartCoroutine(FlyToSky());
     }
-
-    private IEnumerator DescentToWater()
+    private IEnumerator FlyToSky()
     {
-        while (transform.position.y >= 0f)
+        while (transform.position.y <= destroyHeight)
         {
-            transform.position += new Vector3(0f, -1f, 0f) * disappearSpeed * Time.deltaTime;
+            transform.position += randomDirection * disappearSpeed * Time.deltaTime;
             yield return null;
         }
 

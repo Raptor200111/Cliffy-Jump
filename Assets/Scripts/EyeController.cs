@@ -2,22 +2,27 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LizardAnimation : MonoBehaviour
+public class EyeController : MonoBehaviour
 {
     private float appearSpeed = 0.5f;
     private float disappearSpeed = 1f;
     private bool disappear = false;
+    private GameManager gameManager;
+    private Transform playerTransform;
+
     // Start is called before the first frame update
     void Start()
     {
+        gameManager = GameManager.Instance;    
+        playerTransform = gameManager.GetPlayerTransform();
     }
 
     public void AppearAnim(Vector3 targetPos)
     {
-        StartCoroutine(ClimbToTarget(targetPos));
+        StartCoroutine(AscendToTarget(targetPos));
     }
 
-    private IEnumerator ClimbToTarget(Vector3 targetPos)
+    private IEnumerator AscendToTarget(Vector3 targetPos)
     {
         while (Vector3.Distance(transform.position, targetPos) > 0.1f)
         {
@@ -38,11 +43,12 @@ public class LizardAnimation : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(disappear)
+        transform.LookAt(playerTransform);
+        if (disappear)
         {
-            if (transform.position.y >= 0f)
+            if (transform.position.y >= -3f)
             {
-                transform.position += new Vector3(0f, -1f, 0f) * disappearSpeed * Time.deltaTime;                
+                transform.position += new Vector3(0f, -1f, 0f) * disappearSpeed * Time.deltaTime;
             }
             else
             {
@@ -67,7 +73,7 @@ public class LizardAnimation : MonoBehaviour
 
     private IEnumerator DescentToWater()
     {
-        while (transform.position.y >= 0f)
+        while (transform.position.y >= -3f)
         {
             transform.position += new Vector3(0f, -1f, 0f) * disappearSpeed * Time.deltaTime;
             yield return null;

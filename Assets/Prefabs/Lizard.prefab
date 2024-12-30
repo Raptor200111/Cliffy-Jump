@@ -10,9 +10,12 @@ GameObject:
   m_Component:
   - component: {fileID: 2841711394274926229}
   - component: {fileID: 7513636285564189858}
-  m_Layer: 0
+  - component: {fileID: 2785013064065518512}
+  - component: {fileID: 7689471888568023900}
+  - component: {fileID: 2043481352199879545}
+  m_Layer: 10
   m_Name: Lizard
-  m_TagString: Untagged
+  m_TagString: Lizard
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -57,6 +60,75 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0715ab72a638d7499f77f566bddc94e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!135 &2785013064065518512
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1481606888306171211}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 10
+  m_Center: {x: 0, y: 3, z: 0}
+--- !u!65 &7689471888568023900
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1481606888306171211}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 6, y: 12, z: 2}
+  m_Center: {x: 0, y: 3, z: -0.5}
+--- !u!54 &2043481352199879545
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1481606888306171211}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1001 &469025874530446819
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -119,6 +191,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: lizard-9-tail0
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 2e3ed96807c033a429e5bf8c0f092af7,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8164078558771037576, guid: 2e3ed96807c033a429e5bf8c0f092af7,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -194,6 +276,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: lizard-7-tail1
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: e4eb1fb75ec4acb47b81541522ac776a,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8164078558771037576, guid: e4eb1fb75ec4acb47b81541522ac776a,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -267,6 +359,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: lizard-3-upperarm
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 882c4ab20525b0945b852da76ed4e5b5,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8164078558771037576, guid: 882c4ab20525b0945b852da76ed4e5b5,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -342,6 +444,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: lizard-5-eye
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: b9c677c6398c2ca418d65a7661d024c8,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8164078558771037576, guid: b9c677c6398c2ca418d65a7661d024c8,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -415,6 +527,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: lizard-4-eye
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 21fe209c583dab441952a4a3cce32578,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8164078558771037576, guid: 21fe209c583dab441952a4a3cce32578,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -490,6 +612,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: lizard-1-upperarm
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: b4c1b69b163ea304e92e721fe4c87ae2,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8164078558771037576, guid: b4c1b69b163ea304e92e721fe4c87ae2,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -563,6 +695,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: lizard-10-neck
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 02c5532fab7590a4ba444f792963249f,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8164078558771037576, guid: 02c5532fab7590a4ba444f792963249f,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -638,6 +780,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: lizard-11-head
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: ffbe3b23e3989b74c985dae6db074835,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8164078558771037576, guid: ffbe3b23e3989b74c985dae6db074835,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -711,6 +863,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: lizard-6-tail2
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 9fa8fa2588a6d3442a088ab9b0e0305a,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8164078558771037576, guid: 9fa8fa2588a6d3442a088ab9b0e0305a,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -786,6 +948,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: lizard-13-body
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 042b03d2c77f2bd4395ba85893290f18,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8164078558771037576, guid: 042b03d2c77f2bd4395ba85893290f18,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -859,6 +1031,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: lizard-8-tail3
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: d2da9649fa5ba6b449c4b457083129d4,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8164078558771037576, guid: d2da9649fa5ba6b449c4b457083129d4,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -934,6 +1116,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: lizard-2-forearm
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 1a4f683f67a2086498c9af9ed1c9a405,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8164078558771037576, guid: 1a4f683f67a2086498c9af9ed1c9a405,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1007,6 +1199,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: lizard-0-forearm
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: e2f8bcc17d8b41c46844944514720af6,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8164078558771037576, guid: e2f8bcc17d8b41c46844944514720af6,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
