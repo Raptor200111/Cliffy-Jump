@@ -147,14 +147,14 @@ public class Player : MonoBehaviour
         playerState = newState;
     }
 
-    public void ChangeDirection(Vector3 pos, int rot)
+    public void ChangeDirection(Vector3 pos, Vector3 fow)
     {
         if (playerState == State.Moving) 
         {
             pos.y = transform.position.y;
-            Quaternion quat = Quaternion.Euler(0, rot, 0);
-            this.transform.SetPositionAndRotation(pos, quat);
-            velocity = 0.2f * transform.forward;
+            transform.localPosition = pos;
+            transform.forward = fow;
+            velocity = 0.2f * fow;
         }
     }
 }
