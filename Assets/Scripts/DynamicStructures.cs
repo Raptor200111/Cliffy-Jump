@@ -111,17 +111,20 @@ public class DynamicStructures : MonoBehaviour
         }
     }
 
-    void Update()
+    public void NextScreen()
     {
-        if (Input.GetKeyUp(KeyCode.S)) 
-        {
-            animator.SetTrigger("hide");
-        }
+        animator.SetTrigger("hide");
     }
 
     public void HiddenObjectsChange()
     {
-        screen = (screen + 1) % numberOfScreens;
+        screen++;
+
+        if (screen == numberOfScreens)
+        {
+            WorldManager.Instance.WorldComplete();
+            return;
+        }
 
         for (int i = 0; i < allBlocks.Length; i++)
         {
@@ -132,7 +135,7 @@ public class DynamicStructures : MonoBehaviour
         for (int i = 0; i < allTurns.Length; i++)
         {
             allTurns[i].transform.localPosition = PosToVec3(world.levels[screen].turnings[i].pos);
-            allTurns[i].GetComponent<TurnScript>().rotation = world.levels[screen].turnings[i].Yrotation;
+            allTurns[i].GetComponent<Turn>().rotation = world.levels[screen].turnings[i].Yrotation;
         }
 
         for (int i = 0; i < allObstacles.Length; i++)
@@ -153,6 +156,11 @@ public class DynamicStructures : MonoBehaviour
         }
 
         animator.SetTrigger("rise");
+    }
+
+    public void DoneRising()
+    {
+        WorldManager.Instance.DoneRising();
     }
 
     Vector3 PosToVec3(Pos pos)

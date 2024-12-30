@@ -34,8 +34,8 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     public void Awake()
     {
-        if (GameManager.Instance == null) 
-        { 
+        if (GameManager.Instance == null)
+        {
             GameManager.Instance = this;
             stageName = StageName.MENU;
             soundManager = SoundManager.Instance;
@@ -129,6 +129,6 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 }

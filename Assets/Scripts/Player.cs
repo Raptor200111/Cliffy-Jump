@@ -8,33 +8,38 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    enum State {Waiting, Moving, Jumping};
-    State playerState;// = State.Waiting;
+    enum State {Waiting, Moving, Jumping, Dead};
+    State playerState;
     Vector3 velocity;
-    Collider Collider;
-    Rigidbody Rigidbody;
+    Collider _collider;
+    Rigidbody _rigidbody;
+    Animator _animator;
+
+    
 
     int blockLayer;
     int obstaclesLayer;
     int collecteblesLayer;
 
-    //public LayerMask LayerMask;
-
     public float jumpSpeed = 200.0f;
     public float groundSpeed = 0.12f;
     public float gravity = -100f;
 
+    public GameObject startPoint;
 
     void Start()
     {
+        transform.position = startPoint.transform.position;
+
         blockLayer = LayerMask.NameToLayer("Blocks");
         obstaclesLayer = LayerMask.NameToLayer("Obstacles");
         collecteblesLayer = LayerMask.NameToLayer("Collectebles");
 
         playerState = State.Waiting;
         velocity = Vector3.zero;
-        Collider = GetComponent<Collider>();
-        Rigidbody = GetComponent<Rigidbody>();
+        _collider = GetComponent<Collider>();
+        _rigidbody = GetComponent<Rigidbody>();
+        _animator = GetComponent<Animator>();
 
         UnityEngine.Physics.gravity = new Vector3(0, gravity, 0);
     }
@@ -57,9 +62,9 @@ public class Player : MonoBehaviour
         {
             ChangePlayerState(State.Jumping);
         }
-    }
 
-    
+        _animator.SetFloat("Yvelocity", _rigidbody.velocity.y);
+    }
 
     void FixedUpdate()
     {
@@ -71,21 +76,21 @@ public class Player : MonoBehaviour
         {
             if ( hit.collider.gameObject.layer == blockLayer)
             {
-                Rigidbody.velocity = Vector3.zero;
+                _rigidbody.velocity = Vector3.zero;
                 ChangePlayerState(State.Waiting);
                 UnityEngine.Debug.Log("Front Smash");
                 break;
             }
         }
     }
-    
 
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.layer == obstaclesLayer)
         {
-            UnityEngine.Debug.Log("Death");
-            ChangePlayerState(State.Waiting);
+            //UnityEngine.Debug.Log("Death");
+            //ChangePlayerState(State.Waiting);
+            ChangePlayerState(State.Dead);
         }
         else if (collision.gameObject.layer == collecteblesLayer)
         {
@@ -97,6 +102,21 @@ public class Player : MonoBehaviour
         }
     }
 
+    public void PlayerStart()
+    {
+        transform.position = startPoint.transform.position;
+        ChangePlayerState(State.Moving);
+    }
+
+    public void PlayerStop()
+    {
+        ChangePlayerState(State.Waiting);
+    }
+
+    public void PlayerDeathAnimationComplete()
+    {
+        WorldManager.Instance.PlayerDeath();
+    }
 
     void ChangePlayerState(State newState)
     {
@@ -104,17 +124,26 @@ public class Player : MonoBehaviour
         {
             case State.Waiting:
                 velocity = Vector3.zero;
-                Rigidbody.velocity = Vector3.zero;
+                _rigidbody.velocity = Vector3.zero;
+                _animator.SetBool("Running", false);
                 break;
             case State.Moving:
-                Rigidbody.velocity = Vector3.zero;
+                _rigidbody.velocity = Vector3.zero;
                 velocity = transform.forward * groundSpeed;
+                _animator.SetBool("Running", true);
                 break;
             case State.Jumping:
-                Rigidbody.velocity = new Vector3(0, jumpSpeed, 0);
+                _rigidbody.velocity = new Vector3(0, jumpSpeed, 0);
+                _animator.SetTrigger("Jump");
                 break;
-        }
+            case State.Dead:
+                velocity = Vector3.zero;
+                _rigidbody.velocity = Vector3.zero;
+                _animator.SetTrigger("Dead");
+                break;
 
+        }
+        _animator.SetFloat("Yvelocity", _rigidbody.velocity.y);
         playerState = newState;
     }
 
