@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Drawing.Text;
 using System.Linq;
 using Unity.VisualScripting;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.TextCore.Text;
 using static DynamicStructures;
@@ -22,7 +23,7 @@ maxy
  */
 
 
-public class DynamicBirds : MonoBehaviour
+public class DynamicDetails : MonoBehaviour
 {
     private List<Vector3> circuitCubes = new List<Vector3>();
     private bool is_ok;
@@ -35,12 +36,23 @@ public class DynamicBirds : MonoBehaviour
     private int maxGroupCount = 4;
     private int maxBirdCount = 5;
 
+    private float cubeSize = 2f;
+    struct PosRot
+    {
+        public Vector3 pos;
+        public float ydegrees;
+    }
 
     [SerializeField] GameObject lizardPrefab;
     private int maxLizardCount = 9;
     private int minLizardCount = 4;
     private float yLizardStart = -4f;
-    private float yLizardMargin = -2.2f;
+    private float yLizardEndMargin = -2.2f;
+
+    [SerializeField] GameObject eyePrefab;
+    private float yEyeStart = -4f;
+    private int maxEyeCount = 8;
+    private float yEyeEndMargin = 3f;
 
     private GameManager gameManager;
     private GameObject coinStarsGO;
@@ -99,7 +111,14 @@ public class DynamicBirds : MonoBehaviour
                 CreateCoinStar(coinStarsGO);
                 CreateLizards(movDecoGO, lizardCount);
             }
-            
+            else if(lvl == 3 && eyePrefab != null)
+            {
+                int eyeCount = UnityEngine.Random.Range(minLizardCount, maxEyeCount);
+                is_ok = circuitCubes.Count > (numCoins + numStars + eyeCount);
+                CreateCoinStar(coinStarsGO);
+                CreateEyes(movDecoGO, eyeCount);
+            }
+
         }
     }
 
@@ -112,8 +131,8 @@ public class DynamicBirds : MonoBehaviour
         }
         if (lvl == 1)
         {
-            Bird[] birdScripts = movDecoGO.GetComponentsInChildren<Bird>();
-            foreach (Bird birdscript in birdScripts)
+            BirdController[] birdScripts = movDecoGO.GetComponentsInChildren<BirdController>();
+            foreach (BirdController birdscript in birdScripts)
             {
                 birdscript.DisappearAnim();
             }
@@ -126,16 +145,21 @@ public class DynamicBirds : MonoBehaviour
                 lizardScript.DisappearAnim();
             }
         }
+        else if (lvl == 3)
+        {
+            EyeController[] eyeScripts = movDecoGO.GetComponentsInChildren<EyeController>();
+            foreach (EyeController eyeScript in eyeScripts) {  eyeScript.DisappearAnim(); }
+        }
     }
 
     private int SelectBlock()
     {
-        int indexBlock = UnityEngine.Random.Range(0, circuitCubes.Count);
+        int indexBlock = UnityEngine.Random.Range(1, circuitCubes.Count-1);
         if(is_ok)
         {
             while (ocupiedBlocks.Contains(indexBlock))
             {
-                indexBlock = UnityEngine.Random.Range(0, circuitCubes.Count);
+                indexBlock = UnityEngine.Random.Range(1, circuitCubes.Count-1);
 
             }
         }
@@ -160,40 +184,62 @@ public class DynamicBirds : MonoBehaviour
 
     }
 
+    private float calcDegrees(Vector3 block, Vector3 blockSide)
+    {
+        Vector3 direction =  block - blockSide; //returns what i cannot        
+        return Mathf.Atan2(direction.x, -direction.z) * Mathf.Rad2Deg;
+    }
+
+    private PosRot calcStartPos(int indexBlock, float y, float scale)
+    {
+        List<float> possibleDegrees = new List<float>() { 0f, 90f , 180f, -90f };
+        possibleDegrees.Remove(calcDegrees(circuitCubes[indexBlock], circuitCubes[indexBlock - 1]));
+        possibleDegrees.Remove(calcDegrees(circuitCubes[indexBlock], circuitCubes[indexBlock + 1]));
+
+        //if lizard prefer 0 and -90;
+        int selected = UnityEngine.Random.Range(0, possibleDegrees.Count);
+        float selectedDegree = possibleDegrees[selected];
+
+        // Convert degrees to position
+        float x = Mathf.Sin(selectedDegree * Mathf.Deg2Rad);
+        float z = Mathf.Cos(selectedDegree * Mathf.Deg2Rad);
+
+        selectedDegree = (selectedDegree == 0f || selectedDegree == 180f)? selectedDegree+ 180f : selectedDegree;
+        x = (selectedDegree == 90f || selectedDegree == -90f)? -1*x: x;
+
+        return new PosRot
+        {
+            pos = circuitCubes[indexBlock] +  new Vector3(x * scale, y, z * scale),
+            ydegrees = selectedDegree
+        };
+    }
+
     private void CreateLizards(GameObject parentGO, int lizardCount)
     {
         for(int i = 0;i < lizardCount;i++)
         {
-            int indexBlock = SelectBlock();
-            int option = i % 4;//UnityEngine.Random.Range(0, 4);
-            Vector3 offset;
-            float yRotation;
-            float halfCube = 1f;
-            switch (option)
-            {
-                case 0:
-                    offset = new Vector3(0f, yLizardStart, -halfCube);
-                    yRotation = 0f;
-                    break;
-                case 1:
-                    offset = new Vector3(0f, yLizardStart, halfCube);
-                    yRotation = 180f;
-                    break;
-                case 2:
-                    offset = new Vector3(-halfCube, yLizardStart, -0f);
-                    yRotation = 90f;
-                    break;  
-                default:
-                    offset = new Vector3(halfCube, yLizardStart, 0f);
-                    yRotation = -90f;
-                    break;
-            }
-            Quaternion rotation = Quaternion.Euler(new Vector3(0f, yRotation, 0f));
-            Vector3 lizardPos = circuitCubes[indexBlock] + offset;
-            GameObject lizard = Instantiate(lizardPrefab, lizardPos, rotation, parentGO.transform);
-            float yoffset = circuitCubes[indexBlock].y + yLizardMargin - (i % 4) * 0.5f;
-            Vector3 targetPos = new Vector3(lizardPos.x, yoffset, lizardPos.z);
+            int indexBlock = SelectBlock();            
+            PosRot lizardStart = calcStartPos(indexBlock, yLizardStart, cubeSize / 2f);
+            Quaternion rotation = Quaternion.Euler(0, lizardStart.ydegrees, 0);
+            Debug.Log("pos: " + lizardStart.pos + ";  degrees: " + lizardStart.ydegrees);
+            GameObject lizard = Instantiate(lizardPrefab, lizardStart.pos, rotation, parentGO.transform);
+            float yoffset = circuitCubes[indexBlock].y + yLizardEndMargin - (i % 4) * 0.5f;
+            Vector3 targetPos = new Vector3(lizardStart.pos.x, yoffset, lizardStart.pos.z);
             lizard.GetComponent<LizardAnimation>().AppearAnim(targetPos);
+        }
+    }
+
+    private void CreateEyes(GameObject parentGO, int eyeCount)
+    {
+        for(int i = 0; i < eyeCount; i++)
+        {
+            int indexBlock = SelectBlock();
+
+            PosRot eyeStart = calcStartPos(indexBlock, yEyeStart, cubeSize * 3 / 2f);
+            GameObject eye = Instantiate(eyePrefab, eyeStart.pos, Quaternion.identity, parentGO.transform);
+            float yoffset = circuitCubes[indexBlock].y + yEyeStart - (i % 4) * 0.5f;
+            Vector3 targetPos = new Vector3(eyeStart.pos.x, yoffset, eyeStart.pos.z);
+            eye.GetComponent<EyeController>().AppearAnim(targetPos);
         }
     }
 
@@ -216,7 +262,7 @@ public class DynamicBirds : MonoBehaviour
                 );
                 Quaternion rotation = Quaternion.Euler(0, UnityEngine.Random.Range(0f, 355f), 0);
                 GameObject bird = Instantiate(birdPrefab, skyPosition, rotation, parentGO.transform);
-                Bird birdScript = bird.GetComponent<Bird>();
+                BirdController birdScript = bird.GetComponent<BirdController>();
 
                 if (birdScript != null)
                 {
