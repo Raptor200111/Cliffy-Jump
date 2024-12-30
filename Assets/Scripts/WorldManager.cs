@@ -12,6 +12,7 @@ public class WorldManager : MonoBehaviour
 
     public Player player;
     public DynamicStructures dynamicStructures;
+    public DynamicDetails dynamicDetails;
 
     public int lives = 3;
 
@@ -30,11 +31,13 @@ public class WorldManager : MonoBehaviour
 
     public void DoneRising()
     {
+        dynamicDetails.CreateDetails(dynamicStructures.screen, 3);
         player.PlayerStart();
     }
 
     public void ScreenComplete()
     {
+        dynamicDetails.DestroyDetails(3);
         player.PlayerStop();
         dynamicStructures.NextScreen();
     }
