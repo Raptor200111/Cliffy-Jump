@@ -15,11 +15,8 @@ public class DynamicStructures : MonoBehaviour
 {
     Vector3[,] positionsArray;
     Animator animator;
-    GameObject[] allBlocks;
-    GameObject[] allTurns;
-    GameObject[] allObstacles;
-    //GameObject[] allCollectebles;
-    GameObject[] allDecoration;
+
+    GameObject[][] allObjects;
 
     int numberOfScreens = 3;
     public int screen { get; private set; } = 0;
@@ -32,26 +29,20 @@ public class DynamicStructures : MonoBehaviour
     public class World
     {
         public List<Level> levels;
-        public List<int> blockType;
-        public List<int> turningType;
-        public List<int> obsType;
-        public List<int> decType;
+        public List<int> allObjects;
     }
     [System.Serializable]
     public class Level
     {
-        public int usefulBlocks;
-        public List<Pos> blocks;
-        public List<RotObject> turnings;
-        public List<RotObject> obs;
-        public List<RotObject> dec;
+        public List<Pos> positions;
     }
     
     [System.Serializable]
-    public class RotObject
+    public class ObjectInfo
     {
-        public Pos pos;
-        public int Yrotation;
+        public int YOffset;
+        public int index;
+        public int orientation;
     }
     [System.Serializable]
     public class Pos
@@ -59,6 +50,12 @@ public class DynamicStructures : MonoBehaviour
         public float x;
         public float y;
         public float z;
+        public List<ObjectInfo> objects;
+
+        public Vector3 ToVec3(float YOffset)
+        {
+            return new Vector3(x, y + YOffset, z);
+        }
     }
 
     public World world = new World();
@@ -72,30 +69,15 @@ public class DynamicStructures : MonoBehaviour
             world = JsonUtility.FromJson<World>(jsonFile.text);
 
             numberOfScreens = world.levels.Count;
-            
-            allBlocks = new GameObject[world.blockType.Count];
-            Vector3 pos000 = new Vector3(0, 0, 0);
-            for (int i = 0; i < allBlocks.Length; i++)
-            {
-                allBlocks[i] = Instantiate(prefabs[world.blockType[i]], pos000, Quaternion.identity, this.transform);
-            }
 
-            allTurns = new GameObject[world.turningType.Count];
-            for (int i = 0; i < allTurns.Length; i++)
+            allObjects = new GameObject[world.allObjects.Count][];
+            for (int i = 0; i < allObjects.Length; i++)
             {
-                allTurns[i] = Instantiate(prefabs[world.turningType[i]], pos000, Quaternion.identity, this.transform);
-            }
-
-            allObstacles = new GameObject[world.obsType.Count];
-            for (int i = 0; i < allObstacles.Length; i++)
-            {
-                allObstacles[i] = Instantiate(prefabs[world.obsType[i]], pos000, Quaternion.identity, this.transform);
-            }
-
-            allDecoration = new GameObject[world.decType.Count];
-            for (int i = 0; i < allDecoration.Length; i++)
-            {
-                allDecoration[i] = Instantiate(prefabs[world.decType[i]], pos000, Quaternion.identity, this.transform);
+                allObjects[i] = new GameObject[world.allObjects[i]];
+                for (int j = 0; j < allObjects[i].Length; j++)
+                {
+                    allObjects[i][j] = Instantiate(prefabs[i], Vector3.zero, Quaternion.identity, this.transform);
+                }
             }
 
             screen -= 1;
@@ -104,6 +86,14 @@ public class DynamicStructures : MonoBehaviour
         catch 
         {
             UnityEngine.Debug.Log("Json not attached or doesnt exist");
+        }
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyUp(KeyCode.S))
+        {
+            NextScreen();
         }
     }
 
@@ -122,33 +112,31 @@ public class DynamicStructures : MonoBehaviour
             return;
         }
 
-        for (int i = 0; i < allBlocks.Length; i++)
-        {
-            //allBlocks[i].transform.localPosition = new Vector3(world.levels[screen].blocks[i].x, world.levels[screen].blocks[i].y, world.levels[screen].blocks[i].z);
-            allBlocks[i].transform.localPosition = PosToVec3(world.levels[screen].blocks[i]);
-        }
         
-        for (int i = 0; i < allTurns.Length; i++)
+
+        int [] indexes = new int[world.allObjects.Count];
+        for (int i = 0; i < indexes.Length; i++)
         {
-            allTurns[i].transform.localPosition = PosToVec3(world.levels[screen].turnings[i].pos);
-            allTurns[i].GetComponent<Turn>().rotation = world.levels[screen].turnings[i].Yrotation;
+            indexes[i] = 0;
         }
 
-        for (int i = 0; i < allObstacles.Length; i++)
+        for (int i = 0; i < world.levels[screen].positions.Count; i++)
         {
-
-            Quaternion quat = Quaternion.Euler(0, world.levels[screen].obs[i].Yrotation, 0);
-            allObstacles[i].transform.SetLocalPositionAndRotation(PosToVec3(world.levels[screen].obs[i].pos), quat);
-            //allObstacles[i].transform.localPosition = PosToVec3(world.levels[screen].obs[i].pos);
-            //allObstacles[i].GetComponent<TurnScript>().rotation = world.levels[screen].obs[i].Yrotation;
+            for (int j = 0; j < world.levels[screen].positions[i].objects.Count; j++)
+            {
+                ObjectInfo obj = world.levels[screen].positions[i].objects[j];
+                Quaternion quat = Quaternion.Euler(0, obj.orientation, 0);
+                allObjects[obj.index][indexes[obj.index]++].transform.SetLocalPositionAndRotation(world.levels[screen].positions[i].ToVec3(obj.YOffset), quat);
+            }
         }
 
-        for (int i = 0; i < allDecoration.Length; i++)
+        Vector3 resetPos = new Vector3(100, 100, 100);
+        for (int i = 0; i < allObjects.Length; i++)
         {
-            Quaternion quat = Quaternion.Euler(0, world.levels[screen].dec[i].Yrotation, 0);
-            allObstacles[i].transform.SetLocalPositionAndRotation(PosToVec3(world.levels[screen].dec[i].pos), quat);
-            //allObstacles[i].transform.localPosition = PosToVec3(world.levels[screen].dec[i].pos);
-            //allObstacles[i].GetComponent<TurnScript>().rotation = world.levels[screen].dec[i].Yrotation;
+            for (int j = indexes[i]; j < allObjects[i].Length; j++)
+            {
+                allObjects[i][j].transform.localPosition = resetPos;
+            }
         }
 
         animator.SetTrigger("rise");
@@ -158,12 +146,6 @@ public class DynamicStructures : MonoBehaviour
     {
         WorldManager.Instance.DoneRising();
     }
-
-    Vector3 PosToVec3(Pos pos)
-    {
-        return new Vector3(pos.x, pos.y, pos.z);
-    }
-
-    public GameObject[] GetAllBlocks() { return allBlocks; }
-
+    
+    public GameObject[] GetAllBlocks() { return allObjects[0]; }
 }
