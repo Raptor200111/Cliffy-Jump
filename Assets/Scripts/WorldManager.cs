@@ -14,6 +14,9 @@ public class WorldManager : MonoBehaviour
     public DynamicStructures dynamicStructures;
     public DynamicDetails dynamicDetails;
 
+    public int currentProgress { get; private set; } = 0;
+    public int numWorld { get; private set; } = 1;
+
     public int lives = 3;
 
     public void Awake()
@@ -40,6 +43,12 @@ public class WorldManager : MonoBehaviour
         dynamicDetails.DestroyDetails(3);
         player.PlayerStop();
         dynamicStructures.NextScreen();
+    }
+
+    public void UpdateLevelProgress()
+    {
+        currentProgress += 1;
+        GameManager.Instance.SaveLevelProgress(numWorld, currentProgress);
     }
 
     public void WorldComplete()

@@ -21,9 +21,12 @@ public class GameManager : MonoBehaviour
     public bool IsGamePaused { get; private set; } = false;
     public bool IsGameOver { get; private set; } = false;
 
-    // Game data
-    public int CurrentScore { get; private set; } = 0;
+    public int coinsCollected { get; private set; } = 0;
+    public event Action<int> OnCoinsChanged;
+
     public int HighScore { get; private set; }
+    private int[] maxLevelProgress = new int[2];
+    public event Action<int> OnLevelProgressChanged;
 
     [SerializeField] private List<Characters> characters = new List<Characters>();
     [SerializeField] private GameObject player;
@@ -77,17 +80,6 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void RestartLevel()
-    {
-        changeScene(stageName);
-    }
-
-    public void AddScore(int points)
-    {
-        CurrentScore += points;
-        Debug.Log($"Score: {CurrentScore}");
-    }
-
     public void PauseGame()
     {
         IsGamePaused = true;
@@ -106,13 +98,29 @@ public class GameManager : MonoBehaviour
         Application.Quit();
     }
 
-    public Transform GetPlayerTransform()
+    public void AddCoin()
     {
-        return player.transform;
+        coinsCollected += 1;
+        OnCoinsChanged?.Invoke(coinsCollected);
     }
 
-    //only called from selectplayer 
-    public void SetPlayer(int i_indexPlayer)
+    public void SaveLevelProgress(int levelIndex, int progress)
+    {
+        if (progress > maxLevelProgress[levelIndex])
+        {
+            String varName = "ProgressLevel" + levelIndex + 1;
+            maxLevelProgress[levelIndex] = progress;
+            PlayerPrefs.SetInt(varName, progress);
+            OnLevelProgressChanged?.Invoke(maxLevelProgress[levelIndex]);
+        }
+    }
+
+    public int GetMaxLevelProgress(int levelIndex)
+    {
+        return maxLevelProgress[levelIndex];
+    }
+
+    public void SetSelectedPlayer(int i_indexPlayer)
     {
         if (i_indexPlayer > 0 && i_indexPlayer < characters.Count)
         {
@@ -120,6 +128,11 @@ public class GameManager : MonoBehaviour
             PlayerPrefs.SetInt("CharIndex", i_indexPlayer);
             changeScene(StageName.MENU);
         }
+    }
+
+    public Transform GetPlayerTransform()
+    {
+        return player.transform;
     }
 
     public List<Characters> GetCharacters() { return characters; }

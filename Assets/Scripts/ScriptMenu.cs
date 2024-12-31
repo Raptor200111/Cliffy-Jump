@@ -5,20 +5,25 @@ using UnityEngine.SceneManagement;
 using TMPro;
 using UnityEngine.UI;
 using Unity.VisualScripting;
-//using UnityEngine.UIElements;
+
 
 public class ScriptMenu : MonoBehaviour
 {
     // Start is called before the first frame update
     public GameObject popUp;
-    public int indexCharacter;
     [SerializeField] private TMP_Text character_name;
     [SerializeField] private Slider volumeMusicSlider;
     [SerializeField] private Slider volumeSoundSlider;
     [SerializeField] private Slider speedSlider;
-    [SerializeField] private Toggle onSoundToggle;
-    [SerializeField] private Toggle onMusicToggle;
-    [SerializeField] private Sprite offImage;
+    [System.Serializable]
+    private class ToggleImage
+    {
+        public Toggle _toggle;
+        public GameObject offImage;
+    }
+
+    [SerializeField] private ToggleImage onMusicToggle = new ToggleImage();
+    [SerializeField] private ToggleImage onSoundToggle = new ToggleImage();
 
     private GameManager gameManager;
     private SoundManager soundManager;
@@ -27,8 +32,8 @@ public class ScriptMenu : MonoBehaviour
     {
         gameManager = GameManager.Instance;
         soundManager = SoundManager.Instance;
-        onMusicToggle.onValueChanged.AddListener(StartStopMusic);
-        onSoundToggle.onValueChanged.AddListener(StartStopSound);
+        onMusicToggle._toggle.onValueChanged.AddListener(isOnMusic);
+        onSoundToggle._toggle.onValueChanged.AddListener(isOnSound);
         volumeMusicSlider.onValueChanged.AddListener(ChangeMusicVolume);
         volumeSoundSlider.onValueChanged.AddListener(ChangeSoundVolume);
         ResetParams();
@@ -41,16 +46,12 @@ public class ScriptMenu : MonoBehaviour
         
     }
 
-    public void ExitGame()
-    {
-        Application.Quit();
-    }
-    public void selectLevel(int i_level)
+    public void OnSelectLevel(int i_level)
     {
         level = i_level;
     }
 
-    public void playLevel()
+    public void OnPlay()
     {
         if(level == 1)
         {
@@ -61,16 +62,16 @@ public class ScriptMenu : MonoBehaviour
             gameManager.changeScene(StageName.LVL_2);
         }
     }
-    public void ShowConfigPopUp()
+    public void OnGoToConfig()
     {
         popUp.SetActive(true);
     }
 
-    public void showSelectPlayer()
+    public void OnGoToSelectPlayer()
     {
         gameManager.changeScene(StageName.PLYR_SELECT);
     }
-    public void ExitConfigPopUp()
+    public void OnExitConfig()
     {
         popUp.SetActive(false);
     }
@@ -78,50 +79,38 @@ public class ScriptMenu : MonoBehaviour
     {
         soundManager.SetMusicVolume(newVolume);
     }
-    private void SetToggleImage(Toggle toggle, bool isOn)
-    {
-        Image toggleBgImage = toggle.transform.Find("Background").GetComponent<Image>();
-        if (isOn && toggleBgImage != null)
-        {
-            toggleBgImage.sprite = null;
-        }
-        else if (!isOn && toggleBgImage != null)
-        {
-            toggleBgImage.sprite = offImage;
-        }
-    }
 
-    public void StartStopMusic(bool isOn)
+    public void isOnMusic(bool isOn)
     {
         soundManager.StartStopBackgroundMusic(isOn);
-        SetToggleImage(onMusicToggle, isOn); 
+        onMusicToggle.offImage.SetActive(!isOn);
     }
     public void ChangeSoundVolume(float newVolume)
     {
         soundManager.SetSoundVolume(newVolume);
     }
-    public void StartStopSound(bool isOn)
+    public void isOnSound(bool isOn)
     {
         soundManager.StartStopSound(isOn);
-        SetToggleImage(onSoundToggle, isOn);
+        onSoundToggle.offImage.SetActive(!isOn);
     }
 
     public void ResetParams()
     {
         volumeMusicSlider.value = 0.6f;
         volumeSoundSlider.value = 0.9f;
-        onMusicToggle.isOn = true;
-        onSoundToggle.isOn = true;
+        onMusicToggle._toggle.isOn = true;
+        onSoundToggle._toggle.isOn = true;
         ChangeMusicVolume(volumeMusicSlider.value);        
-        StartStopMusic(onMusicToggle.isOn);
+        isOnMusic(onMusicToggle._toggle.isOn);
         ChangeSoundVolume(volumeSoundSlider.value);
-        StartStopSound(onSoundToggle.isOn);
+        isOnSound(onSoundToggle._toggle.isOn);
     }
 
     private void OnDestroy()
     {
-        onMusicToggle.onValueChanged.RemoveListener(StartStopMusic);
-        onSoundToggle.onValueChanged.RemoveListener(StartStopSound);
+        onMusicToggle._toggle.onValueChanged.RemoveListener(isOnMusic);
+        onSoundToggle._toggle.onValueChanged.RemoveListener(isOnSound);
         volumeMusicSlider.onValueChanged.RemoveListener(ChangeMusicVolume);
         volumeSoundSlider.onValueChanged.RemoveListener(ChangeSoundVolume);
     }
