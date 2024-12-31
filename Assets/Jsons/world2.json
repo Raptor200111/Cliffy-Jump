@@ -3,19 +3,25 @@
     {
       "positions": [
         {
-          "x": null,
-          "y": null,
-          "z": null,
+          "x": 0,
+          "y": 0,
+          "z": 0,
           "objects": [
             {
-              "YOffset": null,
-              "index": null,
-              "orientation": null
+              "YOffset": 0,
+              "index": 0,
+              "orientation": 0
             }
           ]
         }
       ]
     }
   ],
-  "allObjects": [71, 15, 2, 4, 15, 4, 3, 2, 4]
+  "allObjects": [ 71, 15, 2, 4, 15, 4, 3, 2, 4 ],
+  
+  "block": 0,
+  "turn": 1,
+  "groundSpike": 2,
+  "halfSpike": 3,
+  "fullSpike":  4
 }

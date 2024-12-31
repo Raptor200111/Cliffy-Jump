@@ -37,7 +37,7 @@ public class DynamicStructures : MonoBehaviour
     }
     
     [System.Serializable]
-    public class Object
+    public class ObjectInfo
     {
         public int YOffset;
         public int index;
@@ -49,7 +49,7 @@ public class DynamicStructures : MonoBehaviour
         public float x;
         public float y;
         public float z;
-        public List<Object> objects;
+        public List<ObjectInfo> objects;
 
         public Vector3 ToVec3(float YOffset)
         {
@@ -88,6 +88,14 @@ public class DynamicStructures : MonoBehaviour
         }
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyUp(KeyCode.S))
+        {
+            NextScreen();
+        }
+    }
+
     public void NextScreen()
     {
         animator.SetTrigger("hide");
@@ -103,14 +111,7 @@ public class DynamicStructures : MonoBehaviour
             return;
         }
 
-        Vector3 resetPos = new Vector3(100, 100, 100);
-        for (int i = 0; i < allObjects.Length; i++)
-        {
-            for (int j = 0; j < allObjects[i].Length; j++)
-            {
-                allObjects[i][j].transform.localPosition = resetPos;
-            }
-        }
+        
 
         int [] indexes = new int[world.allObjects.Count];
         for (int i = 0; i < indexes.Length; i++)
@@ -122,9 +123,18 @@ public class DynamicStructures : MonoBehaviour
         {
             for (int j = 0; j < world.levels[screen].positions[i].objects.Count; j++)
             {
-                Object obj = world.levels[screen].positions[i].objects[j];
+                ObjectInfo obj = world.levels[screen].positions[i].objects[j];
                 Quaternion quat = Quaternion.Euler(0, obj.orientation, 0);
                 allObjects[obj.index][indexes[obj.index]++].transform.SetLocalPositionAndRotation(world.levels[screen].positions[i].ToVec3(obj.YOffset), quat);
+            }
+        }
+
+        Vector3 resetPos = new Vector3(100, 100, 100);
+        for (int i = 0; i < allObjects.Length; i++)
+        {
+            for (int j = indexes[i]; j < allObjects[i].Length; j++)
+            {
+                allObjects[i][j].transform.localPosition = resetPos;
             }
         }
 

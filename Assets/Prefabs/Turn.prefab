@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1575101986774072075}
   - component: {fileID: 4488300672953339002}
   - component: {fileID: 8284176361939985209}
-  m_Layer: 11
+  m_Layer: 9
   m_Name: Turn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -66,4 +66,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1fa1724cc43c80e48b0f9fc741a5a974, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotation: 0
