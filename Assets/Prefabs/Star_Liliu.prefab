@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2444167023529120968}
   - component: {fileID: 763880945259495958}
   - component: {fileID: 5915354121048627877}
-  m_Layer: 8
+  m_Layer: 12
   m_Name: Star_Liliu
   m_TagString: Untagged
   m_Icon: {fileID: 0}

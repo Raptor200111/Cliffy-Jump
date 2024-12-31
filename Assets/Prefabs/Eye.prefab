@@ -9,7 +9,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6785475455981300636}
-  m_Layer: 0
+  - component: {fileID: 5695521410190630962}
+  - component: {fileID: 1746148362384951919}
+  - component: {fileID: 2001416747637968627}
+  m_Layer: 10
   m_Name: Eye
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -38,6 +41,66 @@ Transform:
   - {fileID: 50497715141798641}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!54 &5695521410190630962
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7136137364060300996}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!135 &1746148362384951919
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7136137364060300996}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &2001416747637968627
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7136137364060300996}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15a83b3aeb8fc754f9273148e8600cc1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &520691439387249946
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -100,6 +163,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: eyeDec-6-sphere
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 699063d18fe6eac478121630ceca6d8e,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8164078558771037576, guid: 699063d18fe6eac478121630ceca6d8e,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -175,6 +248,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: eyeDec-1-block3
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: e1055999d4eb6be47a1619baf667def4,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8164078558771037576, guid: e1055999d4eb6be47a1619baf667def4,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -248,6 +331,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: eyeDec-3-block1
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c9f9c357380d052408389e6927fd648a,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8164078558771037576, guid: c9f9c357380d052408389e6927fd648a,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -323,6 +416,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: eyeDec-5-eye
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: fe50c69b01789034090c6d2dc2cefc7d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8164078558771037576, guid: fe50c69b01789034090c6d2dc2cefc7d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -396,6 +499,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: eyeDec-4-block0
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 1c98e4e25a5003c479b84895dfaa15cb,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8164078558771037576, guid: 1c98e4e25a5003c479b84895dfaa15cb,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -471,6 +584,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: eyeDec-0-block4
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 2d8e43a67443fdb4290b957d45781759,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8164078558771037576, guid: 2d8e43a67443fdb4290b957d45781759,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -544,6 +667,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: eyeDec-2-block2
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: d77b23b237054434481bc30fa9c4a071,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8164078558771037576, guid: d77b23b237054434481bc30fa9c4a071,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -19,10 +19,11 @@ public class DynamicStructures : MonoBehaviour
     GameObject[][] allObjects;
 
     int numberOfScreens = 3;
-    int screen = 0;
+    public int screen { get; private set; } = 0;
 
     public List<GameObject> prefabs;
     public TextAsset jsonFile;
+
 
     [System.Serializable]
     public class World
@@ -145,6 +146,6 @@ public class DynamicStructures : MonoBehaviour
     {
         WorldManager.Instance.DoneRising();
     }
-
+    
     public GameObject[] GetAllBlocks() { return allObjects[0]; }
 }
