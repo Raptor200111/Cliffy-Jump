@@ -1,0 +1,1007 @@
+fileFormatVersion: 2
+guid: aafca5d7cf41e504395b6c0945696fc0
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 0
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: vecteezy_wooden-ui-game_0
+      rect:
+        serializedVersion: 2
+        x: 153
+        y: 2332
+        width: 1069
+        height: 136
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ca5174ce037d7684ab0a72a192efbe14
+      internalID: 213937223
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vecteezy_wooden-ui-game_1
+      rect:
+        serializedVersion: 2
+        x: 1273
+        y: 1556
+        width: 1266
+        height: 932
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7a5a6e92b9ad9e348b79af6949e3436a
+      internalID: -267116308
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vecteezy_wooden-ui-game_2
+      rect:
+        serializedVersion: 2
+        x: 153
+        y: 2175
+        width: 1070
+        height: 140
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: af306bb2e420bce4d96eafc71aaa13ad
+      internalID: 1476947772
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vecteezy_wooden-ui-game_3
+      rect:
+        serializedVersion: 2
+        x: 155
+        y: 2020
+        width: 1067
+        height: 138
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 41535f2a67172bf48944bb2417439e91
+      internalID: 1960177755
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vecteezy_wooden-ui-game_4
+      rect:
+        serializedVersion: 2
+        x: 1219
+        y: 2052
+        width: 4
+        height: 4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cb8e70eb31312044786e5c8273a25301
+      internalID: 604327219
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vecteezy_wooden-ui-game_5
+      rect:
+        serializedVersion: 2
+        x: 153
+        y: 1864
+        width: 1067
+        height: 138
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: df47bc4041ba27449945afbcb8f14251
+      internalID: 176627131
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vecteezy_wooden-ui-game_6
+      rect:
+        serializedVersion: 2
+        x: 1218
+        y: 1966
+        width: 4
+        height: 4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 699880da5fc613940b3ae5afb940064d
+      internalID: 958407880
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vecteezy_wooden-ui-game_7
+      rect:
+        serializedVersion: 2
+        x: 153
+        y: 1708
+        width: 1067
+        height: 139
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b597fb78743ba2f43926d01b359c0151
+      internalID: 149208636
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vecteezy_wooden-ui-game_8
+      rect:
+        serializedVersion: 2
+        x: 153
+        y: 1553
+        width: 1072
+        height: 138
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f03cc65b4f30f6c45a91b8c62d30aa50
+      internalID: -1624100796
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vecteezy_wooden-ui-game_9
+      rect:
+        serializedVersion: 2
+        x: 131
+        y: 1184
+        width: 827
+        height: 271
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 42ea2699481ffcc46bf6efdd90bbe2a4
+      internalID: 1682425703
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vecteezy_wooden-ui-game_10
+      rect:
+        serializedVersion: 2
+        x: 1005
+        y: 1187
+        width: 733
+        height: 267
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c4313ab1f2ca7f64193cb31449c61fd5
+      internalID: -1695660262
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vecteezy_wooden-ui-game_11
+      rect:
+        serializedVersion: 2
+        x: 1807
+        y: 1187
+        width: 728
+        height: 268
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: df9c542fa3087014e9f81e082263a2be
+      internalID: -1633973785
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vecteezy_wooden-ui-game_12
+      rect:
+        serializedVersion: 2
+        x: 136
+        y: 841
+        width: 231
+        height: 238
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: db3240b3089bb4b4f868dab405a819e7
+      internalID: 171776786
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vecteezy_wooden-ui-game_13
+      rect:
+        serializedVersion: 2
+        x: 406
+        y: 842
+        width: 230
+        height: 237
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dd05deacae91e1f4b896da625a15101a
+      internalID: 1429864105
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vecteezy_wooden-ui-game_14
+      rect:
+        serializedVersion: 2
+        x: 675
+        y: 841
+        width: 229
+        height: 238
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a073b567678936e41a5e37ae5cdb3698
+      internalID: 47584068
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vecteezy_wooden-ui-game_15
+      rect:
+        serializedVersion: 2
+        x: 903
+        y: 915
+        width: 4
+        height: 5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9fee7d2733a825945a04cf52dc5c3fd7
+      internalID: -196200398
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vecteezy_wooden-ui-game_16
+      rect:
+        serializedVersion: 2
+        x: 945
+        y: 842
+        width: 229
+        height: 237
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5a63c89eca9cab14a8073ba4b25c625c
+      internalID: 1281608236
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vecteezy_wooden-ui-game_17
+      rect:
+        serializedVersion: 2
+        x: 1212
+        y: 842
+        width: 229
+        height: 237
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0355f4e9513384c428f523f5c041738a
+      internalID: 778789195
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vecteezy_wooden-ui-game_18
+      rect:
+        serializedVersion: 2
+        x: 1481
+        y: 842
+        width: 229
+        height: 236
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1f4e3e272b4e3fd4a9ed46c7542078ea
+      internalID: -1915505472
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vecteezy_wooden-ui-game_19
+      rect:
+        serializedVersion: 2
+        x: 1750
+        y: 841
+        width: 233
+        height: 237
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a85ee9569e195834584fbecb4585a7be
+      internalID: 254171318
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vecteezy_wooden-ui-game_20
+      rect:
+        serializedVersion: 2
+        x: 2018
+        y: 842
+        width: 230
+        height: 237
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 90a6e1a961ad4ee498f9a8d4b317028b
+      internalID: -418422003
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vecteezy_wooden-ui-game_21
+      rect:
+        serializedVersion: 2
+        x: 2286
+        y: 841
+        width: 229
+        height: 238
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6baac54c70abfc942ae712b35aa729bf
+      internalID: 305616446
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vecteezy_wooden-ui-game_22
+      rect:
+        serializedVersion: 2
+        x: 136
+        y: 499
+        width: 244
+        height: 243
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3bb7e3d6752b69248abe40908907fc23
+      internalID: -224305712
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vecteezy_wooden-ui-game_23
+      rect:
+        serializedVersion: 2
+        x: 406
+        y: 500
+        width: 241
+        height: 242
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 469baa2d83aec3d408d548ec441d338a
+      internalID: 1176024008
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vecteezy_wooden-ui-game_24
+      rect:
+        serializedVersion: 2
+        x: 674
+        y: 501
+        width: 241
+        height: 241
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3f9d96e53bb54724c9c84db5ef4c1f5a
+      internalID: 496424726
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vecteezy_wooden-ui-game_25
+      rect:
+        serializedVersion: 2
+        x: 936
+        y: 501
+        width: 248
+        height: 241
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2d7abb6867c566549815a9fee6687530
+      internalID: 1771882895
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vecteezy_wooden-ui-game_26
+      rect:
+        serializedVersion: 2
+        x: 1205
+        y: 501
+        width: 248
+        height: 241
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 16fb6f9b737d9454e8f2acf42022db3e
+      internalID: -349867154
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vecteezy_wooden-ui-game_27
+      rect:
+        serializedVersion: 2
+        x: 1475
+        y: 501
+        width: 245
+        height: 241
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d04a25249ac8aca41ab39cc32dfc7afe
+      internalID: -142577665
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vecteezy_wooden-ui-game_28
+      rect:
+        serializedVersion: 2
+        x: 1743
+        y: 502
+        width: 247
+        height: 240
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f12649ba05e808b459b646e685ee251c
+      internalID: 2049683090
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vecteezy_wooden-ui-game_29
+      rect:
+        serializedVersion: 2
+        x: 1830
+        y: 499
+        width: 5
+        height: 4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9ea257de93a9cb04d8e2e2766131b249
+      internalID: 1809417387
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vecteezy_wooden-ui-game_30
+      rect:
+        serializedVersion: 2
+        x: 2013
+        y: 502
+        width: 244
+        height: 240
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ae9a377f5fae6274bb2a45fc8ee64e6b
+      internalID: 1827919928
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vecteezy_wooden-ui-game_31
+      rect:
+        serializedVersion: 2
+        x: 2281
+        y: 500
+        width: 241
+        height: 242
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 39690782fd751674998738c4309bae5b
+      internalID: -541307426
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vecteezy_wooden-ui-game_32
+      rect:
+        serializedVersion: 2
+        x: 162
+        y: 169
+        width: 278
+        height: 269
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3510eb620dd718f44b22a9ca8f16cbf2
+      internalID: 127025595
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vecteezy_wooden-ui-game_33
+      rect:
+        serializedVersion: 2
+        x: 468
+        y: 169
+        width: 279
+        height: 270
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 62c2a66f147728646a5df64ce782d489
+      internalID: 2048544511
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vecteezy_wooden-ui-game_34
+      rect:
+        serializedVersion: 2
+        x: 761
+        y: 158
+        width: 212
+        height: 249
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 78615b77cb47b7642b8e6e1e4ba55c93
+      internalID: -1474508863
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vecteezy_wooden-ui-game_35
+      rect:
+        serializedVersion: 2
+        x: 998
+        y: 156
+        width: 222
+        height: 252
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e5e2c2f6854d8884c9a5c46b6d2cfad0
+      internalID: 2052230660
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vecteezy_wooden-ui-game_36
+      rect:
+        serializedVersion: 2
+        x: 1243
+        y: 170
+        width: 215
+        height: 223
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: db3d30fc197db4141a550635cd187d4b
+      internalID: -2047175447
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vecteezy_wooden-ui-game_37
+      rect:
+        serializedVersion: 2
+        x: 1474
+        y: 177
+        width: 217
+        height: 231
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 92f2db339b6b5c343aeae3f53e75e512
+      internalID: 1287353200
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vecteezy_wooden-ui-game_38
+      rect:
+        serializedVersion: 2
+        x: 1726
+        y: 170
+        width: 774
+        height: 232
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ea08929f43d33944fa4e682c1058dfcc
+      internalID: -519935664
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vecteezy_wooden-ui-game_39
+      rect:
+        serializedVersion: 2
+        x: 1067
+        y: 154
+        width: 4
+        height: 4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b1c51cceab2351a4db06fd777595b5ad
+      internalID: -241586373
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 66d8a3180d9c21a4ab244c1b31706090
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      vecteezy_wooden-ui-game_0: 213937223
+      vecteezy_wooden-ui-game_1: -267116308
+      vecteezy_wooden-ui-game_10: -1695660262
+      vecteezy_wooden-ui-game_11: -1633973785
+      vecteezy_wooden-ui-game_12: 171776786
+      vecteezy_wooden-ui-game_13: 1429864105
+      vecteezy_wooden-ui-game_14: 47584068
+      vecteezy_wooden-ui-game_15: -196200398
+      vecteezy_wooden-ui-game_16: 1281608236
+      vecteezy_wooden-ui-game_17: 778789195
+      vecteezy_wooden-ui-game_18: -1915505472
+      vecteezy_wooden-ui-game_19: 254171318
+      vecteezy_wooden-ui-game_2: 1476947772
+      vecteezy_wooden-ui-game_20: -418422003
+      vecteezy_wooden-ui-game_21: 305616446
+      vecteezy_wooden-ui-game_22: -224305712
+      vecteezy_wooden-ui-game_23: 1176024008
+      vecteezy_wooden-ui-game_24: 496424726
+      vecteezy_wooden-ui-game_25: 1771882895
+      vecteezy_wooden-ui-game_26: -349867154
+      vecteezy_wooden-ui-game_27: -142577665
+      vecteezy_wooden-ui-game_28: 2049683090
+      vecteezy_wooden-ui-game_29: 1809417387
+      vecteezy_wooden-ui-game_3: 1960177755
+      vecteezy_wooden-ui-game_30: 1827919928
+      vecteezy_wooden-ui-game_31: -541307426
+      vecteezy_wooden-ui-game_32: 127025595
+      vecteezy_wooden-ui-game_33: 2048544511
+      vecteezy_wooden-ui-game_34: -1474508863
+      vecteezy_wooden-ui-game_35: 2052230660
+      vecteezy_wooden-ui-game_36: -2047175447
+      vecteezy_wooden-ui-game_37: 1287353200
+      vecteezy_wooden-ui-game_38: -519935664
+      vecteezy_wooden-ui-game_39: -241586373
+      vecteezy_wooden-ui-game_4: 604327219
+      vecteezy_wooden-ui-game_5: 176627131
+      vecteezy_wooden-ui-game_6: 958407880
+      vecteezy_wooden-ui-game_7: 149208636
+      vecteezy_wooden-ui-game_8: -1624100796
+      vecteezy_wooden-ui-game_9: 1682425703
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -11,7 +11,8 @@ GameObject:
   - component: {fileID: 6187168548429701026}
   - component: {fileID: 3475740577231072846}
   - component: {fileID: 6142833900992971105}
-  m_Layer: 0
+  - component: {fileID: -7720870774215631486}
+  m_Layer: 10
   m_Name: Bird
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -90,6 +91,21 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 10
   m_Center: {x: 0, y: 2, z: 0}
+--- !u!114 &-7720870774215631486
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6557530492611980952}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed63ffb3eb0ecb74093b8a72d1dcc9ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  appearSpeed: 5
+  disappearSpeed: 8
+  destroyHeight: 20
 --- !u!1001 &241617316955724471
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -152,6 +168,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: bird-7-beck
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: eeabab81db9be384cafffdea4c83644c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8164078558771037576, guid: eeabab81db9be384cafffdea4c83644c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -227,6 +253,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: bird-8-body
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 5e56e9e5ce56add4692c6645129c86ae,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8164078558771037576, guid: 5e56e9e5ce56add4692c6645129c86ae,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -300,6 +336,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: bird-1-leg
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: a5e61eaa578029a409825b903541bf5e,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8164078558771037576, guid: a5e61eaa578029a409825b903541bf5e,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -375,6 +421,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: bird-6-eye
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: f956c99f3f6af7f43b1002180794ef1a,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8164078558771037576, guid: f956c99f3f6af7f43b1002180794ef1a,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -448,6 +504,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: bird-2-tail
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 6ec70958a8771364894de060b9f1fe5f,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8164078558771037576, guid: 6ec70958a8771364894de060b9f1fe5f,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -523,6 +589,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: bird-0-wing
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: b354fe921da2c0949aa967ddd56f971e,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8164078558771037576, guid: b354fe921da2c0949aa967ddd56f971e,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -596,6 +672,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: bird-3-leg
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 0bf32fc9235398143bdfe2b8dcb8fa81,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8164078558771037576, guid: 0bf32fc9235398143bdfe2b8dcb8fa81,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -671,6 +757,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: bird-4-wing
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 04142b4622500754da76666f83ba8f38,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8164078558771037576, guid: 04142b4622500754da76666f83ba8f38,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -744,6 +840,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: bird-5-eye
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: e407b73ae4280dc4284c1e66062142cd,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8164078558771037576, guid: e407b73ae4280dc4284c1e66062142cd,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -3,77 +3,86 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
+using System;
 
 public class MenuCharSelect : MonoBehaviour
 {
-    private int index;
+    private int oldIndex;
     [SerializeField] private GameObject charImage;
     [SerializeField] private TMP_Text charName;
+    [SerializeField] private GameObject[] charsToDisplay;
     private GameManager gameManager;
-    private List<Characters> characters = new List<Characters>();
     // Start is called before the first frame update
     void Start()
     {
         gameManager = GameManager.Instance;
-        index = PlayerPrefs.GetInt("CharIndex", 0);
-        characters = gameManager.GetCharacters();
-        if (index > characters.Count -1)
+        oldIndex = PlayerPrefs.GetInt("CharIndex", 0);
+        List<Characters> charactersList = gameManager.GetCharacters();
+        if (gameManager.GetCharacters() == null)
         {
-            index = 0;
+            Debug.LogWarning("Select Char scene characters is null");
         }
-        ChangeChar();
+        else if(charactersList.Count == 0)
+        {
+            Debug.LogWarning("gameManager's characters is empty");
+        }        
+        else
+        {
+            charsToDisplay = new GameObject[charactersList.Count];
+            for (int i = 0; i< charactersList.Count; i++)
+            {
+                GameObject chars = charactersList[i].character;
+                GameObject newInstance = Instantiate(chars, charImage.transform);
+
+                newInstance.transform.localPosition = Vector3.zero;
+                newInstance.transform.localScale *= 15f;
+                newInstance.transform.localRotation = Quaternion.Euler(new Vector3(0f,180f,0f));
+                newInstance.SetActive(false);
+                charsToDisplay[i] = newInstance;
+            }
+        }
+        if (oldIndex > charsToDisplay.Length -1)
+        {
+            oldIndex = 0;
+        }
+        ChangeChar(oldIndex);
     }
 
-    private void ChangeChar() 
+    private void ChangeChar(int newIndex) 
     {
-        GameObject newPrefab = characters[index].character;
-        charName.text = characters[index].nameDisplay;
-
-        foreach (Transform child in charImage.transform)
-        {
-            Destroy(child.gameObject);
-        }
-
-        // Instantiate the new prefab as a child of imageObject
-        GameObject newInstance = Instantiate(newPrefab, charImage.transform);
-
-        // Optionally, reset the position, rotation, and scale of the new instance
-        newInstance.transform.localPosition = Vector3.zero;
-        newInstance.transform.localScale = new Vector3(10, 10, 10);
-
+        charsToDisplay[oldIndex].SetActive(false);
+        charsToDisplay[newIndex].SetActive(true);
+        charName.text = charsToDisplay[newIndex].name;
+        oldIndex = newIndex;
     }
 
     public void NextChar() 
     {
-        if (index == characters.Count - 1)
-        {
-            index = 0;
-        }
-        else
-        {
-            index++;
-        }
-        ChangeChar();
+        int newIndex = oldIndex+1;
+        if(newIndex > charsToDisplay.Length-1) {  newIndex = 0; } 
+        ChangeChar(newIndex);
+    }
+    public void OnExitButton()
+    {
+        gameManager.changeScene(StageName.MENU);
     }
 
 
     public void PreviousChar()
     {
-        if (index == 0)
+        int newIndex = oldIndex-1;
+        if(newIndex < 0)
         {
-            index = characters.Count - 1;
+            newIndex = charsToDisplay.Length - 1;
         }
-        else
-        {
-            index--;
-        }
-        ChangeChar();
+
+        ChangeChar(newIndex);
     }
 
 
     public void SelectChar()
     {
-        gameManager.SetSelectedPlayer(index);        
+        gameManager.SetSelectedPlayer(oldIndex);        
     }
 
     // Update is called once per frame

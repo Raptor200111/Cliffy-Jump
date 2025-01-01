@@ -9,6 +9,7 @@ public class EyeController : MonoBehaviour
     private bool disappear = false;
     private GameManager gameManager;
     private Transform playerTransform;
+    [SerializeField] private GameObject eyeball; 
 
     // Start is called before the first frame update
     void Start()
@@ -40,10 +41,11 @@ public class EyeController : MonoBehaviour
             UnityEngine.Debug.LogWarning("ERROR targetPos BORD LANDING");
         }
     }
+
     // Update is called once per frame
     void Update()
     {
-        transform.LookAt(playerTransform);
+       // eyeball.transform.LookAt(playerTransform);
         if (disappear)
         {
             if (transform.position.y >= -3f)

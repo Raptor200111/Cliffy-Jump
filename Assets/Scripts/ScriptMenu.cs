@@ -83,7 +83,7 @@ public class ScriptMenu : MonoBehaviour
     public void isOnMusic(bool isOn)
     {
         soundManager.StartStopBackgroundMusic(isOn);
-        onMusicToggle.offImage.SetActive(!isOn);
+        onMusicToggle.offImage.GetComponent<Image>().enabled = !isOn;
     }
     public void ChangeSoundVolume(float newVolume)
     {
@@ -92,7 +92,7 @@ public class ScriptMenu : MonoBehaviour
     public void isOnSound(bool isOn)
     {
         soundManager.StartStopSound(isOn);
-        onSoundToggle.offImage.SetActive(!isOn);
+        onSoundToggle.offImage.GetComponent<Image>().enabled = !isOn;
     }
 
     public void ResetParams()

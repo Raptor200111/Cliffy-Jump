@@ -11,7 +11,8 @@ GameObject:
   - component: {fileID: 3428338016384564498}
   - component: {fileID: 2469886269477468204}
   - component: {fileID: 8018928973871889596}
-  m_Layer: 0
+  - component: {fileID: -5699384253278597874}
+  m_Layer: 10
   m_Name: Lizard
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -96,10 +97,22 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 5
+  m_Radius: 10
   m_Height: 35
   m_Direction: 1
   m_Center: {x: 0, y: 2, z: 0}
+--- !u!114 &-5699384253278597874
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1168342127478715031}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0715ab72a638d7499f77f566bddc94e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &34668069552636197
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -162,6 +175,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: lizard-6-forearm
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: cd3b19035d13aa84db68b511d65b0b45,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8164078558771037576, guid: cd3b19035d13aa84db68b511d65b0b45,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -237,6 +260,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: lizard-10-tail2
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 09f7d227e35a9054193cd7defb11b142,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8164078558771037576, guid: 09f7d227e35a9054193cd7defb11b142,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -310,6 +343,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: lizard-13-tail0
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 2aadc52e9f8972c4682ebed2bad4ef06,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8164078558771037576, guid: 2aadc52e9f8972c4682ebed2bad4ef06,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -385,6 +428,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: lizard-14-neck
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: b9fc013ae9b669f43907b866e6362590,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8164078558771037576, guid: b9fc013ae9b669f43907b866e6362590,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -458,6 +511,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: lizard-5-upperarm
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: bba69ae4f4af1c74789decee3bf71017,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8164078558771037576, guid: bba69ae4f4af1c74789decee3bf71017,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -533,6 +596,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: lizard-2-forearm
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: b27db5d1f3c2d0d4991306b0ad9bc253,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8164078558771037576, guid: b27db5d1f3c2d0d4991306b0ad9bc253,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -606,6 +679,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: lizard-12-tail3
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: bf023bb07449195448f002d7b46f1222,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8164078558771037576, guid: bf023bb07449195448f002d7b46f1222,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -681,6 +764,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: lizard-3-upperarm
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 2a4e5d5a1c5d5694dbaa55f278248dbc,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8164078558771037576, guid: 2a4e5d5a1c5d5694dbaa55f278248dbc,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -754,6 +847,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: lizard-0-forearm
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 9597d78883b244941b86231bddeea6d2,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8164078558771037576, guid: 9597d78883b244941b86231bddeea6d2,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -829,6 +932,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: lizard-4-forearm
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 590ee65e782357a419e332f85c3ccdef,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8164078558771037576, guid: 590ee65e782357a419e332f85c3ccdef,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -902,6 +1015,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: lizard-11-tail1
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: a069a76a31acf9f44a5a49c080d178fb,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8164078558771037576, guid: a069a76a31acf9f44a5a49c080d178fb,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -977,6 +1100,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: lizard-1-upperarm
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 80d2d3f91cb29ba46975b73e845132ba,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8164078558771037576, guid: 80d2d3f91cb29ba46975b73e845132ba,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1050,6 +1183,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: lizard-8-eye
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 8e54c3df62640e44d9863a0c99463c86,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8164078558771037576, guid: 8e54c3df62640e44d9863a0c99463c86,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1125,6 +1268,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: lizard-9-eye
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 119ee15887bd1d44f8dd73ff5b7d84af,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8164078558771037576, guid: 119ee15887bd1d44f8dd73ff5b7d84af,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1198,6 +1351,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: lizard-15-head
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: bed22ca98cc83ef438ffb5b24755eb8b,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8164078558771037576, guid: bed22ca98cc83ef438ffb5b24755eb8b,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1273,6 +1436,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: lizard-16-body
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 5b31b8ae0f121ba43a1431a21988c27a,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8164078558771037576, guid: 5b31b8ae0f121ba43a1431a21988c27a,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1346,6 +1519,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: lizard-7-upperarm
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 0d4493c6d3e6ff84fbb009743371f30d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8164078558771037576, guid: 0d4493c6d3e6ff84fbb009743371f30d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

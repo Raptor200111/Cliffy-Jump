@@ -28,7 +28,7 @@ public class DynamicDetails : MonoBehaviour
     private World worldData = new World();
     [SerializeField] private GameObject blockPrefab;
     public TextAsset jsonFile;
-    private List<Vector3>[] allBlocks;
+    private List<Pos>[] allBlocks;
     private GameObject block;
     private int level;
     private bool is_ok;
@@ -36,9 +36,11 @@ public class DynamicDetails : MonoBehaviour
 
     private GameObject movDecoGO;
 
+    struct NumConstrains { public int max, min; };
+
     [SerializeField] GameObject birdPrefab;
     public float skyHeight = 10f;
-    private int maxGroupCount = 4;
+    private NumConstrains birdMaxMin = new NumConstrains { max = 4, min = 1 };
     private int maxBirdCount = 5;
 
     private float cubeSize = 2f;
@@ -50,15 +52,14 @@ public class DynamicDetails : MonoBehaviour
     }
 
     [SerializeField] GameObject lizardPrefab;
-    private int maxLizardCount = 9;
-    private int minLizardCount = 4;
+    private NumConstrains lizardMaxMin = new NumConstrains { max = 8, min = 4 };
     private float yLizardStart = -4f;
     private float yLizardEndMargin = -2.2f;
 
     [SerializeField] GameObject eyePrefab;
-    private float yEyeStart = -4f;
-    private int maxEyeCount = 8;
-    private float yEyeEndMargin = 3f;
+    private NumConstrains eyeMaxMin = new NumConstrains { max = 2, min = 6 };
+    private float yEyeStart = -8f;
+    private float yEyeEndMargin = -2f;
 
     private GameManager gameManager;
     private GameObject coinStarsGO;
@@ -97,42 +98,54 @@ public class DynamicDetails : MonoBehaviour
         cubeSize = block.transform.localScale.x;
         posY = block.transform.localScale.y / 2f;
 
-        try
-        {
-            Debug.Log($"JSON Content: {jsonFile.text}");
-            worldData = JsonUtility.FromJson<World>(jsonFile.text);
-
-            if (worldData == null || worldData.levels == null)
-            {
-                Debug.LogError("Deserialization failed or levels are null.");
-                return;
-            }
-
-            Debug.Log($"Processing world with {worldData.levels.Count} levels.");
-            allBlocks = new List<Vector3>[worldData.levels.Count];
-
-            for (int i = 0; i < worldData.levels.Count; i++)
-            {
-                allBlocks[i] = new List<Vector3>(); // Initialize the list
-
-                var usefulBlocks = worldData.levels[i].blocks.GetRange(
-                    0,
-                    Mathf.Min(worldData.levels[i].usefulBlocks, worldData.levels[i].blocks.Count)
-                );
-
-                for (int j = 0; j < usefulBlocks.Count; j++)
-                {
-                    Vector3 position = new Vector3(usefulBlocks[j].x, usefulBlocks[j].y, usefulBlocks[j].z);
-                    allBlocks[i].Add(position);
-                }
-            }
-        }
-        catch (System.Exception ex)
-        {
-            Debug.LogError($"Dynamic Details: JSON ERROR - {ex.Message}\n{ex.StackTrace}");
-        }
+        GetTopLevelBaseBlocks();
     }
 
+
+    private void GetTopLevelBaseBlocks()
+    {
+        try
+        {
+            worldData = JsonUtility.FromJson<World>(jsonFile.text);
+            allBlocks = new List<Pos>[worldData.levels.Count];
+
+            for( int i = 0; i< worldData.levels.Count; ++i)
+            {
+                List<Pos> levelTopBlocks = new List<Pos>();
+
+                foreach (Pos pos in worldData.levels[i].positions)
+                {
+                    // Check if this position has a base block (index 0)
+                    bool hasBaseBlock = false;
+                    bool hasOtherBlocks = false;
+
+                    foreach (ObjectInfo obj in pos.objects)
+                    {
+                        if (obj.index == 0)
+                        {
+                            hasBaseBlock = true;
+                        }
+                        else
+                        {
+                            hasOtherBlocks = true;
+                            break;
+                        }
+                    }
+
+                    // If this position has only base blocks (index 0), add it to the result
+                    if (hasBaseBlock && !hasOtherBlocks && pos.x< 100)
+                    {
+                        levelTopBlocks.Add(pos);
+                    }
+                }
+
+                allBlocks[i]= (levelTopBlocks);
+            }
+        }
+        catch {
+            UnityEngine.Debug.Log("Json not attached or doesnt exist");
+        }
+    }
 
     // Update is called once per frame
     void Update()
@@ -141,51 +154,62 @@ public class DynamicDetails : MonoBehaviour
     }
 
     private Vector3 CalcTopBlock(int index)
-    {                
-        Vector3 top = allBlocks[level][index] + new Vector3(10, posY, -10); // Top position of this collider
+    {
+        Pos posBlock = allBlocks[level][index];
+        Vector3 top = new Vector3(posBlock.x, posBlock.y, posBlock.z) + new Vector3(10, posY, -10); // Top position of this collider
         return top;
     }
 
-    public void CreateDetails(int level_screen, int lvl)
+    private int CalcMaxMovDeco(NumConstrains maxmin)
+    {
+        int MaxNumDeco = allBlocks[level].Count - 2 - (numCoins + numStars);
+        int MinNumDeco = maxmin.min;
+        if(MaxNumDeco > maxmin.max) {
+            MaxNumDeco = maxmin.max;
+        }
+        else if(MaxNumDeco > maxmin.min) {
+            MinNumDeco = 1;
+        }
+        return UnityEngine.Random.Range(MinNumDeco, MaxNumDeco);
+    }
+
+    public void CreateDetails(int level_screen, int movDecoType)
     {        
         if (level_screen < 0) level_screen = 0;
         else if (level_screen > worldData.levels.Count - 1) level_screen = worldData.levels.Count - 1;
         level = level_screen;
         coinStarsGO = new GameObject();
         movDecoGO = new GameObject();
-        
-        if (lvl == 1 && birdPrefab != null)
-        {
-            int groupCount = UnityEngine.Random.Range(1, maxGroupCount); // Generate 1 to 3 groups
+
+        if (movDecoType == 1 && birdPrefab != null)
+        {    
+            int groupCount = UnityEngine.Random.Range(1, CalcMaxMovDeco(birdMaxMin)); // Generate 1 to 3 groups
             int birdCount = UnityEngine.Random.Range(1, maxBirdCount);
-            is_ok = (allBlocks[level].Count -2) > (numCoins + numStars + groupCount);
             CreateCoinStar(coinStarsGO);
             CreateBirdGroups(movDecoGO, groupCount, birdCount);
         }
-        else if(lvl == 2 && lizardPrefab != null)
+        else if(movDecoType == 2 && lizardPrefab != null)
         {
-            int lizardCount = UnityEngine.Random.Range(minLizardCount, maxLizardCount);
-            is_ok = (allBlocks[level].Count - 2) > (numCoins + numStars + lizardCount);
+            int lizardCount = CalcMaxMovDeco(lizardMaxMin);
             CreateCoinStar(coinStarsGO);
             CreateLizards(movDecoGO, lizardCount);
         }
-        else if(lvl == 3 && eyePrefab != null)
+        else if(movDecoType == 3 && eyePrefab != null)
         {
-            int eyeCount = UnityEngine.Random.Range(minLizardCount, maxEyeCount);
-            is_ok = (allBlocks[level].Count - 2) > (numCoins + numStars + eyeCount);
+            int eyeCount = CalcMaxMovDeco(eyeMaxMin);
             CreateCoinStar(coinStarsGO);
             CreateEyes(movDecoGO, eyeCount);
         }   
     }
 
-    public void DestroyDetails(int lvl)
+    public void DestroyDetails(int movDecoType)
     {
         AnimationScript[] starcoins = coinStarsGO.GetComponentsInChildren<AnimationScript>();
         foreach (AnimationScript script in starcoins)
         {
             script.DisappearAnim();
         }
-        if (lvl == 1)
+        if (movDecoType == 1)
         {
             BirdController[] birdScripts = movDecoGO.GetComponentsInChildren<BirdController>();
             foreach (BirdController birdscript in birdScripts)
@@ -193,7 +217,7 @@ public class DynamicDetails : MonoBehaviour
                 birdscript.DisappearAnim();
             }
         }
-        else if(lvl == 2)
+        else if(movDecoType == 2)
         {
             LizardAnimation[] lizardScripts = movDecoGO.GetComponentsInChildren<LizardAnimation>();
             foreach (LizardAnimation lizardScript in lizardScripts)
@@ -201,7 +225,7 @@ public class DynamicDetails : MonoBehaviour
                 lizardScript.DisappearAnim();
             }
         }
-        else if (lvl == 3)
+        else if (movDecoType == 3)
         {
             EyeController[] eyeScripts = movDecoGO.GetComponentsInChildren<EyeController>();
             foreach (EyeController eyeScript in eyeScripts) {  eyeScript.DisappearAnim(); }
@@ -211,13 +235,10 @@ public class DynamicDetails : MonoBehaviour
     private int SelectBlock()
     {
         int indexBlock = UnityEngine.Random.Range(1, allBlocks[level].Count-1);
-        if(is_ok)
+        while (ocupiedBlocks.Contains(indexBlock))
         {
-            while (ocupiedBlocks.Contains(indexBlock))
-            {
-                indexBlock = UnityEngine.Random.Range(1, allBlocks[level].Count-1);
+            indexBlock = UnityEngine.Random.Range(1, allBlocks[level].Count-1);
 
-            }
         }
 
         ocupiedBlocks.Add(indexBlock);
@@ -261,8 +282,8 @@ public class DynamicDetails : MonoBehaviour
         float x = Mathf.Sin(selectedDegree * Mathf.Deg2Rad);
         float z = Mathf.Cos(selectedDegree * Mathf.Deg2Rad);
 
-        selectedDegree = (selectedDegree == 0f || selectedDegree == 180f)? selectedDegree+ 180f : selectedDegree;
-        x = (selectedDegree == 90f || selectedDegree == -90f)? -1*x: x;
+        //selectedDegree = (selectedDegree == 0f || selectedDegree == 180f)? selectedDegree+ 180f : selectedDegree;
+        //x = (selectedDegree == 90f || selectedDegree == -90f)? -1*x: x;
 
         return new PosRot
         {
@@ -289,14 +310,14 @@ public class DynamicDetails : MonoBehaviour
 
     private void CreateEyes(GameObject parentGO, int eyeCount)
     {
-        for(int i = 0; i < eyeCount; i++)
+        for(int j = 0; j < eyeCount; j++)
         {
             int indexBlock = SelectBlock();
 
             PosRot eyeTopBlock = calcStartPos(indexBlock, cubeSize * 3 / 2f);
             Vector3 eyeStartPos = eyeTopBlock.pos + new Vector3(0f, yEyeStart, 0f); 
             GameObject eye = Instantiate(eyePrefab, eyeStartPos, Quaternion.identity, parentGO.transform);
-            float yoffset = eyeTopBlock.pos.y + yEyeStart - (i % 4) * 0.5f;
+            float yoffset = eyeTopBlock.pos.y + yEyeEndMargin - (j % 4) * 0.5f;
             Vector3 targetPos = new Vector3(eyeTopBlock.pos.x, yoffset, eyeTopBlock.pos.z);
             eye.GetComponent<EyeController>().AppearAnim(targetPos);
         }

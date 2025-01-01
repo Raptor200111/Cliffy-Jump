@@ -28,7 +28,7 @@ public class GameManager : MonoBehaviour
     private int[] maxLevelProgress = new int[2];
     public event Action<int> OnLevelProgressChanged;
 
-    [SerializeField] private List<Characters> characters = new List<Characters>();
+    [SerializeField] private List<Characters> charactersList;
     [SerializeField] private GameObject player;
     [SerializeField] private GameObject CoinPrefab;
     [SerializeField] private GameObject StarPrefab;
@@ -42,9 +42,9 @@ public class GameManager : MonoBehaviour
             GameManager.Instance = this;
             stageName = StageName.MENU;
             soundManager = SoundManager.Instance;
-            if (characters != null)
+            if (player == null)
             {
-                player = characters[PlayerPrefs.GetInt("CharIndex", 0)].character;
+                player = charactersList[PlayerPrefs.GetInt("CharIndex", 0)].character;
             }
             DontDestroyOnLoad(gameObject);
         }
@@ -56,6 +56,15 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        if (soundManager == null)
+        {
+            soundManager = SoundManager.Instance;
+            if (soundManager == null)
+            {
+            Debug.LogWarning("Gamemanager's soundManager null");
+                return;
+            }
+        }
         soundManager.SetBackgroundMusic(stageName);
 
     }
@@ -122,9 +131,9 @@ public class GameManager : MonoBehaviour
 
     public void SetSelectedPlayer(int i_indexPlayer)
     {
-        if (i_indexPlayer > 0 && i_indexPlayer < characters.Count)
+        if (i_indexPlayer > 0 && i_indexPlayer < charactersList.Count)
         {
-            player = characters[i_indexPlayer].character;
+            player = charactersList[i_indexPlayer].character;
             PlayerPrefs.SetInt("CharIndex", i_indexPlayer);
             changeScene(StageName.MENU);
         }
@@ -135,8 +144,7 @@ public class GameManager : MonoBehaviour
         return player.transform;
     }
 
-    public List<Characters> GetCharacters() { return characters; }
-
+    public List<Characters> GetCharacters() { return charactersList; }
     public GameObject GetStarPrefab() { return StarPrefab; }
     public GameObject GetCoinPrefab() { return CoinPrefab; }
     // Update is called once per frame
