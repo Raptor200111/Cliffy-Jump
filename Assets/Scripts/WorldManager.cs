@@ -34,13 +34,13 @@ public class WorldManager : MonoBehaviour
 
     public void DoneRising()
     {
-        dynamicDetails.CreateDetails(dynamicStructures.screen, 3);
+        //dynamicDetails.CreateDetails(dynamicStructures.screen, 3);
         player.PlayerStart();
     }
 
     public void ScreenComplete()
     {
-        dynamicDetails.DestroyDetails(3);
+        //dynamicDetails.DestroyDetails(3);
         player.PlayerStop();
         dynamicStructures.NextScreen();
     }

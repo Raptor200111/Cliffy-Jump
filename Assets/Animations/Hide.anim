@@ -193,8 +193,8 @@ AnimationClip:
   m_HasGenericRootTransform: 1
   m_HasMotionFloatCurves: 0
   m_Events:
-  - time: 0
-    functionName: onHiddenComplete
+  - time: 1
+    functionName: HiddenObjectsChange
     data: 
     objectReferenceParameter: {fileID: 11500000, guid: 06bcccfb05b25574ab841a794b2f9b67,
       type: 3}

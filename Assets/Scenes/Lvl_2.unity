@@ -1967,14 +1967,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   popUp: {fileID: 0}
-  indexCharacter: 0
   character_name: {fileID: 0}
   volumeMusicSlider: {fileID: 0}
   volumeSoundSlider: {fileID: 0}
   speedSlider: {fileID: 0}
-  onSoundToggle: {fileID: 0}
-  onMusicToggle: {fileID: 0}
-  offImage: {fileID: 0}
+  onMusicToggle:
+    _toggle: {fileID: 0}
+    offImage: {fileID: 0}
+  onSoundToggle:
+    _toggle: {fileID: 0}
+    offImage: {fileID: 0}
   level: 1
 --- !u!1 &1652883962
 GameObject:

@@ -155,14 +155,14 @@ public class DynamicStructures : MonoBehaviour
 }
 
 /*
-    "block": 0,
-    "turnBlock": 1,
-    "crossBlock": 2,
-    "damagedBlock" 3,
-    "turn": 4,
-    "groundSpike": 5,
-    "halfSpike": 6,
-    "fullSpike": 7,
-    "hammer": 8,
-    "stop": 9
-*/
+  "block": 0,
+  "turnBlock": 1,
+  "crossBlock": 2,
+  "damagedBlock" 3,
+  "turn": 4,
+  "groundSpike": 5,
+  "halfSpike": 6,
+  "fullSpike": 7,
+  "hammer": 8,
+  "stop": 9
+ */
