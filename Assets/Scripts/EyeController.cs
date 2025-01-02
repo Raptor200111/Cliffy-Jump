@@ -2,23 +2,25 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EyeController : MonoBehaviour
+public class EyeController : MovDeco
 {
-    private float appearSpeed = 1.5f;
-    private float disappearSpeed = 1f;
-    private bool disappear = false;
+
     private GameManager gameManager;
     private Transform playerTransform;
-    [SerializeField] private GameObject eyeball; 
+    [SerializeField] private GameObject eyeball;
 
     // Start is called before the first frame update
-    void Start()
+    protected override void Start()
     {
+        base.Start();
+        appearSpeed = 1.5f;
+        disappearSpeed = 1f;
+
         gameManager = GameManager.Instance;    
-        playerTransform = gameManager.player.transform;
+        playerTransform = gameManager.Player.transform;
     }
 
-    public void AppearAnim(Vector3 targetPos)
+    public override void Appear(Vector3 targetPos)
     {
         StartCoroutine(AscendToTarget(targetPos));
     }
@@ -46,7 +48,7 @@ public class EyeController : MonoBehaviour
     void Update()
     {
         eyeball.transform.LookAt(playerTransform);
-        if (disappear)
+        /*if (disappear)
         {
             if (transform.position.y >= -3f)
             {
@@ -56,19 +58,10 @@ public class EyeController : MonoBehaviour
             {
                 Destroy(gameObject);
             }
-        }
+        }*/
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        // Check if the player enters the sphere collider
-        if (other.gameObject.tag == ("Player"))
-        {
-            disappear = true;
-        }
-    }
-
-    public void DisappearAnim()
+    public override void Disappear()
     {
         StartCoroutine(DescentToWater());
     }

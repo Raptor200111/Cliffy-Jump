@@ -58,10 +58,11 @@ public class Player : MonoBehaviour
         if (modelData != null && modelData.modelPrefab != null)
         {
             currentModelInstance = Instantiate(modelData.modelPrefab, this.transform);
-            if (_animator != null)
+            
+            /*if (_animator != null)
             {
                 _animator.runtimeAnimatorController = modelData.animatorController;
-            }
+            }*/
         }
     }
 

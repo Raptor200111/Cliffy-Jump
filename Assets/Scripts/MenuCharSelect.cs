@@ -17,7 +17,7 @@ public class MenuCharSelect : MonoBehaviour
     {
         gameManager = GameManager.Instance;
         oldIndex = PlayerPrefs.GetInt("PlayerDataIndex", 0);
-        List<PlayerModelData> playersList = gameManager.playersList;
+        List<PlayerModelData> playersList = gameManager.PlayersList;
         if (playersList == null)
         {
             Debug.LogWarning("Select Char scene characters is null");

@@ -1,27 +1,29 @@
-﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
-public class AnimationScript : MonoBehaviour {
+public class Collectible : MonoBehaviour
+{
+    [SerializeField] private bool isAnimated = true;
 
-    [SerializeField] private bool isAnimated = false;
-
-    [SerializeField] private bool isRotating = false;
-    [SerializeField] private bool isScaling = false;
+    [SerializeField] private bool isRotating = true;
+    [SerializeField] private bool isScaling = true;
 
     private Vector3 rotationAngle;
-    [SerializeField] private float rotationSpeed;
+    [SerializeField] private float rotationSpeed = 10;
 
 
     [SerializeField] private Vector3 startScale;
     [SerializeField] private Vector3 endScale;
 
     private bool scalingUp;
-    [SerializeField] private float scaleSpeed;
-    [SerializeField] private float scaleRate;
+    [SerializeField] private float scaleSpeed = 1f;
+    [SerializeField] private float scaleRate = 0.5f;
     private float scaleTimer;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    protected virtual void Start()
+    {
 
         rotationAngle = new Vector3(0f, 10f, 0f);
         rotationSpeed = 10f;
@@ -34,18 +36,19 @@ public class AnimationScript : MonoBehaviour {
         scaleSpeed = 1;
         scaleRate = 0.5f;
         scaleTimer = 0f;
-}
-	
-	// Update is called once per frame
-	void Update () {
-        if(isAnimated)
+    }
+
+    // Update is called once per frame
+    protected virtual void Update()
+    {
+        if (isAnimated)
         {
-            if(isRotating)
+            if (isRotating)
             {
                 transform.Rotate(rotationAngle * rotationSpeed * Time.deltaTime);
             }
 
-            if(isScaling)
+            if (isScaling)
             {
                 scaleTimer += Time.deltaTime;
 
@@ -58,7 +61,7 @@ public class AnimationScript : MonoBehaviour {
                     transform.localScale = Vector3.Lerp(transform.localScale, startScale, scaleSpeed * Time.deltaTime);
                 }
 
-                if(scaleTimer >= scaleRate)
+                if (scaleTimer >= scaleRate)
                 {
                     if (scalingUp) { scalingUp = false; }
                     else if (!scalingUp) { scalingUp = true; }
@@ -66,9 +69,14 @@ public class AnimationScript : MonoBehaviour {
                 }
             }
         }
-	}
+    }
 
-    public void DisappearAnim()
+    public virtual void Appear()
+    {
+        // Default appear animation (if any)
+    }
+
+    public virtual void Disappear()
     {
         Destroy(gameObject);
     }

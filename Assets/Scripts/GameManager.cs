@@ -22,17 +22,18 @@ public class GameManager : MonoBehaviour
     public bool IsGamePaused { get; private set; } = false;
     public bool IsGameOver { get; private set; } = false;
 
-    public int coinsCollected { get; private set; } = 0;
+    public int CoinsCollected { get; private set; } = 0;
     public event Action<int> OnCoinsChanged;
 
-    public float[] maxLevelProgress { get; private set; } = new float[2] { 0f, 0f };
-    public int[] maxLevelScore { get; private set; } = new int[2] { 0, 0 };
+    public float[] MaxLevelProgress { get; private set; } = new float[2] { 0f, 0f };
+    public int[] MaxLevelScore { get; private set; } = new int[2] { 0, 0 };
 
 
-    public List<PlayerModelData> playersList { get; private set; }
-    public GameObject player { get; private set; }
-    public GameObject CoinPrefab { get; private set; }
-    public GameObject StarPrefab { get; private set; }
+    [field: SerializeField] public List<PlayerModelData> PlayersList { get; private set; }
+    [field: SerializeField] public GameObject Player { get; private set; }
+    [field: SerializeField] public GameObject CoinPrefab { get; private set; }
+    [field: SerializeField] public GameObject StarPrefab { get; private set; }
+
     public StageName stageName { get; private set; } = StageName.MENU;
     private SoundManager soundManager;
     // Start is called before the first frame update
@@ -43,17 +44,18 @@ public class GameManager : MonoBehaviour
             GameManager.Instance = this;
             stageName = StageName.MENU;
             soundManager = SoundManager.Instance;
-            if (player == null)
+            if (Player == null)
             {
                 Debug.LogError("Player not assigned");
             }
-            else if(player.GetComponent<Player>() == null)
+            else if(Player.GetComponent<Player>() == null)
             {
                 Debug.LogError("Player's Script not assigned");
             }
             else
             {
-                player.GetComponent<Player>().LoadModel(playersList[PlayerPrefs.GetInt("PlayerDataIndex", 0)]);
+                //TO DO: Create Animations
+                Player.GetComponent<Player>().LoadModel(PlayersList[PlayerPrefs.GetInt("PlayerDataIndex", 0)]);
             }
 
             DontDestroyOnLoad(gameObject);
@@ -119,8 +121,8 @@ public class GameManager : MonoBehaviour
 
     public void AddCoin()
     {
-        coinsCollected += 1;
-        OnCoinsChanged?.Invoke(coinsCollected);
+        CoinsCollected += 1;
+        OnCoinsChanged?.Invoke(CoinsCollected);
     }
 
     public void SaveLevelScore(int score)
@@ -128,10 +130,10 @@ public class GameManager : MonoBehaviour
         if (stageName != StageName.LVL_1 || stageName != StageName.LVL_2) { return; }
         int levelIndex = (int)stageName - 1;
 
-        if (score > maxLevelScore[levelIndex])
+        if (score > MaxLevelScore[levelIndex])
         {
             String varName = "MaxLevelScore" + (int)stageName;
-            maxLevelScore[levelIndex] = score;
+            MaxLevelScore[levelIndex] = score;
             PlayerPrefs.SetInt(varName, score);
             //OnLevelProgressChanged?.Invoke(maxLevelProgress[levelIndex]);
         }
@@ -142,10 +144,10 @@ public class GameManager : MonoBehaviour
         if (stageName != StageName.LVL_1 || stageName != StageName.LVL_2) { return; }
         int levelIndex = (int)stageName -1;
         
-        if (progress > maxLevelProgress[levelIndex])
+        if (progress > MaxLevelProgress[levelIndex])
         {
             String varName = "ProgressLevel" + levelIndex + 1;
-            maxLevelProgress[levelIndex] = progress;
+            MaxLevelProgress[levelIndex] = progress;
             PlayerPrefs.SetFloat(varName, progress);
             //OnLevelProgressChanged?.Invoke(maxLevelProgress[levelIndex]);
         }
@@ -153,9 +155,9 @@ public class GameManager : MonoBehaviour
 
     public void SetSelectedPlayer(int i_indexPlayer)
     {
-        if (i_indexPlayer > 0 && i_indexPlayer < playersList.Count)
+        if (i_indexPlayer > 0 && i_indexPlayer < PlayersList.Count)
         {
-            player.GetComponent<Player>().LoadModel(playersList[i_indexPlayer]);
+            Player.GetComponent<Player>().LoadModel(PlayersList[i_indexPlayer]);
             PlayerPrefs.SetInt("PlayerDataIndex", i_indexPlayer);
         }
     }

@@ -6,6 +6,7 @@ using System.Linq;
 using Unity.VisualScripting;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
+using UnityEngine.XR;
 using static DynamicStructures;
 using static UnityEngine.Rendering.HighDefinition.ScalableSettingLevelParameter;
 
@@ -202,10 +203,11 @@ public class DynamicDetails : MonoBehaviour
     private int SelectBlock()
     {
         int indexBlock = UnityEngine.Random.Range(1, allBlocks[level].Count - 1);
-        while (ocupiedBlocks.Contains(indexBlock) && allBlocks[level][indexBlock].isValid)
+        bool isValidBlock = allBlocks[level][indexBlock].isValid;
+        while (!isValidBlock || ocupiedBlocks.Contains(indexBlock))
         {
             indexBlock = UnityEngine.Random.Range(1, allBlocks[level].Count - 1);
-
+            isValidBlock = allBlocks[level][indexBlock].isValid;
         }
         //int indexBlock = UnityEngine.Random.Range(8, 15);
         ocupiedBlocks.Add(indexBlock);
@@ -229,10 +231,13 @@ public class DynamicDetails : MonoBehaviour
         }
         coinStarsGO = new GameObject();
         movDecoGO = new GameObject();
+        coinStarsGO.name = "coinStars";
+        movDecoGO.name = "movDeco";
+
 
         if (movDecoType == 1 && birdPrefab != null)
         {    
-            int groupCount = UnityEngine.Random.Range(1, CalcMaxMovDeco(birdMaxMin)); // Generate 1 to 3 groups
+            int groupCount = CalcMaxMovDeco(birdMaxMin); // Generate 1 to 3 groups
             int birdCount = UnityEngine.Random.Range(1, maxBirdCount);
             CreateCoinStar(coinStarsGO);
             CreateBirdGroups(movDecoGO, groupCount, birdCount);
@@ -253,31 +258,15 @@ public class DynamicDetails : MonoBehaviour
 
     public void DestroyDetails()
     {
-        AnimationScript[] starcoins = coinStarsGO.GetComponentsInChildren<AnimationScript>();
-        foreach (AnimationScript script in starcoins)
+        Collectible[] starcoins = coinStarsGO.GetComponentsInChildren<Collectible>();
+        foreach (Collectible script in starcoins)
         {
-            script.DisappearAnim();
+            script.Disappear();
         }
-        if (movDecoType == 1)
+        MovDeco[] movDecoScripts = movDecoGO.GetComponentsInChildren<MovDeco>();
+        foreach (MovDeco movDeco in movDecoScripts)
         {
-            BirdController[] birdScripts = movDecoGO.GetComponentsInChildren<BirdController>();
-            foreach (BirdController birdscript in birdScripts)
-            {
-                birdscript.DisappearAnim();
-            }
-        }
-        else if(movDecoType == 2)
-        {
-            LizardAnimation[] lizardScripts = movDecoGO.GetComponentsInChildren<LizardAnimation>();
-            foreach (LizardAnimation lizardScript in lizardScripts)
-            {
-                lizardScript.DisappearAnim();
-            }
-        }
-        else if (movDecoType == 3)
-        {
-            EyeController[] eyeScripts = movDecoGO.GetComponentsInChildren<EyeController>();
-            foreach (EyeController eyeScript in eyeScripts) {  eyeScript.DisappearAnim(); }
+            movDeco.Disappear();
         }
     }
 
@@ -344,7 +333,8 @@ public class DynamicDetails : MonoBehaviour
             GameObject lizard = Instantiate(lizardPrefab, posStart, rotation, parentGO.transform);
             float yoffset = lizardTopBlock.pos.y + yLizardEndMargin - (i % 4) * 0.5f;
             Vector3 targetPos = new Vector3(lizardTopBlock.pos.x, yoffset, lizardTopBlock.pos.z);
-            lizard.GetComponent<LizardAnimation>().AppearAnim(targetPos);
+            CallMovDecoAppear(lizard, targetPos);
+
         }
     }
 
@@ -358,7 +348,8 @@ public class DynamicDetails : MonoBehaviour
             Vector3 eyeStartPos = eyeTopBlock.pos + new Vector3(0, yEyeStart, 0f); 
             GameObject eye = Instantiate(eyePrefab, eyeStartPos, Quaternion.identity, parentGO.transform);
             float yoffset = eyeTopBlock.pos.y + yEyeEndMargin - (j % 4) * 0.5f;
-            eye.GetComponent<EyeController>().AppearAnim(new Vector3(eyeTopBlock.pos.x, yoffset, eyeTopBlock.pos.z));
+            Vector3 targetPos = new Vector3(eyeTopBlock.pos.x, yoffset, eyeTopBlock.pos.z);
+            CallMovDecoAppear(eye, targetPos);
         }
     }
 
@@ -381,25 +372,22 @@ public class DynamicDetails : MonoBehaviour
                 );
                 Quaternion rotation = Quaternion.Euler(0, UnityEngine.Random.Range(0f, 355f), 0);
                 GameObject bird = Instantiate(birdPrefab, skyPosition, rotation, parentGO.transform);
-                BirdController birdScript = bird.GetComponent<BirdController>();
-
-                if (birdScript != null)
-                {
-                    Vector3 sincosb = CalcBirdOffset(birdCount, j);
-                    Vector3 targetPosition = cubePos + sincosb;
-
-                    birdScript.AppearAnim(targetPosition);
-
-                    Debug.Log($"cubePos: {cubePos}");
-                    Debug.Log($"sincosb: {sincosb}, birdCount: {birdCount}, index: {j}");
-                    Debug.Log($"targetPosition: {targetPosition}, id: {i}{j}");
-                }
-                else
-                {
-                    Debug.LogError("Bird prefab does not have a BirdScript component!");
-                }
+                Vector3 sincosb = CalcBirdOffset(birdCount, j);
+                Vector3 targetPosition = cubePos + sincosb;
+                CallMovDecoAppear(bird, targetPosition);                
             }
         }
+    }
+    private void CallMovDecoAppear(GameObject gameObjectInstance, Vector3 targetPosition)
+    {
+        MovDeco movDecoScript = gameObjectInstance.GetComponent<MovDeco>();
+        if(movDecoScript == null)
+        {
+            Debug.LogError("MovDeco missing script");
+            return;
+        }
+        movDecoScript.Appear(targetPosition);
+
     }
 
     private Vector3 CalcBirdOffset(int birdCount, int index)

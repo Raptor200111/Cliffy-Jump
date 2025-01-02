@@ -102,6 +102,11 @@ public class DynamicStructures : MonoBehaviour
         animator.SetTrigger("hide");
     }
 
+    public void DoneRising()
+    {
+        WorldManager.Instance.DoneRising();
+    }
+
     public void HiddenObjectsChange()
     {
         screen++;

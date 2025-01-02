@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: -5699384253278597874}
   m_Layer: 10
   m_Name: Lizard
-  m_TagString: Untagged
+  m_TagString: Lizard
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -113,6 +113,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0715ab72a638d7499f77f566bddc94e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  appearSpeed: 0
+  disappearSpeed: 0
 --- !u!1001 &34668069552636197
 PrefabInstance:
   m_ObjectHideFlags: 0

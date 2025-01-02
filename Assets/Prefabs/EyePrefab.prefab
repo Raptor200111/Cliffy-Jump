@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 1229709992031862030}
   - component: {fileID: 3499095907322228086}
   - component: {fileID: 536392920792170929}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: EyePrefab
-  m_TagString: Untagged
+  m_TagString: Eye
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -75,6 +75,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15a83b3aeb8fc754f9273148e8600cc1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  appearSpeed: 0
+  disappearSpeed: 0
   eyeball: {fileID: 6063256981169262332}
 --- !u!135 &536392920792170929
 SphereCollider:
@@ -106,7 +108,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2120491964157628471}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: EyeSphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -139,7 +141,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1524604748551731582}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: EyeBody
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -229,6 +231,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: eye-1-block3
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: e2cfe49d6a6a09b4fb840abc1e5d3e02,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8164078558771037576, guid: e2cfe49d6a6a09b4fb840abc1e5d3e02,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -302,6 +314,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: eye2-1-sphere
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 0bc5251505ac3ea428ff682f74837b01,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8164078558771037576, guid: 0bc5251505ac3ea428ff682f74837b01,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -377,6 +399,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: eye-2-block2
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 3794d920ebd895a4baa02ac509522629,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8164078558771037576, guid: 3794d920ebd895a4baa02ac509522629,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -450,6 +482,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: eye-0-block4
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 74df474fd70d4ad42a40433a690d5011,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8164078558771037576, guid: 74df474fd70d4ad42a40433a690d5011,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -525,6 +567,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: eye-4-block0
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 2fa497f906c70b74fb05458c07c87dd1,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8164078558771037576, guid: 2fa497f906c70b74fb05458c07c87dd1,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -599,6 +651,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: eye2-0-eye
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: b59399ba51c52ee488f5c687af255891,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8164078558771037576, guid: b59399ba51c52ee488f5c687af255891,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -672,6 +734,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: eye-3-block1
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 2e01fd6cb095d8145983ed38d5e3f744,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8164078558771037576, guid: 2e01fd6cb095d8145983ed38d5e3f744,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
