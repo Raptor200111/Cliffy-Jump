@@ -10,18 +10,419 @@
             {
               "YOffset": 0,
               "index": 0,
+              "orientation": 90
+            }
+          ]
+        },
+        {
+          "x": 2,
+          "y": 0,
+          "z": 0,
+          "objects": [
+            {
+              "YOffset": 0,
+              "index": 0,
+              "orientation": 90
+            }
+          ]
+        },
+        {
+          "x": 4,
+          "y": 0,
+          "z": 0,
+          "objects": [
+            {
+              "YOffset": 0,
+              "index": 0,
+              "orientation": 90
+            }
+          ]
+        },
+        {
+          "x": 6,
+          "y": 0,
+          "z": 0,
+          "objects": [
+            {
+              "YOffset": 0,
+              "index": 0,
+              "orientation": 90
+            }
+          ]
+        },
+        {
+          "x": 8,
+          "y": 0,
+          "z": 0,
+          "objects": [
+            {
+              "YOffset": 0,
+              "index": 0,
+              "orientation": 90
+            },
+            {
+              "YOffset": 6,
+              "index": 9,
               "orientation": 0
+            }
+          ]
+        },
+        {
+          "x": 10,
+          "y": 0,
+          "z": 0,
+          "objects": [
+            {
+              "YOffset": 0,
+              "index": 0,
+              "orientation": 90
+            }
+          ]
+        },
+        {
+          "x": 12,
+          "y": 0,
+          "z": 0,
+          "objects": [
+            {
+              "YOffset": 0,
+              "index": 0,
+              "orientation": 90
+            }
+          ]
+        },
+        {
+          "x": 14,
+          "y": 0,
+          "z": 0,
+          "objects": [
+            {
+              "YOffset": 0,
+              "index": 3,
+              "orientation": 90
+            },
+            {
+              "YOffset": 6,
+              "index": 8,
+              "orientation": 0
+            }
+          ]
+        },
+        {
+          "x": 16,
+          "y": 0,
+          "z": 0,
+          "objects": [
+            {
+              "YOffset": 0,
+              "index": 0,
+              "orientation": 90
+            }
+          ]
+        },
+        {
+          "x": 18,
+          "y": 0,
+          "z": 0,
+          "objects": [
+            {
+              "YOffset": 0,
+              "index": 0,
+              "orientation": 90
+            }
+          ]
+        },
+        {
+          "x": 20,
+          "y": 0,
+          "z": 0,
+          "objects": [
+            {
+              "YOffset": 0,
+              "index": 0,
+              "orientation": 90
+            }
+          ]
+        },
+        {
+          "x": 22,
+          "y": 0,
+          "z": 0,
+          "objects": [
+            {
+              "YOffset": 0,
+              "index": 0,
+              "orientation": 90
+            }
+          ]
+        },
+        {
+          "x": 24,
+          "y": 0,
+          "z": 0,
+          "objects": [
+            {
+              "YOffset": 0,
+              "index": 0,
+              "orientation": 90
+            }
+          ]
+        },
+        {
+          "x": 26,
+          "y": 0,
+          "z": 0,
+          "objects": [
+            {
+              "YOffset": 0,
+              "index": 0,
+              "orientation": 90
+            }
+          ]
+        },
+        {
+          "x": 28,
+          "y": 0,
+          "z": 0,
+          "objects": [
+            {
+              "YOffset": 0,
+              "index": 1,
+              "orientation": 0
+            },
+            {
+              "YOffset": 6,
+              "index": 4,
+              "orientation": 0
+            }
+          ]
+        },
+        {
+          "x": 28,
+          "y": 0,
+          "z": 2,
+          "objects": [
+            {
+              "YOffset": 0,
+              "index": 0,
+              "orientation": 0
+            }
+          ]
+        },
+        {
+          "x": 28,
+          "y": 0,
+          "z": 4,
+          "objects": [
+            {
+              "YOffset": 0,
+              "index": 0,
+              "orientation": 0
+            }
+          ]
+        },
+        {
+          "x": 28,
+          "y": 0,
+          "z": 6,
+          "objects": [
+            {
+              "YOffset": 0,
+              "index": 0,
+              "orientation": 0
+            }
+          ]
+        },
+        {
+          "x": 28,
+          "y": 0,
+          "z": 8,
+          "objects": [
+            {
+              "YOffset": 0,
+              "index": 0,
+              "orientation": 0
+            }
+          ]
+        },
+        {
+          "x": 28,
+          "y": 0,
+          "z": 10,
+          "objects": [
+            {
+              "YOffset": 0,
+              "index": 1,
+              "orientation": 180
+            },
+            {
+              "YOffset": 6,
+              "index": 4,
+              "orientation": 90
+            }
+          ]
+        },
+        {
+          "x": 30,
+          "y": 0,
+          "z": 10,
+          "objects": [
+            {
+              "YOffset": 0,
+              "index": 0,
+              "orientation": 90
+            }
+          ]
+        },
+        {
+          "x": 32,
+          "y": 0,
+          "z": 10,
+          "objects": [
+            {
+              "YOffset": 0,
+              "index": 0,
+              "orientation": 90
+            }
+          ]
+        },
+        {
+          "x": 34,
+          "y": 0,
+          "z": 10,
+          "objects": [
+            {
+              "YOffset": 0,
+              "index": 0,
+              "orientation": 90
+            }
+          ]
+        },
+        {
+          "x": 36,
+          "y": 0,
+          "z": 10,
+          "objects": [
+            {
+              "YOffset": 0,
+              "index": 1,
+              "orientation": 270
+            },
+            {
+              "YOffset": 6,
+              "index": 4,
+              "orientation": 180
+            }
+          ]
+        },
+        {
+          "x": 36,
+          "y": 0,
+          "z": 8,
+          "objects": [
+            {
+              "YOffset": 0,
+              "index": 0,
+              "orientation": 180
+            }
+          ]
+        },
+        {
+          "x": 36,
+          "y": 0,
+          "z": 6,
+          "objects": [
+            {
+              "YOffset": 0,
+              "index": 0,
+              "orientation": 180
+            }
+          ]
+        },
+        {
+          "x": 36,
+          "y": 0,
+          "z": 4,
+          "objects": [
+            {
+              "YOffset": 0,
+              "index": 0,
+              "orientation": 180
+            }
+          ]
+        },
+        {
+          "x": 36,
+          "y": -1,
+          "z": 2,
+          "objects": [
+            {
+              "YOffset": 0,
+              "index": 0,
+              "orientation": 180
+            },
+            {
+              "YOffset": 6,
+              "index": 5,
+              "orientation": 180
+            }
+          ]
+        },
+        {
+          "x": 36,
+          "y": -1,
+          "z": 0,
+          "objects": [
+            {
+              "YOffset": 0,
+              "index": 0,
+              "orientation": 180
+            },
+            {
+              "YOffset": 6,
+              "index": 5,
+              "orientation": 180
+            }
+          ]
+        },
+        {
+          "x": 36,
+          "y": 0,
+          "z": -2,
+          "objects": [
+            {
+              "YOffset": 0,
+              "index": 0,
+              "orientation": 180
+            }
+          ]
+        },
+        {
+          "x": 36,
+          "y": 0,
+          "z": -4,
+          "objects": [
+            {
+              "YOffset": 0,
+              "index": 0,
+              "orientation": 180
+            }
+          ]
+        },
+        {
+          "x": 36,
+          "y": 0,
+          "z": -6,
+          "objects": [
+            {
+              "YOffset": 0,
+              "index": 0,
+              "orientation": 180
             }
           ]
         }
       ]
     }
   ],
-  "allObjects": [ 71, 15, 2, 4, 15, 4, 3, 2, 4 ],
-  
-  "block": 0,
-  "turn": 1,
-  "groundSpike": 2,
-  "halfSpike": 3,
-  "fullSpike":  4
+  "allObjects": [ 71, 15, 2, 4, 15, 4, 3, 2, 4, 4]
 }
