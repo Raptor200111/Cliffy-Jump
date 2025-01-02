@@ -2,17 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LizardAnimation : MonoBehaviour
+public class LizardAnimation : MovDeco
 {
-    private float appearSpeed = 0.5f;
-    private float disappearSpeed = 1f;
-    private bool disappear = false;
+
     // Start is called before the first frame update
-    void Start()
+    protected override void Start()
     {
+        base.Start();
+        appearSpeed = 0.8f;
+        disappearSpeed = 1f;
+        disappear = false;
     }
 
-    public void AppearAnim(Vector3 targetPos)
+    public override void Appear(Vector3 targetPos)
     {
         StartCoroutine(ClimbToTarget(targetPos));
     }
@@ -51,16 +53,7 @@ public class LizardAnimation : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        // Check if the player enters the sphere collider
-        if (other.gameObject.tag == ("Player"))
-        {
-            disappear = true;
-        }
-    }
-
-    public void DisappearAnim()
+    public override void Disappear()
     {
         StartCoroutine(DescentToWater());
     }

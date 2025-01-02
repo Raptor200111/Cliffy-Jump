@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static DynamicStructures;
 
 public class WorldManager : MonoBehaviour
 {
@@ -14,10 +15,14 @@ public class WorldManager : MonoBehaviour
     public DynamicStructures dynamicStructures;
     public DynamicDetails dynamicDetails;
 
-    public int currentProgress { get; private set; } = 0;
-    public int numWorld { get; private set; } = 1;
 
-    public int lives = 3;
+    public int CurrentScreen { get; private set; } = 0;
+    public event Action<float> OnLevelProgressChanged;
+    public int CurrentWorldScore { get; private set; } = 0;
+    public event Action<int> OnLevelScoreChanged;
+
+    public int TotalNumScreens { get; private set; } = 0;
+    public int lives { get; private set; } = 3;
 
     public void Awake()
     {
@@ -34,23 +39,30 @@ public class WorldManager : MonoBehaviour
 
     public void DoneRising()
     {
-        dynamicDetails.CreateDetails(dynamicStructures.screen, 3);
+        dynamicDetails.CreateDetails(dynamicStructures.screen, 2);
         player.PlayerStart();
     }
 
     public void ScreenComplete()
     {
-        dynamicDetails.DestroyDetails(3);
+        dynamicDetails.DestroyDetails();
         player.PlayerStop();
         dynamicStructures.NextScreen();
+        UpdateLevelProgress();
     }
 
     public void UpdateLevelProgress()
     {
-        currentProgress += 1;
-        GameManager.Instance.SaveLevelProgress(numWorld, currentProgress);
+        CurrentScreen += 1;
+        OnLevelProgressChanged?.Invoke(CurrentScreen/(float)TotalNumScreens);
+        //GameManager.Instance.SaveLevelProgress(currentWorldProgress);
     }
 
+    public void AddStar()
+    {
+        CurrentWorldScore += 1;
+        OnLevelScoreChanged?.Invoke(CurrentWorldScore);
+    }
     public void WorldComplete()
     {
         UnityEngine.Debug.Log("World Complete");

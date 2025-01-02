@@ -8,6 +8,8 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    private GameObject currentModelInstance;
+
     enum State {Waiting, Moving, Jumping, Dead};
     State playerState;
     Vector3 velocity;
@@ -42,6 +44,26 @@ public class Player : MonoBehaviour
         _animator = GetComponent<Animator>();
 
         UnityEngine.Physics.gravity = new Vector3(0, gravity, 0);
+    }
+
+    public void LoadModel(PlayerModelData modelData)
+    {
+        // Clean up old model
+        if (currentModelInstance != null)
+        {
+            Destroy(currentModelInstance);
+        }
+
+        // Instantiate the new model
+        if (modelData != null && modelData.modelPrefab != null)
+        {
+            currentModelInstance = Instantiate(modelData.modelPrefab, this.transform);
+            
+            /*if (_animator != null)
+            {
+                _animator.runtimeAnimatorController = modelData.animatorController;
+            }*/
+        }
     }
 
     void Update()
@@ -94,7 +116,7 @@ public class Player : MonoBehaviour
         }
         else if (collision.gameObject.layer == collecteblesLayer)
         {
-
+            AddCollectibles(collision.gameObject);
         }
         else if (collision.gameObject.layer == blockLayer && playerState == State.Jumping) 
         {
@@ -147,14 +169,30 @@ public class Player : MonoBehaviour
         playerState = newState;
     }
 
-    public void ChangeDirection(Vector3 pos, int rot)
+    public void ChangeDirection(Vector3 pos, Vector3 fow)
     {
         if (playerState == State.Moving) 
         {
             pos.y = transform.position.y;
-            Quaternion quat = Quaternion.Euler(0, rot, 0);
-            this.transform.SetPositionAndRotation(pos, quat);
-            velocity = 0.2f * transform.forward;
+            transform.localPosition = pos;
+            transform.forward = fow;
+            velocity = 0.2f * fow;
+        }
+    }
+
+    private void AddCollectibles(GameObject collectible)
+    {
+        if (collectible.CompareTag("Star"))
+        {
+            WorldManager.Instance.AddStar();            
+        }
+        else if (collectible.CompareTag("Coin"))
+        {
+            GameManager.Instance.AddCoin();
+        }
+        else
+        {
+            //add live
         }
     }
 }

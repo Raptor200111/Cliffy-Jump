@@ -12,10 +12,10 @@ GameObject:
   - component: {fileID: 1182867470342101049}
   - component: {fileID: 2444167023529120968}
   - component: {fileID: 763880945259495958}
-  - component: {fileID: 5915354121048627877}
-  m_Layer: 12
+  - component: {fileID: -1765894155832026291}
+  m_Layer: 8
   m_Name: Star_Liliu
-  m_TagString: Untagged
+  m_TagString: Star
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -107,7 +107,7 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300004, guid: e121965519da8964eb443caa891ca78c, type: 3}
---- !u!114 &5915354121048627877
+--- !u!114 &-1765894155832026291
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -116,7 +116,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 4813581339930940020}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9ff967b7ed48f2441bcf509edf6b889a, type: 3}
+  m_Script: {fileID: 11500000, guid: e6c506e063bd099429d5ad607ffb14ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   isAnimated: 1

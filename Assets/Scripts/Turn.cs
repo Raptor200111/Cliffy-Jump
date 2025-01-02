@@ -6,13 +6,7 @@ using UnityEngine.EventSystems;
 
 public class Turn : MonoBehaviour
 {
-    public int rotation = 0;
     bool changed = false;
-
-    void Update()
-    {
-        
-    }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -21,7 +15,6 @@ public class Turn : MonoBehaviour
             //other.GetComponent<Player>().ChangeDirection(this.transform.position, rotation);
             changed = false;
         }
-
     }
 
     private void OnTriggerStay(Collider other)
@@ -35,7 +28,7 @@ public class Turn : MonoBehaviour
         if (other.tag == "Player" && !changed && distance <= 0.2f )
         {
             changed = true;
-            other.GetComponent<Player>().ChangeDirection(this.transform.position, rotation);
+            other.GetComponent<Player>().ChangeDirection(this.transform.position, this.transform.forward);
         }
     }
 
