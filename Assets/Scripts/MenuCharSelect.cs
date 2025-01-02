@@ -73,7 +73,7 @@ public class MenuCharSelect : MonoBehaviour
 
     public void SelectChar()
     {
-        gameManager.SetPlayer(index);        
+        gameManager.SetSelectedPlayer(index);        
     }
 
     // Update is called once per frame
