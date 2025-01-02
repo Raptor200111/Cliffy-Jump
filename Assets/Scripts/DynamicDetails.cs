@@ -115,14 +115,11 @@ public class DynamicDetails : MonoBehaviour
             {
                 allBlocks[i] = new List<Vector3>(); // Initialize the list
 
-                var usefulBlocks = worldData.levels[i].blocks.GetRange(
-                    0,
-                    Mathf.Min(worldData.levels[i].usefulBlocks, worldData.levels[i].blocks.Count)
-                );
+                var usefulBlocks = worldData.levels[i].positions;
 
                 for (int j = 0; j < usefulBlocks.Count; j++)
                 {
-                    Vector3 position = new Vector3(usefulBlocks[j].x, usefulBlocks[j].y, usefulBlocks[j].z);
+                    Vector3 position = usefulBlocks[i].ToVec3();
                     allBlocks[i].Add(position);
                 }
             }
