@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EyeController : MonoBehaviour
 {
-    private float appearSpeed = 0.5f;
+    private float appearSpeed = 1.5f;
     private float disappearSpeed = 1f;
     private bool disappear = false;
     private GameManager gameManager;
@@ -15,7 +15,7 @@ public class EyeController : MonoBehaviour
     void Start()
     {
         gameManager = GameManager.Instance;    
-        playerTransform = gameManager.GetPlayerTransform();
+        playerTransform = gameManager.player.transform;
     }
 
     public void AppearAnim(Vector3 targetPos)
@@ -45,7 +45,7 @@ public class EyeController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       // eyeball.transform.LookAt(playerTransform);
+        eyeball.transform.LookAt(playerTransform);
         if (disappear)
         {
             if (transform.position.y >= -3f)

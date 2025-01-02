@@ -7,24 +7,33 @@ public class UI_Manager : MonoBehaviour
 {
     public TMP_Text numCoinsText;
     public TMP_Text levelProgress;
+    public GameObject[] NumStars;
     [SerializeField] private GameObject resumePanel;
     [SerializeField] private GameObject pauseButton;
+    [SerializeField] private WorldManager worldManager;
 
     private void Start()
     {
         SetVisibilityOnPause(false);
+        if(worldManager == null)
+        {
+            Debug.LogWarning("worldManager not assigned");
+            return;
+        }
     }
 
     private void OnEnable()
     {
         GameManager.Instance.OnCoinsChanged += UpdateCoins;
-        GameManager.Instance.OnLevelProgressChanged += UpdateLevelProgress;
+        worldManager.OnLevelProgressChanged += UpdateLevelProgress;
+        worldManager.OnLevelScoreChanged += UpdateStars;
     }
 
     private void OnDisable()
     {
         GameManager.Instance.OnCoinsChanged -= UpdateCoins;
-        GameManager.Instance.OnLevelProgressChanged -= UpdateLevelProgress;
+        worldManager.OnLevelProgressChanged -= UpdateLevelProgress;
+        worldManager.OnLevelScoreChanged -= UpdateStars;
     }
 
     public void UpdateCoins(int coins)
@@ -34,8 +43,18 @@ public class UI_Manager : MonoBehaviour
             numCoinsText.text = $"{coins}";
         }
     }
+    public void UpdateStars(int stars)
+    {
+        if(NumStars != null && NumStars.Length > stars)
+        {
+            for (int i = 0; i< stars; i++)
+            {
+                NumStars[i].SetActive(true);
+            }
+        }
+    }
 
-    public void UpdateLevelProgress(int progress)
+    public void UpdateLevelProgress(float progress)
     {
         if (levelProgress != null)
         {

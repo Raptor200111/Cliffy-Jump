@@ -142,10 +142,5 @@ public class DynamicStructures : MonoBehaviour
         animator.SetTrigger("rise");
     }
 
-    public void DoneRising()
-    {
-        WorldManager.Instance.DoneRising();
-    }
     
-    public GameObject[] GetAllBlocks() { return allObjects[0]; }
 }

@@ -10,7 +10,8 @@ using Unity.VisualScripting;
 public class ScriptMenu : MonoBehaviour
 {
     // Start is called before the first frame update
-    public GameObject popUp;
+    public GameObject configPopUp;
+    public GameObject selectCharPopUp;
     [SerializeField] private TMP_Text character_name;
     [SerializeField] private Slider volumeMusicSlider;
     [SerializeField] private Slider volumeSoundSlider;
@@ -22,8 +23,8 @@ public class ScriptMenu : MonoBehaviour
         public GameObject offImage;
     }
 
-    [SerializeField] private ToggleImage onMusicToggle = new ToggleImage();
-    [SerializeField] private ToggleImage onSoundToggle = new ToggleImage();
+    [SerializeField] private ToggleImage onMusicToggle;
+    [SerializeField] private ToggleImage onSoundToggle;
 
     private GameManager gameManager;
     private SoundManager soundManager;
@@ -32,12 +33,40 @@ public class ScriptMenu : MonoBehaviour
     {
         gameManager = GameManager.Instance;
         soundManager = SoundManager.Instance;
-        onMusicToggle._toggle.onValueChanged.AddListener(isOnMusic);
-        onSoundToggle._toggle.onValueChanged.AddListener(isOnSound);
-        volumeMusicSlider.onValueChanged.AddListener(ChangeMusicVolume);
-        volumeSoundSlider.onValueChanged.AddListener(ChangeSoundVolume);
-        ResetParams();
         level = 1;
+        if (onMusicToggle == null)
+        {
+            Debug.LogWarning("onMusicToggle not assigned");
+        }
+        else
+        {
+            onMusicToggle._toggle.onValueChanged.AddListener(isOnMusic);
+        }
+        if (onSoundToggle == null)
+        {
+            Debug.LogWarning("onMusicToggle not assigned");
+        }
+        else
+        {
+            onSoundToggle._toggle.onValueChanged.AddListener(isOnSound);
+        }
+        if (volumeMusicSlider == null)
+        {
+            Debug.LogWarning("onMusicToggle not assigned");
+        }
+        else
+        {
+            volumeMusicSlider.onValueChanged.AddListener(ChangeMusicVolume);
+        }
+        if (volumeSoundSlider == null)
+        {
+            Debug.LogWarning("onMusicToggle not assigned");
+        }
+        else
+        {
+            volumeSoundSlider.onValueChanged.AddListener(ChangeSoundVolume);
+        }
+        ResetParams();         
     }
 
     // Update is called once per frame
@@ -64,16 +93,21 @@ public class ScriptMenu : MonoBehaviour
     }
     public void OnGoToConfig()
     {
-        popUp.SetActive(true);
+        configPopUp.SetActive(true);
     }
 
     public void OnGoToSelectPlayer()
     {
-        gameManager.changeScene(StageName.PLYR_SELECT);
+        selectCharPopUp.SetActive(true);
     }
     public void OnExitConfig()
     {
-        popUp.SetActive(false);
+        configPopUp.SetActive(false);
+    }
+
+    public void OnExitSelectChar()
+    {
+        selectCharPopUp.SetActive(false);
     }
     public void ChangeMusicVolume(float newVolume)
     {

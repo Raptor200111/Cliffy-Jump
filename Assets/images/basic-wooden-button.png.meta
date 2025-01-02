@@ -1,13 +1,7 @@
 fileFormatVersion: 2
-guid: 7ed4c93d3afd02545b55f22fda5c1a6b
+guid: c7c6dd2179ef81c408f0f3b98e9e543a
 TextureImporter:
-  internalIDToNameTable:
-  - first:
-      213: -7953071339175753470
-    second: White Information_0
-  - first:
-      213: -4420400627663426183
-    second: White Information_1
+  internalIDToNameTable: []
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -45,11 +39,11 @@ TextureImporter:
     mipBias: 0
     wrapU: 1
     wrapV: 1
-    wrapW: 1
+    wrapW: 0
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -112,60 +106,89 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: WebGL
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: White Information_0
+      name: basic-wooden-button_0
       rect:
         serializedVersion: 2
-        x: 197
-        y: 396
-        width: 118
-        height: 116
+        x: 9
+        y: 246
+        width: 163
+        height: 167
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 209c61311c301a190800000000000000
-      internalID: -7953071339175753470
+      spriteID: 3c97bf4cc588d7b45b2efc1554aac38f
+      internalID: 223107847
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: White Information_1
+      name: basic-wooden-button_1
       rect:
         serializedVersion: 2
-        x: 169
-        y: 0
-        width: 174
-        height: 313
+        x: 202
+        y: 246
+        width: 163
+        height: 167
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 97d2537ac0597a2c0800000000000000
-      internalID: -4420400627663426183
+      spriteID: dd5622fe926e2db47bffd0b25b604051
+      internalID: -2117547122
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: basic-wooden-button_2
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 2
+        width: 172
+        height: 169
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aa9ae129a5e2d374184ff1104aae1b3c
+      internalID: 1385948769
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: basic-wooden-button_3
+      rect:
+        serializedVersion: 2
+        x: 199
+        y: 2
+        width: 171
+        height: 169
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cb4c2cbc987d65e419fa96fc64e44b8f
+      internalID: -1274770858
       vertices: []
       indices: 
       edges: []
@@ -173,7 +196,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 5e97eb03825dee720800000000000000
+    spriteID: 1f32541ce9834844c8e0824ab9f29a37
     internalID: 0
     vertices: []
     indices: 
@@ -181,8 +204,10 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      White Information_0: -7953071339175753470
-      White Information_1: -4420400627663426183
+      basic-wooden-button_0: 223107847
+      basic-wooden-button_1: -2117547122
+      basic-wooden-button_2: 1385948769
+      basic-wooden-button_3: -1274770858
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

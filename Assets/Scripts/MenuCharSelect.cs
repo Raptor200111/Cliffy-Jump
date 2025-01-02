@@ -16,35 +16,33 @@ public class MenuCharSelect : MonoBehaviour
     void Start()
     {
         gameManager = GameManager.Instance;
-        oldIndex = PlayerPrefs.GetInt("CharIndex", 0);
-        List<Characters> charactersList = gameManager.GetCharacters();
-        if (gameManager.GetCharacters() == null)
+        oldIndex = PlayerPrefs.GetInt("PlayerDataIndex", 0);
+        List<PlayerModelData> playersList = gameManager.playersList;
+        if (playersList == null)
         {
             Debug.LogWarning("Select Char scene characters is null");
         }
-        else if(charactersList.Count == 0)
+        else if(playersList.Count == 0)
         {
             Debug.LogWarning("gameManager's characters is empty");
         }        
         else
         {
-            charsToDisplay = new GameObject[charactersList.Count];
-            for (int i = 0; i< charactersList.Count; i++)
+            charsToDisplay = new GameObject[playersList.Count];
+            for (int i = 0; i< playersList.Count; i++)
             {
-                GameObject chars = charactersList[i].character;
+                GameObject chars = playersList[i].modelPrefab;
                 GameObject newInstance = Instantiate(chars, charImage.transform);
 
-                newInstance.transform.localPosition = Vector3.zero;
-                newInstance.transform.localScale *= 15f;
+                newInstance.transform.localPosition += new Vector3(0f, -120f, 0f);
+                newInstance.transform.localScale *= 125f;
                 newInstance.transform.localRotation = Quaternion.Euler(new Vector3(0f,180f,0f));
                 newInstance.SetActive(false);
+                newInstance.name = playersList[i].modelName;
                 charsToDisplay[i] = newInstance;
             }
         }
-        if (oldIndex > charsToDisplay.Length -1)
-        {
-            oldIndex = 0;
-        }
+        
         ChangeChar(oldIndex);
     }
 
@@ -62,10 +60,6 @@ public class MenuCharSelect : MonoBehaviour
         if(newIndex > charsToDisplay.Length-1) {  newIndex = 0; } 
         ChangeChar(newIndex);
     }
-    public void OnExitButton()
-    {
-        gameManager.changeScene(StageName.MENU);
-    }
 
 
     public void PreviousChar()
@@ -82,7 +76,7 @@ public class MenuCharSelect : MonoBehaviour
 
     public void SelectChar()
     {
-        gameManager.SetSelectedPlayer(oldIndex);        
+        gameManager.SetSelectedPlayer(oldIndex);   
     }
 
     // Update is called once per frame

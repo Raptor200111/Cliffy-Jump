@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -24,14 +25,14 @@ public class GameManager : MonoBehaviour
     public int coinsCollected { get; private set; } = 0;
     public event Action<int> OnCoinsChanged;
 
-    public int HighScore { get; private set; }
-    private int[] maxLevelProgress = new int[2];
-    public event Action<int> OnLevelProgressChanged;
+    public float[] maxLevelProgress { get; private set; } = new float[2] { 0f, 0f };
+    public int[] maxLevelScore { get; private set; } = new int[2] { 0, 0 };
 
-    [SerializeField] private List<Characters> charactersList;
-    [SerializeField] private GameObject player;
-    [SerializeField] private GameObject CoinPrefab;
-    [SerializeField] private GameObject StarPrefab;
+
+    public List<PlayerModelData> playersList { get; private set; }
+    public GameObject player { get; private set; }
+    public GameObject CoinPrefab { get; private set; }
+    public GameObject StarPrefab { get; private set; }
     public StageName stageName { get; private set; } = StageName.MENU;
     private SoundManager soundManager;
     // Start is called before the first frame update
@@ -44,8 +45,17 @@ public class GameManager : MonoBehaviour
             soundManager = SoundManager.Instance;
             if (player == null)
             {
-                player = charactersList[PlayerPrefs.GetInt("CharIndex", 0)].character;
+                Debug.LogError("Player not assigned");
             }
+            else if(player.GetComponent<Player>() == null)
+            {
+                Debug.LogError("Player's Script not assigned");
+            }
+            else
+            {
+                player.GetComponent<Player>().LoadModel(playersList[PlayerPrefs.GetInt("PlayerDataIndex", 0)]);
+            }
+
             DontDestroyOnLoad(gameObject);
         }
         else
@@ -61,7 +71,7 @@ public class GameManager : MonoBehaviour
             soundManager = SoundManager.Instance;
             if (soundManager == null)
             {
-            Debug.LogWarning("Gamemanager's soundManager null");
+                Debug.LogWarning("Gamemanager's soundManager null");
                 return;
             }
         }
@@ -69,7 +79,7 @@ public class GameManager : MonoBehaviour
 
     }
 
-    public void changeScene(StageName stage) { 
+    public void changeScene(StageName stage) {
         stageName = stage;
         switch (stage)
         {
@@ -113,40 +123,42 @@ public class GameManager : MonoBehaviour
         OnCoinsChanged?.Invoke(coinsCollected);
     }
 
-    public void SaveLevelProgress(int levelIndex, int progress)
+    public void SaveLevelScore(int score)
     {
+        if (stageName != StageName.LVL_1 || stageName != StageName.LVL_2) { return; }
+        int levelIndex = (int)stageName - 1;
+
+        if (score > maxLevelScore[levelIndex])
+        {
+            String varName = "MaxLevelScore" + (int)stageName;
+            maxLevelScore[levelIndex] = score;
+            PlayerPrefs.SetInt(varName, score);
+            //OnLevelProgressChanged?.Invoke(maxLevelProgress[levelIndex]);
+        }
+    }
+
+    public void SaveLevelProgress(float progress)
+    {
+        if (stageName != StageName.LVL_1 || stageName != StageName.LVL_2) { return; }
+        int levelIndex = (int)stageName -1;
+        
         if (progress > maxLevelProgress[levelIndex])
         {
             String varName = "ProgressLevel" + levelIndex + 1;
             maxLevelProgress[levelIndex] = progress;
-            PlayerPrefs.SetInt(varName, progress);
-            OnLevelProgressChanged?.Invoke(maxLevelProgress[levelIndex]);
+            PlayerPrefs.SetFloat(varName, progress);
+            //OnLevelProgressChanged?.Invoke(maxLevelProgress[levelIndex]);
         }
-    }
-
-    public int GetMaxLevelProgress(int levelIndex)
-    {
-        return maxLevelProgress[levelIndex];
     }
 
     public void SetSelectedPlayer(int i_indexPlayer)
     {
-        if (i_indexPlayer > 0 && i_indexPlayer < charactersList.Count)
+        if (i_indexPlayer > 0 && i_indexPlayer < playersList.Count)
         {
-            player = charactersList[i_indexPlayer].character;
-            PlayerPrefs.SetInt("CharIndex", i_indexPlayer);
-            changeScene(StageName.MENU);
+            player.GetComponent<Player>().LoadModel(playersList[i_indexPlayer]);
+            PlayerPrefs.SetInt("PlayerDataIndex", i_indexPlayer);
         }
     }
-
-    public Transform GetPlayerTransform()
-    {
-        return player.transform;
-    }
-
-    public List<Characters> GetCharacters() { return charactersList; }
-    public GameObject GetStarPrefab() { return StarPrefab; }
-    public GameObject GetCoinPrefab() { return CoinPrefab; }
     // Update is called once per frame
     void Update()
     {
