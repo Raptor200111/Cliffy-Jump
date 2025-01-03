@@ -33,8 +33,7 @@ public class GameManager : MonoBehaviour
     public float[] MaxLevelProgress { get; private set; } = new float[2] { 0f, 0f };
     public int[] MaxLevelScore { get; private set; } = new int[2] { 0, 0 };
     [field: SerializeField] public GameObject Player { get; private set; }
-    [field: SerializeField] public GameObject CoinPrefab { get; private set; }
-    [field: SerializeField] public GameObject StarPrefab { get; private set; }
+    
 
     public StageName stageName { get; private set; } = StageName.MENU;
     private SoundManager soundManager;

@@ -9,6 +9,7 @@ using UnityEngine;
 using UnityEngine.XR;
 using static DynamicStructures;
 using static UnityEngine.Rendering.HighDefinition.ScalableSettingLevelParameter;
+using static WorldManager;
 
 
 /*
@@ -29,42 +30,58 @@ public class DynamicDetails : MonoBehaviour
     private World worldData = new World();
     [SerializeField] private GameObject blockPrefab;
     public TextAsset jsonFile;
+    public enum MovDecoType
+    {
+        Birds = 0,
+        Lizard = 1,
+        Eye = 2
+    }
+
+    [System.Serializable]
+    public class DetailType
+    {
+        public MovDecoType movDecoType;
+        public GameObject movDecoPrefab;
+    }
+
+    public DetailType detailType;
+    public int[] indexObstacles;
+    private GameObject birdPrefab;
+    private GameObject lizardPrefab;
+    private GameObject eyePrefab;
 
     struct PosInfo
     {
         public Pos pos;
         public bool isValid;
+        public List<Pos> neighbours;
     }
     private List<PosInfo>[] allBlocks;
     private int numValidBlocks;
     private GameObject block;
     private int level;
-    private int movDecoType;
     List<int> ocupiedBlocks = new List<int>();
 
     private GameObject movDecoGO;
 
     struct NumConstrains { public int max, min; };
 
-    [SerializeField] GameObject birdPrefab;
     public float skyHeight = 10f;
     private NumConstrains birdMaxMin = new NumConstrains { max = 4, min = 1 };
     private int maxBirdCount = 5;
 
     private float cubeSize = 2f;
-    private float posY = 5f;
+    private float posY = 5.5f;
     struct PosRot
     {
         public Vector3 pos;
         public float ydegrees;
     }
 
-    [SerializeField] GameObject lizardPrefab;
     private NumConstrains lizardMaxMin = new NumConstrains { max = 8, min = 4 };
-    private float yLizardStart = -4f;
+    private float yLizardStart = -5f;
     private float yLizardEndMargin = -2.2f;
 
-    [SerializeField] GameObject eyePrefab;
     private NumConstrains eyeMaxMin = new NumConstrains { max = 2, min = 6 };
     private float yEyeStart = -7f;
     private float yEyeEndMargin = 2f;
@@ -79,15 +96,15 @@ public class DynamicDetails : MonoBehaviour
     {
         gameManager = GameManager.Instance;
 
-        if (birdPrefab == null || gameManager == null)
+        if (gameManager == null)
         {
-            Debug.LogError("Bird prefab or gameManager not assigned!");
+            Debug.LogError("gameManager not assigned!");
             return;
         }
 
-        if(blockPrefab == null)
+        if( detailType.movDecoPrefab == null)
         {
-            Debug.LogError("blockPrefab prefab not assigned!");
+            Debug.LogError("prefab not assigned!");
             return;
         }        
 
@@ -100,12 +117,9 @@ public class DynamicDetails : MonoBehaviour
         numCoins = 3;
         numStars = 3;
         level = 0;
-        movDecoType = 1;
 
         GameObject block = Instantiate(blockPrefab, Vector3.zero, Quaternion.identity, this.transform);
         block.SetActive(false);
-        cubeSize = block.transform.localScale.x;
-        posY = block.transform.localScale.y / 2f;
 
         GetTopLevelBaseBlocks();
     }
@@ -119,15 +133,21 @@ public class DynamicDetails : MonoBehaviour
             allBlocks = new List<PosInfo>[worldData.levels.Count];
             numValidBlocks = 0;
 
-            for ( int i = 0; i< worldData.levels.Count; ++i)
+            for (int i = 0; i < worldData.levels.Count; ++i)
             {
                 List<PosInfo> levelTopBlocks = new List<PosInfo>();
-                foreach (Pos position in worldData.levels[i].positions)
+                List<Pos> positions = worldData.levels[i].positions;
+
+                // Create a dictionary for quick neighbor lookup
+                Dictionary<Vector3, PosInfo> positionMap = new Dictionary<Vector3, PosInfo>();
+
+                foreach (Pos position in positions)
                 {
                     PosInfo posInfo = new PosInfo
                     {
                         pos = position,
-                        isValid = true
+                        isValid = true,
+                        neighbours = new List<Pos>()
                     };
 
                     // Check if this position has a base block (index 0)
@@ -136,14 +156,13 @@ public class DynamicDetails : MonoBehaviour
 
                     foreach (ObjectInfo obj in position.objects)
                     {
-                        if (obj.index == 0)
+                        if (!indexObstacles.Contains(obj.index))
                         {
                             hasBaseBlock = true;
                         }
-                        else 
+                        else
                         {
                             hasOtherBlocks = true;
-                            break;
                         }
                     }
 
@@ -152,31 +171,53 @@ public class DynamicDetails : MonoBehaviour
                         if (hasOtherBlocks || position.y != 0)
                         {
                             posInfo.isValid = false;
-                            
                         }
-                        else { numValidBlocks += 1; }
+                        else
+                        {
+                            numValidBlocks += 1;
+                        }
 
                         levelTopBlocks.Add(posInfo);
+                        positionMap.Add(position.ToVec3(), posInfo);
                     }
                 }
 
-                allBlocks[i]= (levelTopBlocks);
+                // Compute neighbors
+                foreach (var posInfo in levelTopBlocks)
+                {
+                    Vector3 posVec = posInfo.pos.ToVec3();
 
+                    foreach (Vector3 offset in new Vector3[]
+                    {
+                    new Vector3(-2, 0, 0), new Vector3(2, 0, 0),
+                    new Vector3(0, 0, -2), new Vector3(0, 0, 2),
+                    new Vector3(-1, 0, -1), new Vector3(1, 0, 1),
+                    new Vector3(-1, 0, 1), new Vector3(1, 0, -1)
+                    })
+                    {
+                        Vector3 neighborVec = posVec + offset;
+
+                        if (positionMap.TryGetValue(neighborVec, out PosInfo neighborPosInfo))
+                        {
+                            posInfo.neighbours.Add(neighborPosInfo.pos);
+                        }
+                    }
+                    
+                }
+
+                allBlocks[i] = levelTopBlocks;
             }
         }
-        catch {
-            UnityEngine.Debug.Log("Json not attached or doesnt exist");
+        catch
+        {
+            UnityEngine.Debug.Log("Json not attached or doesn't exist");
         }
     }
+
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyUp(KeyCode.R))
-        {
-            DestroyDetails();
-            CreateDetails(level,movDecoType);
-        }
     }
 
     private Vector3 CalcTopBlock(int index)
@@ -201,54 +242,50 @@ public class DynamicDetails : MonoBehaviour
 
     private int SelectBlock()
     {
+
         int indexBlock = UnityEngine.Random.Range(1, allBlocks[level].Count - 1);
-        bool isValidBlock = allBlocks[level][indexBlock].isValid;
+        bool isValidBlock = allBlocks[level][indexBlock].isValid && allBlocks[level][indexBlock].neighbours.Count < 4;
         while (!isValidBlock || ocupiedBlocks.Contains(indexBlock))
         {
             indexBlock = UnityEngine.Random.Range(1, allBlocks[level].Count - 1);
-            isValidBlock = allBlocks[level][indexBlock].isValid;
+            isValidBlock = allBlocks[level][indexBlock].isValid && allBlocks[level][indexBlock].neighbours.Count < 4;
         }
         //int indexBlock = UnityEngine.Random.Range(8, 15);
         ocupiedBlocks.Add(indexBlock);
         return indexBlock;
     }
 
-    public void CreateDetails(int level_screen, int movDeco)
+    public void CreateDetails(int level_screen)
     {        
         if (level_screen < 0) level_screen = 0;
         else if (level_screen > worldData.levels.Count - 1) level_screen = worldData.levels.Count - 1;
         level = level_screen;
-
-        if(movDeco > 3 || movDeco< 1)
-        {
-            Debug.LogWarning("DynamicDetails CreateDetails movDeco invalid. Default to 1:birds");
-            movDecoType = 1;
-        }
-        else
-        {
-            movDecoType = movDeco;
-        }
+        ocupiedBlocks = new List<int>();
         coinStarsGO = new GameObject();
         movDecoGO = new GameObject();
         coinStarsGO.name = "coinStars";
         movDecoGO.name = "movDeco";
 
 
-        if (movDecoType == 1 && birdPrefab != null)
+        if (detailType.movDecoType == MovDecoType.Birds && detailType.movDecoPrefab != null)
         {    
+            birdPrefab = detailType.movDecoPrefab;
             int groupCount = CalcMaxMovDeco(birdMaxMin); // Generate 1 to 3 groups
             int birdCount = UnityEngine.Random.Range(1, maxBirdCount);
             CreateCoinStar(coinStarsGO);
             CreateBirdGroups(movDecoGO, groupCount, birdCount);
         }
-        else if(movDecoType == 2 && lizardPrefab != null)
+        else if (detailType.movDecoType == MovDecoType.Lizard && detailType.movDecoPrefab != null)
+
         {
+            lizardPrefab = detailType.movDecoPrefab;
             int lizardCount = CalcMaxMovDeco(lizardMaxMin);
             CreateCoinStar(coinStarsGO);
             CreateLizards(movDecoGO, lizardCount);
         }
-        else if(movDecoType == 3 && eyePrefab != null)
+        else if (detailType.movDecoType == MovDecoType.Eye && detailType.movDecoPrefab != null)
         {
+            eyePrefab = detailType.movDecoPrefab;
             int eyeCount = CalcMaxMovDeco(eyeMaxMin);
             CreateCoinStar(coinStarsGO);
             CreateEyes(movDecoGO, eyeCount);
@@ -257,16 +294,24 @@ public class DynamicDetails : MonoBehaviour
 
     public void DestroyDetails()
     {
-        Collectible[] starcoins = coinStarsGO.GetComponentsInChildren<Collectible>();
-        foreach (Collectible script in starcoins)
+        if (coinStarsGO != null && coinStarsGO.GetComponentsInChildren<Collectible>() != null)
         {
-            script.Disappear();
+            Collectible[] starcoins = coinStarsGO.GetComponentsInChildren<Collectible>();
+
+            foreach (Collectible script in starcoins)
+            {
+                script.Disappear();
+            }
         }
-        MovDeco[] movDecoScripts = movDecoGO.GetComponentsInChildren<MovDeco>();
-        foreach (MovDeco movDeco in movDecoScripts)
+        if (movDecoGO != null && movDecoGO.GetComponentsInChildren<MovDeco>() != null)
         {
-            movDeco.Disappear();
+            MovDeco[] movDecoScripts = movDecoGO.GetComponentsInChildren<MovDeco>();
+            foreach (MovDeco movDeco in movDecoScripts)
+            {
+                movDeco.Disappear();
+            }
         }
+
     }
 
     private void CreateCoinStar(GameObject paretnGO)
@@ -275,12 +320,12 @@ public class DynamicDetails : MonoBehaviour
         {
             int indexBlock = SelectBlock();
             Vector3 starPos = CalcTopBlock(indexBlock) + new Vector3(0f, 1, 0f);
-            GameObject star = Instantiate(gameManager.StarPrefab, starPos, Quaternion.identity, paretnGO.transform);
+            GameObject star = Instantiate(WorldManager.Instance.StarPrefab, starPos, Quaternion.identity, paretnGO.transform);
         }
         for (int j = 0; j < numCoins; j++)
         {
             int indexBlock = SelectBlock();
-            GameObject coin = Instantiate(gameManager.CoinPrefab, CalcTopBlock(indexBlock), Quaternion.identity, paretnGO.transform);
+            GameObject coin = Instantiate(WorldManager.Instance.CoinPrefab, CalcTopBlock(indexBlock), Quaternion.identity, paretnGO.transform);
         }
 
     }
@@ -301,8 +346,13 @@ public class DynamicDetails : MonoBehaviour
     {
         List<float> possibleDegrees = new List<float>() { 0f, 90f , 180f, -90f };
         Vector3 blockTop = CalcTopBlock(indexBlock);
-        possibleDegrees.Remove(calcDegrees(blockTop, CalcTopBlock(indexBlock-1)));
-        possibleDegrees.Remove(calcDegrees(blockTop, CalcTopBlock(indexBlock+1)));
+        foreach(Pos neighbour in allBlocks[level][indexBlock].neighbours)
+        {
+            Vector3 topNeighbour = neighbour.ToVec3() + new Vector3(10, posY, -10);
+            possibleDegrees.Remove(calcDegrees(blockTop, topNeighbour));
+        }
+
+
 
         //if lizard prefer 0 and -90;
         int selected = UnityEngine.Random.Range(0, possibleDegrees.Count);
@@ -323,9 +373,7 @@ public class DynamicDetails : MonoBehaviour
     {
         for(int i = 0;i < lizardCount;i++)
         {
-            int indexBlock = SelectBlock();
-            if (i < lizardCount / 2) { indexBlock = 9; }
-            else { indexBlock = 13; }
+            int indexBlock = SelectBlock();           
             PosRot lizardTopBlock = calcStartPos(indexBlock, cubeSize / 2f);
             Vector3 posStart = lizardTopBlock.pos + new Vector3(0f, yLizardStart, 0f);
             Quaternion rotation = Quaternion.Euler(0, lizardTopBlock.ydegrees, 0);
@@ -343,7 +391,7 @@ public class DynamicDetails : MonoBehaviour
         {
             int indexBlock = SelectBlock();
 
-            PosRot eyeTopBlock = calcStartPos(indexBlock, cubeSize * (1/2f + 1f));
+            PosRot eyeTopBlock = calcStartPos(indexBlock, cubeSize * (2f));
             Vector3 eyeStartPos = eyeTopBlock.pos + new Vector3(0, yEyeStart, 0f); 
             GameObject eye = Instantiate(eyePrefab, eyeStartPos, Quaternion.identity, parentGO.transform);
             float yoffset = eyeTopBlock.pos.y + yEyeEndMargin - (j % 4) * 0.5f;
@@ -355,12 +403,12 @@ public class DynamicDetails : MonoBehaviour
 
     private void CreateBirdGroups(GameObject parentGO, int groupCount, int birdCount)
     {
-
+        
         for (int i = 0; i < groupCount; i++)
         {
             int indexCube = SelectBlock();
             Vector3 cubePos = CalcTopBlock(indexCube);
-
+            birdCount = 1;
             for (int j = 0; j < birdCount; j++)
             {
                 // Spawn the bird at a random sky position

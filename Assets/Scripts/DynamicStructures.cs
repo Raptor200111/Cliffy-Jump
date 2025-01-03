@@ -19,7 +19,7 @@ public class DynamicStructures : MonoBehaviour
     GameObject[][] allObjects;
 
     int numberOfScreens = 3;
-    public int screen { get; private set; } = 0;
+    public int screen = 0;
 
     public List<GameObject> prefabs;
     public TextAsset jsonFile;
@@ -92,7 +92,7 @@ public class DynamicStructures : MonoBehaviour
             UnityEngine.Debug.Log("Json not attached or doesnt exist");
         }
     }
-
+    
     private void Update()
     {
         if (Input.GetKeyUp(KeyCode.S))
@@ -100,9 +100,11 @@ public class DynamicStructures : MonoBehaviour
             NextScreen();
         }
     }
+    
 
     public void NextScreen()
     {
+        WorldManager.Instance.DestroyDetails();
         animator.SetTrigger("hide");
     }
 
@@ -113,12 +115,11 @@ public class DynamicStructures : MonoBehaviour
 
     public void HiddenObjectsChange()
     {
-        /*if (screen == 0)
+        if (screen == 0)
         {
-            screen = 9;
+            screen = 7;
         }
-        else*/
-        if (screen < 9)
+        else if (screen < 9)
         {
             screen++;
         }
