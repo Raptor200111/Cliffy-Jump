@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Drawing;
 using UnityEngine;
 using UnityEngine.Audio;
 
@@ -32,7 +33,14 @@ public class SoundManager : MonoBehaviour
     [SerializeField] private float backgroundMusicVolume = 0.5f; // Adjustable music volume
     private AudioSource soundEffectSource; // For sound effects
     private AudioSource musicSource; // For background music
-    private MusicSoundParams musicsoundparams;
+    private MusicSoundParams musicsoundparams = new MusicSoundParams
+    {
+        musicVolume = 1f,
+        soundVolume = 1f,
+        onMusic = false,
+        onSound = false,
+
+    };
 
     private void Awake()
     {
@@ -112,14 +120,17 @@ public class SoundManager : MonoBehaviour
     public void SetMusicVolume(float volume)
     {
         Instance.musicsoundparams.musicVolume = volume;
+        Instance.musicSource.volume = bgMusics[(int)GameManager.Instance.stageName].volume * volume;
     }
     public void SetSoundVolume(float volume)
     {
         Instance.musicsoundparams.soundVolume = volume;
     }
-    public void StartStopSound(bool is_on)
+    public void StartStopSound(bool isOn)
     {
-        Instance.musicsoundparams.onSound = is_on;
+        if (!isOn && Instance.musicsoundparams.onMusic)
+        { Instance.soundEffectSource.Stop(); }
+        Instance.musicsoundparams.onSound = isOn;
     }
 
 

@@ -8,6 +8,8 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    private GameObject currentModelInstance;
+
     enum State {Waiting, Moving, Jumping, Dead};
     State playerState;
     Vector3 velocity;
@@ -19,7 +21,7 @@ public class Player : MonoBehaviour
 
     int blockLayer;
     int obstaclesLayer;
-    int collecteblesLayer;
+    int collectiblesLayer;
 
     public float jumpSpeed = 200.0f;
     public float groundSpeed = 0.12f;
@@ -33,7 +35,7 @@ public class Player : MonoBehaviour
 
         blockLayer = LayerMask.NameToLayer("Blocks");
         obstaclesLayer = LayerMask.NameToLayer("Obstacles");
-        collecteblesLayer = LayerMask.NameToLayer("Collectebles");
+        collectiblesLayer = LayerMask.NameToLayer("Collectibles");
 
         playerState = State.Waiting;
         velocity = Vector3.zero;
@@ -42,6 +44,26 @@ public class Player : MonoBehaviour
         _animator = GetComponent<Animator>();
 
         UnityEngine.Physics.gravity = new Vector3(0, gravity, 0);
+    }
+
+    public void LoadModel(PlayerModelData modelData)
+    {
+        // Clean up old model
+        if (currentModelInstance != null)
+        {
+            Destroy(currentModelInstance);
+        }
+
+        // Instantiate the new model
+        if (modelData != null && modelData.modelPrefab != null)
+        {
+            currentModelInstance = Instantiate(modelData.modelPrefab, this.transform);
+            
+            /*if (_animator != null)
+            {
+                _animator.runtimeAnimatorController = modelData.animatorController;
+            }*/
+        }
     }
 
     void Update()
@@ -92,9 +114,9 @@ public class Player : MonoBehaviour
             //ChangePlayerState(State.Waiting);
             ChangePlayerState(State.Dead);
         }
-        else if (collision.gameObject.layer == collecteblesLayer)
+        else if (collision.gameObject.layer == collectiblesLayer)
         {
-
+            AddCollectibles(collision.gameObject);
         }
         else if (collision.gameObject.layer == blockLayer && playerState == State.Jumping) 
         {
@@ -155,6 +177,22 @@ public class Player : MonoBehaviour
             transform.localPosition = pos;
             transform.forward = fow;
             velocity = 0.2f * fow;
+        }
+    }
+
+    private void AddCollectibles(GameObject collectible)
+    {
+        if (collectible.CompareTag("Star"))
+        {
+            GameManager.Instance.AddStar(collectible);            
+        }
+        else if (collectible.CompareTag("Coin"))
+        {
+            GameManager.Instance.AddCoin(collectible);
+        }
+        else
+        {
+            //add live
         }
     }
 }

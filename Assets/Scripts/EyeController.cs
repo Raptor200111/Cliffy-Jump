@@ -1,36 +1,59 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
-public class EyeController : MonoBehaviour
+public class EyeController : MovDeco
 {
-    private float appearSpeed = 0.5f;
-    private float disappearSpeed = 1f;
-    private bool disappear = false;
+
     private GameManager gameManager;
     private Transform playerTransform;
+    [SerializeField] private GameObject eyeball;
+    private float rotationSpeed = 1.5f;
+    private bool rotatingRight = true;
+    private float rotationAngle = 60f;
+
+    private bool idle = false;
+    private Vector3 startPosition;
+    private float frequency = 0.5f;
+    private float amplitude = 1f;
 
     // Start is called before the first frame update
-    void Start()
+    protected override void Start()
     {
-        gameManager = GameManager.Instance;    
-        playerTransform = gameManager.GetPlayerTransform();
+        base.Start();
+        appearSpeed = 1.5f;
+        disappearSpeed = 1f;
+        gameManager = GameManager.Instance;
+        playerTransform = gameManager.Player.transform;
     }
 
-    public void AppearAnim(Vector3 targetPos)
+    public override void Appear(Vector3 targetPos)
     {
+        startPosition = targetPos;
         StartCoroutine(AscendToTarget(targetPos));
     }
 
     private IEnumerator AscendToTarget(Vector3 targetPos)
     {
-        while (Vector3.Distance(transform.position, targetPos) > 0.1f)
+        //Debug.Log("AscendToTarget targetpos " + targetPos + "transformpos " + this.transform.position);
+
+        while (Mathf.Abs(transform.position.y - targetPos.y) > 0.1f)
         {
-            transform.position = Vector3.MoveTowards(transform.position, targetPos, appearSpeed * Time.deltaTime);
+            float newY = Mathf.MoveTowards(transform.position.y, targetPos.y, appearSpeed * Time.deltaTime);
+            Vector3 move = new Vector3(transform.position.x, newY, transform.position.z);
+            //            Debug.Log("target y: " + targetPos.y + " current y: " + newY);
+            if (move.y > 7.5f)
+            {
+                move.y = 7f;
+                transform.position = move;
+                break;
+            }
+            transform.position = move;
             yield return null;
         }
+        idle = true;
 
-        // Snap the bird to the target position when close enough
         if (targetPos != Vector3.one)
         {
             transform.position = targetPos;
@@ -40,34 +63,35 @@ public class EyeController : MonoBehaviour
             UnityEngine.Debug.LogWarning("ERROR targetPos BORD LANDING");
         }
     }
+
+    private void RotateEye()
+    {
+        float yRotation = Mathf.Sin(Time.time * rotationSpeed) * rotationAngle;
+        eyeball.transform.rotation = Quaternion.Euler(0, yRotation, 0);
+    }
+
+
     // Update is called once per frame
     void Update()
     {
-        transform.LookAt(playerTransform);
-        if (disappear)
+        if ( !disappear)
         {
-            if (transform.position.y >= -3f)
-            {
-                transform.position += new Vector3(0f, -1f, 0f) * disappearSpeed * Time.deltaTime;
-            }
-            else
-            {
-                Destroy(gameObject);
+            RotateEye();
+            if (idle) {
+                float yOffset = Mathf.Sin(Time.time * frequency) * amplitude;
+                transform.position = startPosition + new Vector3(0, yOffset, 0);
             }
         }
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        // Check if the player enters the sphere collider
-        if (other.gameObject.tag == ("Player"))
+        else
         {
-            disappear = true;
-        }
+            idle = false;
+            eyeball.transform.LookAt(playerTransform);
+        }        
     }
 
-    public void DisappearAnim()
+    public override void Disappear()
     {
+        //_animator.SetBool("Idle", false);
         StartCoroutine(DescentToWater());
     }
 

@@ -3,17 +3,19 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class BirdController : MonoBehaviour
+public class BirdController : MovDeco
 {
-    [SerializeField] private float appearSpeed = 5f;
-    [SerializeField] private float disappearSpeed = 8f;
+
     [SerializeField] private float destroyHeight = 20f;
 
-    private bool disappear = false;
     private Vector3 landingPosition;
     private Vector3 randomDirection;
-    private void Start()
+    protected override void Start()
     {
+        base.Start();
+        appearSpeed = 5f;
+        disappearSpeed = 8f;
+        disappear = false;
         randomDirection = new Vector3(
             Random.Range(-1f, 1f),
             1f,
@@ -21,8 +23,14 @@ public class BirdController : MonoBehaviour
         ).normalized;
     }
 
-    public void AppearAnim(Vector3 targetPos)
-    {;
+    public override void Appear(Vector3 targetPos)
+    {
+        if (_animator == null)
+        {
+            _animator = GetComponent<Animator>();
+            Start();
+        }
+        _animator.SetBool("Idle", false);
         StartCoroutine(FlyToTarget(targetPos));
     }
 
@@ -33,6 +41,7 @@ public class BirdController : MonoBehaviour
             transform.position = Vector3.MoveTowards(transform.position, targetPos, appearSpeed * Time.deltaTime);
             yield return null;
         }
+        _animator.SetBool("Idle", true);
 
         // Snap the bird to the target position when close enough
         if (targetPos != Vector3.one)
@@ -62,17 +71,9 @@ public class BirdController : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter(Collider other)
+    public override void Disappear()
     {
-        // Check if the player enters the sphere collider
-        if (other.gameObject.tag == ("Player"))
-        {
-            disappear = true;
-        }
-    }
-
-    public void DisappearAnim()
-    {
+        _animator.SetBool("Idle", false);
         StartCoroutine(FlyToSky());
     }
     private IEnumerator FlyToSky()
