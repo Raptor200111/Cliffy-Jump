@@ -9,7 +9,6 @@ public class WorldManager : MonoBehaviour
     //enum State { Loading, Moving, Jumping };
 
     public static WorldManager Instance;
-    [SerializeField] public List<GameObject> Characters;
     [SerializeField] public Player player;
     [SerializeField] public DynamicStructures dynamicStructures;
     [SerializeField] public DynamicDetails dynamicDetails;
