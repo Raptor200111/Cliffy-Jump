@@ -122,7 +122,6 @@ public class DynamicDetails : MonoBehaviour
             for ( int i = 0; i< worldData.levels.Count; ++i)
             {
                 List<PosInfo> levelTopBlocks = new List<PosInfo>();
-
                 foreach (Pos position in worldData.levels[i].positions)
                 {
                     PosInfo posInfo = new PosInfo

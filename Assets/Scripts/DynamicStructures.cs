@@ -52,6 +52,10 @@ public class DynamicStructures : MonoBehaviour
         public float z;
         public List<ObjectInfo> objects;
 
+        public Vector3 ToVec3()
+        {
+            return new Vector3(x, y, z);
+        }
         public Vector3 ToVec3(float YOffset)
         {
             return new Vector3(x, y + YOffset, z);
@@ -149,3 +153,16 @@ public class DynamicStructures : MonoBehaviour
 
     
 }
+
+/*
+  "block": 0,
+  "turnBlock": 1,
+  "crossBlock": 2,
+  "damagedBlock" 3,
+  "turn": 4,
+  "groundSpike": 5,
+  "halfSpike": 6,
+  "fullSpike": 7,
+  "hammer": 8,
+  "stop": 9
+ */

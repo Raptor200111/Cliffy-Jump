@@ -37,7 +37,7 @@ public class WorldManager : MonoBehaviour
 
     public void DoneRising()
     {
-        dynamicDetails.CreateDetails(dynamicStructures.screen, 3);
+        //dynamicDetails.CreateDetails(dynamicStructures.screen, 3);
         player.PlayerStart();
     }
 
