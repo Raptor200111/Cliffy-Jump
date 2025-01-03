@@ -1491,7 +1491,7 @@ PrefabInstance:
         type: 3}
       propertyPath: prefabs.Array.data[8]
       value: 
-      objectReference: {fileID: 2764326285442074042, guid: ebc02c09ded8cfe47b5c0a2f43c151ed,
+      objectReference: {fileID: 1618551979723355087, guid: 385074b849f0be74495f877e48b1d01f,
         type: 3}
     - target: {fileID: 1512850983314583830, guid: 9e420db797c25e249a3f6fdd513f71df,
         type: 3}
@@ -2391,7 +2391,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa156273c8e92d84195b9ca50c175841, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  popUp: {fileID: 0}
+  configPopUp: {fileID: 0}
+  selectCharPopUp: {fileID: 0}
   character_name: {fileID: 0}
   volumeMusicSlider: {fileID: 0}
   volumeSoundSlider: {fileID: 0}
