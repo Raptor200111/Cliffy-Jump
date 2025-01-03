@@ -17,12 +17,23 @@ public class MenuCharSelect : MonoBehaviour
     {
         gameManager = GameManager.Instance;
         oldIndex = PlayerPrefs.GetInt("PlayerDataIndex", 0);
-        
+        charsToDisplay = GameManager.Instance.Characters.ToArray();
+        foreach (GameObject c in GameManager.Instance.Characters)
+        {
+            GameObject a = Instantiate(c, charImage.transform);
+            a.transform.localScale = a.transform.localScale * 125f;
+        }
         ChangeChar(oldIndex);
+ 
     }
 
     private void ChangeChar(int newIndex) 
     {
+        if(oldIndex < 0)
+        {
+            oldIndex = 0;
+        }
+        if(newIndex < 0) { newIndex = 0; }
         charsToDisplay[oldIndex].SetActive(false);
         charsToDisplay[newIndex].SetActive(true);
         charName.text = charsToDisplay[newIndex].name;
@@ -52,7 +63,8 @@ public class MenuCharSelect : MonoBehaviour
     public void SelectChar()
     {
         PlayerPrefs.SetInt("PlayerSelected", 0);
-        gameManager.SetSelectedPlayer(oldIndex);   
+        gameManager.SetSelectedPlayer(oldIndex); 
+        GameManager.Instance.changeScene(StageName.MENU);
     }
 
     // Update is called once per frame

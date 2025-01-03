@@ -28,10 +28,11 @@ public class GameManager : MonoBehaviour
     public int CurrentWorldScore { get; private set; } = 0;
     public event Action<int> OnLevelScoreChanged;
 
+    [field: SerializeField] public List<GameObject> Characters { get; private set; }
     public float[] MaxLevelProgress { get; private set; } = new float[2] { 0f, 0f };
     public int[] MaxLevelScore { get; private set; } = new int[2] { 0, 0 };
 
-    [field: SerializeField] public List<GameObject> Characters {get; private set; }
+    //[field: SerializeField] public List<GameObject> Characters {get; private set; }
     public StageName stageName { get; private set; } = StageName.MENU;
     private SoundManager soundManager;
     // Start is called before the first frame update

@@ -1472,7 +1472,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   numCoinsText: {fileID: 5085190881244654615}
-  levelProgress: {fileID: 0}
+  levelProgress: {fileID: 7593395012884248952}
   NumStars: []
   resumePanel: {fileID: 1651669495176347612}
   pauseButton: {fileID: 5149822351303580440}

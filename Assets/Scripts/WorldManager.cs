@@ -9,7 +9,6 @@ public class WorldManager : MonoBehaviour
     //enum State { Loading, Moving, Jumping };
 
     public static WorldManager Instance;
-    
     [SerializeField] public Player player;
     [SerializeField] public DynamicStructures dynamicStructures;
     [SerializeField] public DynamicDetails dynamicDetails;
@@ -36,7 +35,7 @@ public class WorldManager : MonoBehaviour
 
     public void DoneRising()
     {
-        //dynamicDetails.CreateDetails(dynamicStructures.screen);
+        dynamicDetails.CreateDetails(dynamicStructures.screen);
         player.PlayerStart();
     }
 
@@ -62,6 +61,8 @@ public class WorldManager : MonoBehaviour
     public void WorldComplete()
     {
         UnityEngine.Debug.Log("World Complete");
+        GameManager.Instance.SaveLevelProgress(CurrentScreen/(float)TotalNumScreens);
+        GameManager.Instance.changeScene(StageName.MENU);
     }
 
     public void PlayerDeath()
@@ -69,4 +70,10 @@ public class WorldManager : MonoBehaviour
         dynamicStructures.ResetWorld();
         //player.PlayerStart();
     }
+
+    public GameObject GetModelData()
+    {
+        return GameManager.Instance.Characters[PlayerPrefs.GetInt("PlayerDataIndex", 0)];
+    }
+
 }
