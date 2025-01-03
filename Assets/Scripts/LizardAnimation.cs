@@ -5,13 +5,16 @@ using UnityEngine;
 public class LizardAnimation : MovDeco
 {
 
+    TrailRenderer _trailRenderer;
     // Start is called before the first frame update
     protected override void Start()
     {
         base.Start();
-        appearSpeed = 0.8f;
-        disappearSpeed = 1f;
+        appearSpeed = 1f;
+        disappearSpeed = 2f;
+        _trailRenderer = GetComponent<TrailRenderer>();
         disappear = false;
+        _trailRenderer.enabled = true;
     }
 
     public override void Appear(Vector3 targetPos)
@@ -34,6 +37,7 @@ public class LizardAnimation : MovDeco
         }
 
         _animator.SetBool("Idle", true);
+        _trailRenderer.enabled = false;
         // Snap the bird to the target position when close enough
         if (targetPos != Vector3.one)
         {
@@ -63,6 +67,7 @@ public class LizardAnimation : MovDeco
     public override void Disappear()
     {
         _animator.SetBool("Idle", false);
+        _trailRenderer.enabled = true;
         StartCoroutine(DescentToWater());
     }
 
