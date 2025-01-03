@@ -11,9 +11,8 @@ public enum StageName
     MENU,
     LVL_1,
     LVL_2,
-    PLYR_SELECT
-    /*    INSTRUCTIONS,
-        CREDITS*/
+    CREDITS
+
 }
 
 public class GameManager : MonoBehaviour
@@ -31,9 +30,8 @@ public class GameManager : MonoBehaviour
 
     public float[] MaxLevelProgress { get; private set; } = new float[2] { 0f, 0f };
     public int[] MaxLevelScore { get; private set; } = new int[2] { 0, 0 };
-    [field: SerializeField] public GameObject Player { get; private set; }
-    
 
+    [field: SerializeField] public List<GameObject> Characters {get; private set; }
     public StageName stageName { get; private set; } = StageName.MENU;
     private SoundManager soundManager;
     // Start is called before the first frame update
@@ -44,19 +42,7 @@ public class GameManager : MonoBehaviour
             GameManager.Instance = this;
             stageName = StageName.MENU;
             soundManager = SoundManager.Instance;
-            if (Player == null)
-            {
-                Debug.LogError("Player not assigned");
-            }
-            else if(Player.GetComponent<Player>() == null)
-            {
-                Debug.LogError("Player's Script not assigned");
-            }
-            else
-            {
-                //TO DO: Create Animations
-                //Player.GetComponent<Player>().LoadModel(PlayersList[PlayerPrefs.GetInt("PlayerDataIndex", 0)]);
-            }
+            
 
             DontDestroyOnLoad(gameObject);
         }
@@ -95,7 +81,7 @@ public class GameManager : MonoBehaviour
             case StageName.LVL_2:
                 SceneManager.LoadScene(2);
                 break;
-            case StageName.PLYR_SELECT:
+            case StageName.CREDITS:
                 SceneManager.LoadScene(3);
                 break;
         }

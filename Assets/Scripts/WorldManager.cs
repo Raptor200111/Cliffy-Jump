@@ -9,7 +9,7 @@ public class WorldManager : MonoBehaviour
     //enum State { Loading, Moving, Jumping };
 
     public static WorldManager Instance;
-    [SerializeField] public List<GameObject> Characters;
+    
     [SerializeField] public Player player;
     [SerializeField] public DynamicStructures dynamicStructures;
     [SerializeField] public DynamicDetails dynamicDetails;
@@ -43,12 +43,12 @@ public class WorldManager : MonoBehaviour
 
     public void DestroyDetails()
     {
-        //dynamicDetails.DestroyDetails();
+        dynamicDetails.DestroyDetails();
     }
     public void ScreenComplete()
     {
-        //dynamicDetails.DestroyDetails();
-        player.PlayerStop('f');
+        dynamicDetails.DestroyDetails();
+        player.PlayerStop();
         dynamicStructures.NextScreen();
         UpdateLevelProgress();
     }
@@ -80,8 +80,4 @@ public class WorldManager : MonoBehaviour
         }
     }
 
-    public GameObject GetModelData()
-    {
-        return Characters[PlayerPrefs.GetInt("PlayerDataIndex", 0)];
-    }
 }

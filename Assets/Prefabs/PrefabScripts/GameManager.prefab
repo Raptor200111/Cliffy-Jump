@@ -44,12 +44,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bfe1ce397d522cc4fa61b1b721274287, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  charactersList:
-  - {fileID: 11400000, guid: 65502b086adce6f4a9eda50878ea0f4a, type: 2}
-  - {fileID: 11400000, guid: a4f43ebdb4fee3b4da4c0d4c84845d38, type: 2}
-  - {fileID: 11400000, guid: 8424bd9dbbc20e44f9447ab895ce7e55, type: 2}
-  player: {fileID: 0}
-  CoinPrefab: {fileID: 3315043596747767852, guid: f502fd8610337f648ba79bea1d455bbe,
-    type: 3}
-  StarPrefab: {fileID: 4813581339930940020, guid: 578cadfe8c05f274d899ff6847f8b393,
-    type: 3}
+  <Player>k__BackingField: {fileID: 0}
+  <Characters>k__BackingField:
+  - {fileID: 1870403862695774902, guid: 41e8d318f87d635418e7d7cce4db447f, type: 3}
+  - {fileID: 470663491150344104, guid: 7e628fd9b23b2ec4391fc667bb86d4d9, type: 3}
+  - {fileID: 6524642899318846800, guid: 03e0187d5f384274689e1529664c08c8, type: 3}

@@ -54,7 +54,7 @@ public class Player : MonoBehaviour
 
     public void LoadModel()//PlayerModelData modelData)
     {
-        GameObject modelData = WorldManager.Instance.GetModelData();
+        GameObject modelData = GameManager.Instance.Characters[PlayerPrefs.GetInt("PlayerDataIndex", 0)];
         //transform.GetChild(0).gameObject = Instantiate(modelData);
         //Destroy(transform.GetChild(0).gameObject);
         Instantiate(modelData, transform.GetChild(0));

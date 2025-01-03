@@ -12,6 +12,12 @@ public class ScriptMenu : MonoBehaviour
     // Start is called before the first frame update
     public GameObject configPopUp;
     public GameObject selectCharPopUp;
+    public TMP_Text numCoins;
+    public TMP_Text progressLvl1;
+    public TMP_Text progressLvl2;
+    public GameObject playButton;
+    public GameObject lvl1Button;
+    public GameObject lvl2Button;
     [SerializeField] private TMP_Text character_name;
     [SerializeField] private Slider volumeMusicSlider;
     [SerializeField] private Slider volumeSoundSlider;
@@ -66,6 +72,18 @@ public class ScriptMenu : MonoBehaviour
         {
             volumeSoundSlider.onValueChanged.AddListener(ChangeSoundVolume);
         }
+        numCoins.text = $"{GameManager.Instance.CoinsCollected}";
+        progressLvl1.text = $"{GameManager.Instance.MaxLevelProgress[0]} %";
+        progressLvl2.text = $"{GameManager.Instance.MaxLevelProgress[1]} %";
+        if(PlayerPrefs.GetInt("PlayerSelected", -1)  == -1)
+        {
+            selectCharPopUp.SetActive(true);
+        }
+        else { selectCharPopUp.SetActive(false); }
+        playButton.SetActive(false);
+        lvl1Button.SetActive(true);
+        lvl1Button.SetActive(true);
+
         ResetParams();         
     }
 
@@ -78,6 +96,9 @@ public class ScriptMenu : MonoBehaviour
     public void OnSelectLevel(int i_level)
     {
         level = i_level;
+        playButton.SetActive(true);
+        lvl1Button.SetActive(false);
+        lvl2Button.SetActive(false);
     }
 
     public void OnPlay()
@@ -90,6 +111,11 @@ public class ScriptMenu : MonoBehaviour
         {
             gameManager.changeScene(StageName.LVL_2);
         }
+    }
+
+    public void OnGoToCredits()
+    {
+        gameManager.changeScene(StageName.CREDITS);
     }
     public void OnGoToConfig()
     {

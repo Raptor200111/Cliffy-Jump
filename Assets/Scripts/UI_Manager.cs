@@ -38,11 +38,17 @@ public class UI_Manager : MonoBehaviour
         GameManager.Instance.OnLevelScoreChanged += UpdateStars;
     }
 
+    
     private void OnDisable()
     {
         GameManager.Instance.OnCoinsChanged -= UpdateCoins;
         worldManager.OnLevelProgressChanged -= UpdateLevelProgress;
         GameManager.Instance.OnLevelScoreChanged -= UpdateStars;
+    }
+
+    public void OnGoToMenu()
+    {
+        GameManager.Instance.changeScene(StageName.MENU);
     }
 
     public void UpdateCoins(int coins)
