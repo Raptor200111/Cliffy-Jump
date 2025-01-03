@@ -81,6 +81,6 @@ public class WorldManager : MonoBehaviour
 
     public GameObject GetModelData()
     {
-        return Characters[PlayerPrefs.GetInt("PlayerDataIndex", 0)];
+        return GameManager.Instance.Characters[PlayerPrefs.GetInt("PlayerDataIndex", 0)];
     }
 }
