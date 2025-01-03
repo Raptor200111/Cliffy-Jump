@@ -424,6 +424,62 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 73840678}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &100624897
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 100624899}
+  - component: {fileID: 100624898}
+  m_Layer: 0
+  m_Name: DynamicDetails
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &100624898
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 100624897}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f84d9b9f1cff6148bd5d702faa29ef8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  blockPrefab: {fileID: 6805433014911285189, guid: ddd9deb0b93885642a3609557d9bc807,
+    type: 3}
+  jsonFile: {fileID: 4900000, guid: 5a893668f69f0354c968fc86a784194c, type: 3}
+  birdPrefab: {fileID: 6557530492611980952, guid: ed74fc29474acfa4ea0f3961b238c5c7,
+    type: 3}
+  skyHeight: 10
+  lizardPrefab: {fileID: 1168342127478715031, guid: e44cfa63ce3d1af4195632ac29c13d0b,
+    type: 3}
+  eyePrefab: {fileID: 405713630963078473, guid: 11c8e38629216af4e84ac87067e1ae75,
+    type: 3}
+  numStars: 3
+  numCoins: 3
+--- !u!4 &100624899
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 100624897}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 10, y: 6, z: -20}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &126789184
 GameObject:
   m_ObjectHideFlags: 0
@@ -987,6 +1043,56 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 227785722}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &230448478
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 230448480}
+  - component: {fileID: 230448479}
+  m_Layer: 0
+  m_Name: GameMa
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &230448479
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 230448478}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bfe1ce397d522cc4fa61b1b721274287, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <PlayersList>k__BackingField: []
+  <Player>k__BackingField: {fileID: 454371594}
+  <CoinPrefab>k__BackingField: {fileID: 3315043596747767852, guid: f502fd8610337f648ba79bea1d455bbe,
+    type: 3}
+  <StarPrefab>k__BackingField: {fileID: 4813581339930940020, guid: 578cadfe8c05f274d899ff6847f8b393,
+    type: 3}
+--- !u!4 &230448480
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 230448478}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 10, y: 6, z: -20}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &287448215
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1447,12 +1553,18 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 454371592}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 454371594}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 63475d301113b654b96a566597a23358, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &454371594 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6942373482692220126, guid: 282e46c5401f3c2409e5d9f4061356c4,
+    type: 3}
+  m_PrefabInstance: {fileID: 454371592}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &496208836
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5925,6 +6037,11 @@ PrefabInstance:
       objectReference: {fileID: 454371593}
     - target: {fileID: 3263012839607725129, guid: 0d68d3ab97438694fad46ff235293655,
         type: 3}
+      propertyPath: dynamicDetails
+      value: 
+      objectReference: {fileID: 100624898}
+    - target: {fileID: 3263012839607725129, guid: 0d68d3ab97438694fad46ff235293655,
+        type: 3}
       propertyPath: dynamicStructures
       value: 
       objectReference: {fileID: 197098397}
@@ -6126,3 +6243,5 @@ SceneRoots:
   - {fileID: 1440568534}
   - {fileID: 700587863}
   - {fileID: 1385580446}
+  - {fileID: 230448480}
+  - {fileID: 100624899}
