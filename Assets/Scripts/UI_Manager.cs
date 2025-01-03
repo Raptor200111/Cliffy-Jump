@@ -7,24 +7,42 @@ public class UI_Manager : MonoBehaviour
 {
     public TMP_Text numCoinsText;
     public TMP_Text levelProgress;
+    public GameObject[] NumStars;
     [SerializeField] private GameObject resumePanel;
     [SerializeField] private GameObject pauseButton;
+    [SerializeField] private WorldManager worldManager;
 
     private void Start()
     {
         SetVisibilityOnPause(false);
+        numCoinsText.text = $"{GameManager.Instance.CoinsCollected}";
+        if(worldManager == null)
+        {
+            Debug.LogWarning("worldManager not assigned");
+            return;
+        }
+        if(worldManager.CurrentScreen < 0 || worldManager.TotalNumScreens <= 0)
+        {
+            levelProgress.text = $"{0} %";
+        }
+        else {
+            float progress = worldManager.CurrentScreen / (float)worldManager.TotalNumScreens;
+            levelProgress.text = $"{progress}  %";
+        }
     }
 
     private void OnEnable()
     {
         GameManager.Instance.OnCoinsChanged += UpdateCoins;
-        GameManager.Instance.OnLevelProgressChanged += UpdateLevelProgress;
+        worldManager.OnLevelProgressChanged += UpdateLevelProgress;
+        GameManager.Instance.OnLevelScoreChanged += UpdateStars;
     }
 
     private void OnDisable()
     {
         GameManager.Instance.OnCoinsChanged -= UpdateCoins;
-        GameManager.Instance.OnLevelProgressChanged -= UpdateLevelProgress;
+        worldManager.OnLevelProgressChanged -= UpdateLevelProgress;
+        GameManager.Instance.OnLevelScoreChanged -= UpdateStars;
     }
 
     public void UpdateCoins(int coins)
@@ -34,12 +52,22 @@ public class UI_Manager : MonoBehaviour
             numCoinsText.text = $"{coins}";
         }
     }
+    public void UpdateStars(int stars)
+    {
+        if(NumStars != null && NumStars.Length > stars)
+        {
+            for (int i = 0; i< stars; i++)
+            {
+                NumStars[i].SetActive(true);
+            }
+        }
+    }
 
-    public void UpdateLevelProgress(int progress)
+    public void UpdateLevelProgress(float progress)
     {
         if (levelProgress != null)
         {
-            levelProgress.text = $"{progress}";
+            levelProgress.text = $"{progress} %";
         }
     }
 

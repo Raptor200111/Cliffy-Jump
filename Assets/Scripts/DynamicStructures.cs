@@ -106,6 +106,11 @@ public class DynamicStructures : MonoBehaviour
         animator.SetTrigger("hide");
     }
 
+    public void DoneRising()
+    {
+        WorldManager.Instance.DoneRising();
+    }
+
     public void HiddenObjectsChange()
     {
         screen++;
@@ -146,12 +151,7 @@ public class DynamicStructures : MonoBehaviour
         animator.SetTrigger("rise");
     }
 
-    public void DoneRising()
-    {
-        WorldManager.Instance.DoneRising();
-    }
     
-    public GameObject[] GetAllBlocks() { return allObjects[0]; }
 }
 
 /*

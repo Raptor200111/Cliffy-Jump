@@ -4,7 +4,11 @@
 TagManager:
   serializedVersion: 2
   tags:
+  - Coin
+  - Star
+  - Bird
   - Lizard
+  - Eye
   layers:
   - Default
   - TransparentFX
@@ -14,11 +18,11 @@ TagManager:
   - UI
   - Blocks
   - Obstacles
-  - Collectebles
+  - Collectibles
   - Decoration
   - MovDeco
-  - Coin
-  - Star
+  - 
+  - 
   - 
   - 
   - 
