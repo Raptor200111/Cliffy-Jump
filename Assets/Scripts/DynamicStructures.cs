@@ -104,7 +104,7 @@ public class DynamicStructures : MonoBehaviour
 
     public void NextScreen()
     {
-        WorldManager.Instance.DestroyDetails();
+        //WorldManager.Instance.DestroyDetails();
         animator.SetTrigger("hide");
     }
 
@@ -115,22 +115,12 @@ public class DynamicStructures : MonoBehaviour
 
     public void HiddenObjectsChange()
     {
-        if (screen == 0)
-        {
-            screen = 7;
-        }
-        else if (screen < 9)
-        {
-            screen++;
-        }
-        UnityEngine.Debug.Log("Screen: "+ screen);
+        screen++;
         if (screen == numberOfScreens)
         {
             WorldManager.Instance.WorldComplete();
             return;
         }
-
-        
 
         int [] indexes = new int[world.allObjects.Count];
         for (int i = 0; i < indexes.Length; i++)
