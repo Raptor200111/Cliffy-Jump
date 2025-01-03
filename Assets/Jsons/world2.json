@@ -664,12 +664,12 @@
             {
               "YOffset": 0,
               "index": 1,
-              "orientation": 180
+              "orientation": 270
             },
             {
               "YOffset": 6,
               "index": 4,
-              "orientation": 180
+              "orientation": 270
             }
           ]
         },
@@ -704,11 +704,11 @@
         },
         {
           "x": 16,
-          "y": 0,
+          "y": 1,
           "z": 14,
           "objects": [
             {
-              "YOffset": 1,
+              "YOffset": 0,
               "index": 0,
               "orientation": 270
             }
@@ -716,11 +716,11 @@
         },
         {
           "x": 14,
-          "y": 0,
+          "y": 1,
           "z": 14,
           "objects": [
             {
-              "YOffset": 1,
+              "YOffset": 0,
               "index": 0,
               "orientation": 270
             }
@@ -728,11 +728,11 @@
         },
         {
           "x": 12,
-          "y": 0,
+          "y": 1,
           "z": 14,
           "objects": [
             {
-              "YOffset": 1,
+              "YOffset": 0,
               "index": 0,
               "orientation": 270
             }
@@ -757,7 +757,7 @@
           "objects": [
             {
               "YOffset": 0,
-              "index": 0,
+              "index": 1,
               "orientation": 180
             },
             {
@@ -775,7 +775,7 @@
             {
               "YOffset": 0,
               "index": 0,
-              "orientation": 270
+              "orientation": 180
             }
           ]
         },
@@ -787,7 +787,7 @@
             {
               "YOffset": 0,
               "index": 0,
-              "orientation": 270
+              "orientation": 180
             }
           ]
         },
@@ -799,12 +799,12 @@
             {
               "YOffset": 0,
               "index": 0,
-              "orientation": 270
+              "orientation": 180
             },
             {
               "YOffset": 6,
               "index": 5,
-              "orientation": 270
+              "orientation": 180
             }
           ]
         },
@@ -816,12 +816,12 @@
             {
               "YOffset": 0,
               "index": 0,
-              "orientation": 270
+              "orientation": 180
             },
             {
               "YOffset": 6,
               "index": 5,
-              "orientation": 270
+              "orientation": 180
             }
           ]
         },
@@ -833,7 +833,7 @@
             {
               "YOffset": 0,
               "index": 0,
-              "orientation": 270
+              "orientation": 180
             }
           ]
         },
@@ -845,7 +845,7 @@
             {
               "YOffset": 0,
               "index": 0,
-              "orientation": 270
+              "orientation": 180
             }
           ]
         },
@@ -857,7 +857,7 @@
             {
               "YOffset": 0,
               "index": 0,
-              "orientation": 270
+              "orientation": 180
             }
           ]
         },
@@ -869,7 +869,7 @@
             {
               "YOffset": 0,
               "index": 0,
-              "orientation": 270
+              "orientation": 180
             }
           ]
         },
@@ -881,7 +881,7 @@
             {
               "YOffset": 0,
               "index": 0,
-              "orientation": 270
+              "orientation": 180
             }
           ]
         },
@@ -2346,7 +2346,7 @@
           "objects": [
             {
               "YOffset": 0,
-              "index": 0,
+              "index": 1,
               "orientation": 180
             },
             {
@@ -2446,7 +2446,7 @@
         {
           "x": 24,
           "y": 0,
-          "z": 2,
+          "z": -2,
           "objects": [
             {
               "YOffset": 0,
@@ -2458,7 +2458,7 @@
         {
           "x": 24,
           "y": 0,
-          "z": 4,
+          "z": -4,
           "objects": [
             {
               "YOffset": 0,
@@ -2470,7 +2470,7 @@
         {
           "x": 24,
           "y": 0,
-          "z": 6,
+          "z": -6,
           "objects": [
             {
               "YOffset": 0,
@@ -2487,7 +2487,7 @@
         {
           "x": 26,
           "y": 0,
-          "z": 6,
+          "z": -6,
           "objects": [
             {
               "YOffset": 0,
@@ -2504,7 +2504,7 @@
         {
           "x": 28,
           "y": 0,
-          "z": 6,
+          "z": -6,
           "objects": [
             {
               "YOffset": 0,
@@ -2521,7 +2521,7 @@
         {
           "x": 28,
           "y": 0,
-          "z": 4,
+          "z": -4,
           "objects": [
             {
               "YOffset": 0,
@@ -2533,7 +2533,7 @@
         {
           "x": 28,
           "y": 0,
-          "z": 2,
+          "z": -2,
           "objects": [
             {
               "YOffset": 0,
@@ -2660,7 +2660,7 @@
             {
               "YOffset": 0,
               "index": 0,
-              "orientation": 0
+              "orientation": 90
             }
           ]
         },
@@ -2902,7 +2902,7 @@
             {
               "YOffset": 0,
               "index": 0,
-              "orientation": 0
+              "orientation": 90
             }
           ]
         },
@@ -3279,12 +3279,12 @@
             {
               "YOffset": 0,
               "index": 1,
-              "orientation": 180
+              "orientation": 270
             },
             {
               "YOffset": 6,
               "index": 4,
-              "orientation": 0
+              "orientation": 180
             }
           ]
         },
@@ -3729,7 +3729,7 @@
             {
               "YOffset": 0,
               "index": 1,
-              "orientation": 90
+              "orientation": 180
             },
             {
               "YOffset": 6,
@@ -3881,7 +3881,7 @@
             {
               "YOffset": 0,
               "index": 0,
-              "orientation": 0
+              "orientation": 90
             }
           ]
         },
@@ -3893,7 +3893,7 @@
             {
               "YOffset": 0,
               "index": 0,
-              "orientation": 0
+              "orientation": 90
             }
           ]
         },
@@ -3990,6 +3990,18 @@
           "x": 36,
           "y": 0,
           "z": -4,
+          "objects": [
+            {
+              "YOffset": 0,
+              "index": 0,
+              "orientation": 180
+            }
+          ]
+        },
+        {
+          "x": 36,
+          "y": 0,
+          "z": -6,
           "objects": [
             {
               "YOffset": 0,
@@ -4179,7 +4191,7 @@
             {
               "YOffset": 0,
               "index": 0,
-              "orientation": 0
+              "orientation": 90
             }
           ]
         },
@@ -5039,12 +5051,12 @@
           "objects": [
             {
               "YOffset": 0,
-              "index": 0,
+              "index": 3,
               "orientation": 0
             },
             {
               "YOffset": 6,
-              "index": 9,
+              "index": 8,
               "orientation": 90
             }
           ]
@@ -6267,7 +6279,7 @@
             {
               "YOffset": 0,
               "index": 0,
-              "orientation": 180
+              "orientation": 270
             },
             {
               "YOffset": 6,
@@ -6284,7 +6296,7 @@
             {
               "YOffset": 0,
               "index": 0,
-              "orientation": 180
+              "orientation": 270
             }
           ]
         },
@@ -6296,7 +6308,7 @@
             {
               "YOffset": 0,
               "index": 3,
-              "orientation": 180
+              "orientation": 270
             },
             {
               "YOffset": 6,
@@ -6313,7 +6325,7 @@
             {
               "YOffset": 0,
               "index": 0,
-              "orientation": 180
+              "orientation": 270
             }
           ]
         },
