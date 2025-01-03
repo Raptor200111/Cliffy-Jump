@@ -124,12 +124,14 @@ public class Player : MonoBehaviour
         ChangePlayerState(State.Moving);
     }
 
-    public void PlayerStop()
+    public void PlayerStop(char c)
     {
-        if (!godMode)
+        if (c == 's' && !godMode)
         {
             ChangePlayerState(State.Waiting);
         }
+        else if (c == 'f')
+            ChangePlayerState(State.Waiting);
     }
 
     public void PlayerAutoJump()

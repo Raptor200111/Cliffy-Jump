@@ -606,13 +606,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06bcccfb05b25574ab841a794b2f9b67, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  screen: 0
   prefabs:
   - {fileID: 4156804601416194380, guid: f262c942e0bdd44469f87db824e30096, type: 3}
   - {fileID: 8544952872848645659, guid: 7fe963b68af04194594caa291771ce42, type: 3}
   - {fileID: 5544760852526940447, guid: 3877270bfde090d44b39837d369d306b, type: 3}
   - {fileID: 7524897551691009333, guid: 7a2a5458b928c5640817cec436cf7736, type: 3}
   - {fileID: 1061160371049290795, guid: e6ed9d1717c4d9c469917a0b992bbafb, type: 3}
-  jsonFile: {fileID: 4900000, guid: d8a2e8075bad61a4b80ad68a138c8dcc, type: 3}
+  jsonFile: {fileID: 4900000, guid: 5a893668f69f0354c968fc86a784194c, type: 3}
   world:
     levels: []
     allObjects: 
@@ -903,10 +904,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25df98516b9e5ea41805e0a46aaad785, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  characters: []
+  Characters: []
   player: {fileID: 454371593}
   dynamicStructures: {fileID: 197098397}
   dynamicDetails: {fileID: 378563806}
+  <CoinPrefab>k__BackingField: {fileID: 0}
+  <StarPrefab>k__BackingField: {fileID: 0}
 --- !u!1001 &306067375
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1102,13 +1105,11 @@ MonoBehaviour:
   blockPrefab: {fileID: 4156804601416194380, guid: f262c942e0bdd44469f87db824e30096,
     type: 3}
   jsonFile: {fileID: 4900000, guid: d8a2e8075bad61a4b80ad68a138c8dcc, type: 3}
-  birdPrefab: {fileID: 6557530492611980952, guid: ed74fc29474acfa4ea0f3961b238c5c7,
-    type: 3}
+  detailType:
+    movDecoType: 0
+    movDecoPrefab: {fileID: 0}
+  indexObstacles: 
   skyHeight: 10
-  lizardPrefab: {fileID: 1168342127478715031, guid: e44cfa63ce3d1af4195632ac29c13d0b,
-    type: 3}
-  eyePrefab: {fileID: 405713630963078473, guid: 11c8e38629216af4e84ac87067e1ae75,
-    type: 3}
   numStars: 3
   numCoins: 3
 --- !u!1 &432432459
@@ -3116,15 +3117,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bfe1ce397d522cc4fa61b1b721274287, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <PlayersList>k__BackingField:
-  - {fileID: 11400000, guid: 2cf2754aff7d648429fe06d58cbf93f5, type: 2}
-  - {fileID: 11400000, guid: 8479c0c3711025a499d230270f96cb91, type: 2}
-  - {fileID: 11400000, guid: 18d5cda950749c14ba6ad5c3d43b8150, type: 2}
   <Player>k__BackingField: {fileID: 454371594}
-  <CoinPrefab>k__BackingField: {fileID: 3315043596747767852, guid: f502fd8610337f648ba79bea1d455bbe,
-    type: 3}
-  <StarPrefab>k__BackingField: {fileID: 4813581339930940020, guid: 578cadfe8c05f274d899ff6847f8b393,
-    type: 3}
 --- !u!1001 &1719452019
 PrefabInstance:
   m_ObjectHideFlags: 0

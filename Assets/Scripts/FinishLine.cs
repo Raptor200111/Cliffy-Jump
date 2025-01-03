@@ -9,7 +9,7 @@ public class FinishLine : MonoBehaviour
         if (other.tag == "Player")
         {
             WorldManager.Instance.ScreenComplete();
-            other.GetComponent<Player>().PlayerStop();
+            other.GetComponent<Player>().PlayerStop('f');
         }
     }
 }
