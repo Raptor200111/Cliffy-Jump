@@ -22,7 +22,7 @@ public class Player : MonoBehaviour
     int obstaclesLayer;
     int collectiblesLayer;
 
-    float jumpSpeed = 30.0f;
+    float jumpSpeed = 40.0f;
     float groundSpeed = 0.18f;
     float gravity = -130f;
 
@@ -30,16 +30,18 @@ public class Player : MonoBehaviour
     public ParticleSystem deathParticle;
     public ParticleSystem groundParticle;
 
+    public bool godMode = false;
 
     void Start()
     {
+        godMode = false;
         transform.position = startPoint.transform.position;
 
         blockLayer = LayerMask.NameToLayer("Blocks");
         obstaclesLayer = LayerMask.NameToLayer("Obstacles");
         collectiblesLayer = LayerMask.NameToLayer("Collectibles");
 
-        playerState = State.Waiting;
+        playerState = State.Dead;
         velocity = Vector3.zero;
         _collider = GetComponent<Collider>();
         _rigidbody = GetComponent<Rigidbody>();
@@ -60,21 +62,25 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyUp(KeyCode.P)) 
+        if (Input.GetKeyUp(KeyCode.Space))
         {
-            if (playerState == State.Waiting)
+            if (playerState == State.Moving)
+            {
+                ChangePlayerState(State.Jumping);
+            }
+            else if (playerState == State.Waiting)
             {
                 ChangePlayerState(State.Moving);
             }
-            else if (playerState == State.Moving)
-            {
-                ChangePlayerState(State.Waiting);
-            }
         }
 
-        if (Input.GetKeyUp(KeyCode.Space) && playerState == State.Moving)
+        if (Input.GetKeyUp(KeyCode.G))
         {
-            ChangePlayerState(State.Jumping);
+            godMode = !godMode;
+            if (godMode) 
+            {
+                Debug.Log("GodMode On");
+            }
         }
     }
 
@@ -105,7 +111,8 @@ public class Player : MonoBehaviour
 
     public void PlayerStart()
     {
-        transform.position = startPoint.transform.position;
+        playerState = State.Dead;
+        transform.SetPositionAndRotation(startPoint.transform.position, Quaternion.Euler(0, 90, 0));
         ChangePlayerState(State.Moving);
         this.GetComponent<TrailRenderer>().Clear();
     }
@@ -155,9 +162,9 @@ public class Player : MonoBehaviour
         {
             pos.y = transform.position.y;
             transform.localPosition = pos;
-            //transform.forward = fow;
+            transform.forward = fow;
             //transform.LookAt(transform.position + fow);
-            velocity = 0.2f * fow;
+            velocity = fow * groundSpeed;
         }
     }
 

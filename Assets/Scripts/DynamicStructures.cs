@@ -92,14 +92,15 @@ public class DynamicStructures : MonoBehaviour
             UnityEngine.Debug.Log("Json not attached or doesnt exist");
         }
     }
-
+    /*
     private void Update()
     {
         if (Input.GetKeyUp(KeyCode.S))
         {
-            NextScreen();
+            //NextScreen();
         }
     }
+    */
 
     public void NextScreen()
     {
