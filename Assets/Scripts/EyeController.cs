@@ -15,14 +15,14 @@ public class EyeController : MovDeco
 
     private bool idle = false;
     private Vector3 startPosition;
-    private float frequency = 0.5f;
+    private float frequency = 1f;
     private float amplitude = 1f;
 
     // Start is called before the first frame update
     protected override void Start()
     {
         base.Start();
-        appearSpeed = 1.5f;
+        appearSpeed = 2.5f;
         disappearSpeed = 1f;
         gameManager = GameManager.Instance;
         playerTransform = gameManager.Player.transform;

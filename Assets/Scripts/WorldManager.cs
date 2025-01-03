@@ -13,7 +13,8 @@ public class WorldManager : MonoBehaviour
     [SerializeField] public Player player;
     [SerializeField] public DynamicStructures dynamicStructures;
     [SerializeField] public DynamicDetails dynamicDetails;
-
+    [field: SerializeField] public GameObject CoinPrefab { get; private set; }
+    [field: SerializeField] public GameObject StarPrefab { get; private set; }
 
     public int CurrentScreen { get; private set; } = 0;
     public event Action<float> OnLevelProgressChanged;
@@ -36,13 +37,17 @@ public class WorldManager : MonoBehaviour
 
     public void DoneRising()
     {
-        //dynamicDetails.CreateDetails(dynamicStructures.screen, 3);
+        dynamicDetails.CreateDetails(dynamicStructures.screen);
         player.PlayerStart();
     }
 
+    public void DestroyDetails()
+    {
+        dynamicDetails.DestroyDetails();
+    }
     public void ScreenComplete()
     {
-        //dynamicDetails.DestroyDetails();
+        dynamicDetails.DestroyDetails();
         player.PlayerStop();
         dynamicStructures.NextScreen();
         UpdateLevelProgress();
