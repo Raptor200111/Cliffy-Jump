@@ -84,8 +84,7 @@ public class DynamicStructures : MonoBehaviour
                 }
             }
 
-            screen -= 1;
-            HiddenObjectsChange();
+            ResetWorld();
         }
         catch 
         {
@@ -93,12 +92,10 @@ public class DynamicStructures : MonoBehaviour
         }
     }
     
-    private void Update()
+    public void ResetWorld()
     {
-        if (Input.GetKeyUp(KeyCode.S))
-        {
-            NextScreen();
-        }
+        screen -= 1;
+        HiddenObjectsChange();
     }
     
 
