@@ -103,6 +103,7 @@ public class DynamicStructures : MonoBehaviour
 
     public void NextScreen()
     {
+        WorldManager.Instance.DestroyDetails();
         animator.SetTrigger("hide");
     }
 
