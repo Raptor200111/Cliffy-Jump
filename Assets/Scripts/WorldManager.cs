@@ -48,7 +48,7 @@ public class WorldManager : MonoBehaviour
     public void ScreenComplete()
     {
         //dynamicDetails.DestroyDetails();
-        player.PlayerStop();
+        player.PlayerStop('f');
         dynamicStructures.NextScreen();
         UpdateLevelProgress();
     }
