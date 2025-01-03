@@ -113,8 +113,16 @@ public class DynamicStructures : MonoBehaviour
 
     public void HiddenObjectsChange()
     {
-        screen++;
-
+        /*if (screen == 0)
+        {
+            screen = 9;
+        }
+        else*/
+        if (screen < 9)
+        {
+            screen++;
+        }
+        UnityEngine.Debug.Log("Screen: "+ screen);
         if (screen == numberOfScreens)
         {
             WorldManager.Instance.WorldComplete();
