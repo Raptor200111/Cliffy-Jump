@@ -24,4 +24,5 @@ public abstract class MovDeco : MonoBehaviour
             disappear = true;
         }
     }
+
 }
