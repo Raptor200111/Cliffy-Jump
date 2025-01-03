@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -30,9 +31,6 @@ public class GameManager : MonoBehaviour
 
     public float[] MaxLevelProgress { get; private set; } = new float[2] { 0f, 0f };
     public int[] MaxLevelScore { get; private set; } = new int[2] { 0, 0 };
-
-
-    [field: SerializeField] public List<PlayerModelData> PlayersList { get; private set; }
     [field: SerializeField] public GameObject Player { get; private set; }
     [field: SerializeField] public GameObject CoinPrefab { get; private set; }
     [field: SerializeField] public GameObject StarPrefab { get; private set; }
@@ -58,7 +56,7 @@ public class GameManager : MonoBehaviour
             else
             {
                 //TO DO: Create Animations
-                Player.GetComponent<Player>().LoadModel(PlayersList[PlayerPrefs.GetInt("PlayerDataIndex", 0)]);
+                //Player.GetComponent<Player>().LoadModel(PlayersList[PlayerPrefs.GetInt("PlayerDataIndex", 0)]);
             }
 
             DontDestroyOnLoad(gameObject);
@@ -166,15 +164,6 @@ public class GameManager : MonoBehaviour
 
     public void SetSelectedPlayer(int i_indexPlayer)
     {
-        if (i_indexPlayer > 0 && i_indexPlayer < PlayersList.Count)
-        {
-            Player.GetComponent<Player>().LoadModel(PlayersList[i_indexPlayer]);
-            PlayerPrefs.SetInt("PlayerDataIndex", i_indexPlayer);
-        }
-    }
-    // Update is called once per frame
-    void Update()
-    {
-
+        PlayerPrefs.SetInt("PlayerDataIndex", i_indexPlayer);
     }
 }
