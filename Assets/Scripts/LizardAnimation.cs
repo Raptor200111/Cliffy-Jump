@@ -16,6 +16,12 @@ public class LizardAnimation : MovDeco
 
     public override void Appear(Vector3 targetPos)
     {
+        if (_animator == null)
+        {
+            _animator = GetComponent<Animator>();
+            Start();
+        }
+        _animator.SetBool("Idle", false);
         StartCoroutine(ClimbToTarget(targetPos));
     }
 
@@ -27,6 +33,7 @@ public class LizardAnimation : MovDeco
             yield return null;
         }
 
+        _animator.SetBool("Idle", true);
         // Snap the bird to the target position when close enough
         if (targetPos != Vector3.one)
         {
@@ -55,6 +62,7 @@ public class LizardAnimation : MovDeco
 
     public override void Disappear()
     {
+        _animator.SetBool("Idle", false);
         StartCoroutine(DescentToWater());
     }
 
