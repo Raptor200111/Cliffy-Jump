@@ -17,7 +17,11 @@ public class MenuCharSelect : MonoBehaviour
     {
         gameManager = GameManager.Instance;
         oldIndex = PlayerPrefs.GetInt("PlayerDataIndex", 0);
-        
+        foreach (GameObject c in GameManager.Instance.Characters)
+        {
+            GameObject a = Instantiate(c, charImage.transform);
+            a.transform.localScale = a.transform.localScale * 125f;
+        }
         ChangeChar(oldIndex);
     }
 
