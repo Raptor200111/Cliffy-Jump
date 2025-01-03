@@ -51,6 +51,7 @@ public class MenuCharSelect : MonoBehaviour
 
     public void SelectChar()
     {
+        PlayerPrefs.SetInt("PlayerSelected", 0);
         gameManager.SetSelectedPlayer(oldIndex);   
     }
 

@@ -25,7 +25,7 @@ public class EyeController : MovDeco
         appearSpeed = 2.5f;
         disappearSpeed = 1f;
         gameManager = GameManager.Instance;
-        playerTransform = gameManager.Player.transform;
+        //playerTransform = gameManager.Player.transform;
     }
 
     public override void Appear(Vector3 targetPos)
