@@ -25,6 +25,9 @@ public class GameManager : MonoBehaviour
     public int CoinsCollected { get; private set; } = 0;
     public event Action<int> OnCoinsChanged;
 
+    public int CurrentWorldScore { get; private set; } = 0;
+    public event Action<int> OnLevelScoreChanged;
+
     public float[] MaxLevelProgress { get; private set; } = new float[2] { 0f, 0f };
     public int[] MaxLevelScore { get; private set; } = new int[2] { 0, 0 };
 
@@ -119,10 +122,18 @@ public class GameManager : MonoBehaviour
         Application.Quit();
     }
 
-    public void AddCoin()
+    public void AddCoin(GameObject coin)
     {
         CoinsCollected += 1;
+        coin.GetComponent<Collectible>().Disappear();
         OnCoinsChanged?.Invoke(CoinsCollected);
+    }
+
+    public void AddStar(GameObject star)
+    {
+        CurrentWorldScore += 1;
+        star.GetComponent<Collectible>().Disappear();
+        OnLevelScoreChanged?.Invoke(CurrentWorldScore);
     }
 
     public void SaveLevelScore(int score)

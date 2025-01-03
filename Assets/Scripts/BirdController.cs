@@ -24,7 +24,13 @@ public class BirdController : MovDeco
     }
 
     public override void Appear(Vector3 targetPos)
-    {;
+    {
+        if (_animator == null)
+        {
+            _animator = GetComponent<Animator>();
+            Start();
+        }
+        _animator.SetBool("Idle", false);
         StartCoroutine(FlyToTarget(targetPos));
     }
 
@@ -35,6 +41,7 @@ public class BirdController : MovDeco
             transform.position = Vector3.MoveTowards(transform.position, targetPos, appearSpeed * Time.deltaTime);
             yield return null;
         }
+        _animator.SetBool("Idle", true);
 
         // Snap the bird to the target position when close enough
         if (targetPos != Vector3.one)
@@ -66,6 +73,7 @@ public class BirdController : MovDeco
 
     public override void Disappear()
     {
+        _animator.SetBool("Idle", false);
         StartCoroutine(FlyToSky());
     }
     private IEnumerator FlyToSky()

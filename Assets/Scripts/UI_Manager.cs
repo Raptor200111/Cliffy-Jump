@@ -15,10 +15,19 @@ public class UI_Manager : MonoBehaviour
     private void Start()
     {
         SetVisibilityOnPause(false);
+        numCoinsText.text = $"{GameManager.Instance.CoinsCollected}";
         if(worldManager == null)
         {
             Debug.LogWarning("worldManager not assigned");
             return;
+        }
+        if(worldManager.CurrentScreen < 0 || worldManager.TotalNumScreens <= 0)
+        {
+            levelProgress.text = $"{0} %";
+        }
+        else {
+            float progress = worldManager.CurrentScreen / (float)worldManager.TotalNumScreens;
+            levelProgress.text = $"{progress}  %";
         }
     }
 
@@ -26,14 +35,14 @@ public class UI_Manager : MonoBehaviour
     {
         GameManager.Instance.OnCoinsChanged += UpdateCoins;
         worldManager.OnLevelProgressChanged += UpdateLevelProgress;
-        worldManager.OnLevelScoreChanged += UpdateStars;
+        GameManager.Instance.OnLevelScoreChanged += UpdateStars;
     }
 
     private void OnDisable()
     {
         GameManager.Instance.OnCoinsChanged -= UpdateCoins;
         worldManager.OnLevelProgressChanged -= UpdateLevelProgress;
-        worldManager.OnLevelScoreChanged -= UpdateStars;
+        GameManager.Instance.OnLevelScoreChanged -= UpdateStars;
     }
 
     public void UpdateCoins(int coins)
@@ -58,7 +67,7 @@ public class UI_Manager : MonoBehaviour
     {
         if (levelProgress != null)
         {
-            levelProgress.text = $"{progress}";
+            levelProgress.text = $"{progress} %";
         }
     }
 

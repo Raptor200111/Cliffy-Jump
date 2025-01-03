@@ -10,7 +10,7 @@ public class Collectible : MonoBehaviour
     [SerializeField] private bool isScaling = true;
 
     private Vector3 rotationAngle;
-    [SerializeField] private float rotationSpeed = 10;
+    [SerializeField] protected float rotationSpeed = 10;
 
 
     [SerializeField] private Vector3 startScale;
@@ -20,6 +20,7 @@ public class Collectible : MonoBehaviour
     [SerializeField] private float scaleSpeed = 1f;
     [SerializeField] private float scaleRate = 0.5f;
     private float scaleTimer;
+    protected Animator _animator;
 
     // Use this for initialization
     protected virtual void Start()
@@ -36,6 +37,7 @@ public class Collectible : MonoBehaviour
         scaleSpeed = 1;
         scaleRate = 0.5f;
         scaleTimer = 0f;
+        _animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -79,5 +81,13 @@ public class Collectible : MonoBehaviour
     public virtual void Disappear()
     {
         Destroy(gameObject);
+        //_animator.SetTrigger("Die");                    
     }
+
+    public virtual void OnDieComplete()
+    {
+        Destroy(gameObject);
+    }
+
+
 }

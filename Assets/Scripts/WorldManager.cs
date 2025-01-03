@@ -18,8 +18,6 @@ public class WorldManager : MonoBehaviour
 
     public int CurrentScreen { get; private set; } = 0;
     public event Action<float> OnLevelProgressChanged;
-    public int CurrentWorldScore { get; private set; } = 0;
-    public event Action<int> OnLevelScoreChanged;
 
     public int TotalNumScreens { get; private set; } = 0;
     public int lives { get; private set; } = 3;
@@ -39,7 +37,7 @@ public class WorldManager : MonoBehaviour
 
     public void DoneRising()
     {
-        dynamicDetails.CreateDetails(dynamicStructures.screen, 2);
+        dynamicDetails.CreateDetails(dynamicStructures.screen, 3);
         player.PlayerStart();
     }
 
@@ -58,11 +56,7 @@ public class WorldManager : MonoBehaviour
         //GameManager.Instance.SaveLevelProgress(currentWorldProgress);
     }
 
-    public void AddStar()
-    {
-        CurrentWorldScore += 1;
-        OnLevelScoreChanged?.Invoke(CurrentWorldScore);
-    }
+
     public void WorldComplete()
     {
         UnityEngine.Debug.Log("World Complete");

@@ -21,7 +21,7 @@ public class Player : MonoBehaviour
 
     int blockLayer;
     int obstaclesLayer;
-    int collecteblesLayer;
+    int collectiblesLayer;
 
     public float jumpSpeed = 200.0f;
     public float groundSpeed = 0.12f;
@@ -35,7 +35,7 @@ public class Player : MonoBehaviour
 
         blockLayer = LayerMask.NameToLayer("Blocks");
         obstaclesLayer = LayerMask.NameToLayer("Obstacles");
-        collecteblesLayer = LayerMask.NameToLayer("Collectebles");
+        collectiblesLayer = LayerMask.NameToLayer("Collectibles");
 
         playerState = State.Waiting;
         velocity = Vector3.zero;
@@ -114,7 +114,7 @@ public class Player : MonoBehaviour
             //ChangePlayerState(State.Waiting);
             ChangePlayerState(State.Dead);
         }
-        else if (collision.gameObject.layer == collecteblesLayer)
+        else if (collision.gameObject.layer == collectiblesLayer)
         {
             AddCollectibles(collision.gameObject);
         }
@@ -184,11 +184,11 @@ public class Player : MonoBehaviour
     {
         if (collectible.CompareTag("Star"))
         {
-            WorldManager.Instance.AddStar();            
+            GameManager.Instance.AddStar(collectible);            
         }
         else if (collectible.CompareTag("Coin"))
         {
-            GameManager.Instance.AddCoin();
+            GameManager.Instance.AddCoin(collectible);
         }
         else
         {
