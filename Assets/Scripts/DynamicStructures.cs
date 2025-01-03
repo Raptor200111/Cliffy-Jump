@@ -84,7 +84,8 @@ public class DynamicStructures : MonoBehaviour
                 }
             }
 
-            ResetWorld();
+            screen -= 1;
+            HiddenObjectsChange();
         }
         catch 
         {
@@ -95,7 +96,7 @@ public class DynamicStructures : MonoBehaviour
     public void ResetWorld()
     {
         screen -= 1;
-        HiddenObjectsChange();
+        NextScreen();
     }
     
 

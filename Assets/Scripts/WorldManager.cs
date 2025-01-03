@@ -59,7 +59,6 @@ public class WorldManager : MonoBehaviour
         //GameManager.Instance.SaveLevelProgress(currentWorldProgress);
     }
 
-
     public void WorldComplete()
     {
         UnityEngine.Debug.Log("World Complete");
@@ -68,7 +67,6 @@ public class WorldManager : MonoBehaviour
     public void PlayerDeath()
     {
         dynamicStructures.ResetWorld();
-        player.PlayerStart();
+        //player.PlayerStart();
     }
-
 }
