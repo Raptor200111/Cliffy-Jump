@@ -420,6 +420,18 @@
               "orientation": 180
             }
           ]
+        },
+        {
+          "x": 36,
+          "y": 0,
+          "z": 3.5,
+          "objects": [
+            {
+              "YOffset": 6,
+              "index": 10,
+              "orientation": 90
+            }
+          ]
         }
       ]
     },
@@ -699,6 +711,11 @@
               "YOffset": 6,
               "index": 6,
               "orientation": 90
+            },
+            {
+              "YOffset": 6,
+              "index": 10,
+              "orientation": 0
             }
           ]
         },
@@ -788,6 +805,11 @@
               "YOffset": 0,
               "index": 0,
               "orientation": 180
+            },
+            {
+              "YOffset": 6,
+              "index": 10,
+              "orientation": 90
             }
           ]
         },
@@ -1075,6 +1097,11 @@
               "YOffset": 6,
               "index": 6,
               "orientation": 180
+            },
+            {
+              "YOffset": 6,
+              "index": 10,
+              "orientation": 90
             }
           ]
         },
@@ -1235,7 +1262,7 @@
               "orientation": 90
             },
             {
-              "YOffset": 0,
+              "YOffset": 6,
               "index": 9,
               "orientation": 0
             }
@@ -1415,7 +1442,7 @@
               "orientation": 90
             },
             {
-              "YOffset": 8,
+              "YOffset": 6,
               "index": 8,
               "orientation": 0
             }
@@ -1495,6 +1522,11 @@
               "YOffset": 0,
               "index": 0,
               "orientation": 0
+            },
+            {
+              "YOffset": 6,
+              "index": 10,
+              "orientation": 90
             }
           ]
         },
@@ -1647,6 +1679,11 @@
               "YOffset": 6,
               "index": 6,
               "orientation": 0
+            },
+            {
+              "YOffset": 6,
+              "index": 10,
+              "orientation": 90
             }
           ]
         },
@@ -1760,6 +1797,11 @@
               "YOffset": 0,
               "index": 0,
               "orientation": 90
+            },
+            {
+              "YOffset": 6,
+              "index": 10,
+              "orientation": 0
             }
           ]
         },
@@ -1859,6 +1901,11 @@
               "YOffset": 0,
               "index": 0,
               "orientation": 0
+            },
+            {
+              "YOffset": 6,
+              "index": 10,
+              "orientation": 90
             }
           ]
         },
@@ -2814,7 +2861,7 @@
             },
             {
               "YOffset": 6,
-              "index": 8,
+              "index": 9,
               "orientation": 0
             }
           ]
@@ -2997,6 +3044,11 @@
               "YOffset": 6,
               "index": 6,
               "orientation": 180
+            },
+            {
+              "YOffset": 6,
+              "index": 10,
+              "orientation": 90
             }
           ]
         },
@@ -3103,6 +3155,11 @@
               "YOffset": 6,
               "index": 6,
               "orientation": 270
+            },
+            {
+              "YOffset": 6,
+              "index": 10,
+              "orientation": 0
             }
           ]
         },
@@ -3452,6 +3509,11 @@
               "YOffset": 0,
               "index": 0,
               "orientation": 90
+            },
+            {
+              "YOffset": 6,
+              "index": 10,
+              "orientation": 0
             }
           ]
         },
@@ -3764,6 +3826,11 @@
               "YOffset": 6,
               "index": 6,
               "orientation": 270
+            },
+            {
+              "YOffset": 6,
+              "index": 10,
+              "orientation": 0
             }
           ]
         },
@@ -3836,6 +3903,11 @@
               "YOffset": 0,
               "index": 0,
               "orientation": 90
+            },
+            {
+              "YOffset": 6,
+              "index": 10,
+              "orientation": 0
             }
           ]
         },
@@ -4180,6 +4252,11 @@
               "YOffset": 6,
               "index": 6,
               "orientation": 270
+            },
+            {
+              "YOffset": 6,
+              "index": 10,
+              "orientation": 0
             }
           ]
         },
@@ -4204,6 +4281,11 @@
               "YOffset": 0,
               "index": 0,
               "orientation": 90
+            },
+            {
+              "YOffset": 6,
+              "index": 10,
+              "orientation": 0
             }
           ]
         },
@@ -4385,6 +4467,11 @@
               "YOffset": 0,
               "index": 0,
               "orientation": 270
+            },
+            {
+              "YOffset": 6,
+              "index": 10,
+              "orientation": 0
             }
           ]
         },
@@ -4583,6 +4670,11 @@
               "YOffset": 0,
               "index": 0,
               "orientation": 90
+            },
+            {
+              "YOffset": 6,
+              "index": 10,
+              "orientation": 0
             }
           ]
         },
@@ -4838,6 +4930,11 @@
               "YOffset": 0,
               "index": 0,
               "orientation": 90
+            },
+            {
+              "YOffset": 6,
+              "index": 10,
+              "orientation": 0
             }
           ]
         },
@@ -5099,6 +5196,11 @@
               "YOffset": 0,
               "index": 0,
               "orientation": 270
+            },
+            {
+              "YOffset": 6,
+              "index": 10,
+              "orientation": 0
             }
           ]
         },
@@ -5350,6 +5452,11 @@
               "YOffset": 0,
               "index": 0,
               "orientation": 90
+            },
+            {
+              "YOffset": 6,
+              "index": 10,
+              "orientation": 0
             }
           ]
         },
@@ -5529,7 +5636,7 @@
             {
               "YOffset": 6,
               "index": 4,
-              "orientation": 0
+              "orientation": 90
             }
           ]
         },
@@ -5769,6 +5876,11 @@
               "YOffset": 0,
               "index": 0,
               "orientation": 180
+            },
+            {
+              "YOffset": 6,
+              "index": 10,
+              "orientation": 90
             }
           ]
         },
@@ -6035,6 +6147,11 @@
               "YOffset": 0,
               "index": 0,
               "orientation": 90
+            },
+            {
+              "YOffset": 6,
+              "index": 10,
+              "orientation": 0
             }
           ]
         },
@@ -6174,6 +6291,11 @@
               "YOffset": 6,
               "index": 6,
               "orientation": 270
+            },
+            {
+              "YOffset": 6,
+              "index": 10,
+              "orientation": 0
             }
           ]
         },
@@ -6355,6 +6477,11 @@
               "YOffset": 0,
               "index": 0,
               "orientation": 0
+            },
+            {
+              "YOffset": 6,
+              "index": 10,
+              "orientation": 90
             }
           ]
         },
@@ -6538,6 +6665,11 @@
               "YOffset": 0,
               "index": 0,
               "orientation": 90
+            },
+            {
+              "YOffset": 6,
+              "index": 10,
+              "orientation": 0
             }
           ]
         },
@@ -6550,6 +6682,11 @@
               "YOffset": 0,
               "index": 0,
               "orientation": 90
+            },
+            {
+              "YOffset": 6,
+              "index": 5,
+              "orientation": 90
             }
           ]
         },
@@ -6561,6 +6698,11 @@
             {
               "YOffset": 0,
               "index": 0,
+              "orientation": 90
+            },
+            {
+              "YOffset": 6,
+              "index": 5,
               "orientation": 90
             }
           ]
@@ -6632,6 +6774,11 @@
               "YOffset": 6,
               "index": 6,
               "orientation": 0
+            },
+            {
+              "YOffset": 6,
+              "index": 10,
+              "orientation": 90
             }
           ]
         },
@@ -7140,11 +7287,23 @@
               "YOffset": 0,
               "index": 0,
               "orientation": 180
+            }
+          ]
+        },
+        {
+          "x": 0,
+          "y": 0,
+          "z": 1,
+          "objects": [
+            {
+              "YOffset": 6,
+              "index": 10,
+              "orientation": 90
             }
           ]
         }
       ]
     }
   ],
-  "allObjects": [ 71, 15, 2, 4, 15, 4, 3, 2, 4, 4 ]
+  "allObjects": [ 71, 15, 2, 4, 15, 4, 3, 2, 4, 4, 20]
 }

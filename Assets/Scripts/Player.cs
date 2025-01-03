@@ -62,7 +62,7 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyUp(KeyCode.Space))
+        if (Input.GetKeyUp(KeyCode.Space) && !godMode)
         {
             if (playerState == State.Moving)
             {
@@ -89,12 +89,19 @@ public class Player : MonoBehaviour
         transform.position += velocity;
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.layer == obstaclesLayer && !godMode)
+        {
+            ChangePlayerState(State.Dead);
+            Instantiate(deathParticle, transform.position, Quaternion.identity);
+        }
+    }
+
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.layer == obstaclesLayer)
+        if (collision.gameObject.layer == obstaclesLayer && !godMode)
         {
-            //UnityEngine.Debug.Log("Death");
-            //ChangePlayerState(State.Waiting);
             ChangePlayerState(State.Dead);
             Instantiate(deathParticle, transform.position, Quaternion.identity);
         }
@@ -111,21 +118,33 @@ public class Player : MonoBehaviour
 
     public void PlayerStart()
     {
-        playerState = State.Dead;
+        //playerState = State.Dead;
         transform.SetPositionAndRotation(startPoint.transform.position, Quaternion.Euler(0, 90, 0));
-        ChangePlayerState(State.Moving);
         this.GetComponent<TrailRenderer>().Clear();
+        ChangePlayerState(State.Moving);
     }
 
     public void PlayerStop()
     {
-        ChangePlayerState(State.Waiting);
+        if (!godMode)
+        {
+            ChangePlayerState(State.Waiting);
+        }
+    }
+
+    public void PlayerAutoJump()
+    {
+        if (godMode)
+        {
+            ChangePlayerState(State.Jumping);
+        }
     }
 
     public void PlayerDeathAnimationComplete()
     {
         WorldManager.Instance.PlayerDeath();
     }
+
 
     void ChangePlayerState(State newState)
     {

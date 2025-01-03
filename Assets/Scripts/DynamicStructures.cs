@@ -19,7 +19,7 @@ public class DynamicStructures : MonoBehaviour
     GameObject[][] allObjects;
 
     int numberOfScreens = 3;
-    public int screen { get; private set; } = 0;
+    public int screen = 0;
 
     public List<GameObject> prefabs;
     public TextAsset jsonFile;
@@ -92,15 +92,15 @@ public class DynamicStructures : MonoBehaviour
             UnityEngine.Debug.Log("Json not attached or doesnt exist");
         }
     }
-    /*
+    
     private void Update()
     {
         if (Input.GetKeyUp(KeyCode.S))
         {
-            //NextScreen();
+            NextScreen();
         }
     }
-    */
+    
 
     public void NextScreen()
     {
