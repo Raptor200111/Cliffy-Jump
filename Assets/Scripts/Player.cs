@@ -62,7 +62,7 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyUp(KeyCode.Space) && !godMode)
+        if ((Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Mouse0)) && !godMode)
         {
             if (playerState == State.Moving)
             {

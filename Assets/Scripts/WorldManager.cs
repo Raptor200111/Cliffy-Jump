@@ -20,7 +20,6 @@ public class WorldManager : MonoBehaviour
     public event Action<float> OnLevelProgressChanged;
 
     public int TotalNumScreens { get; private set; } = 0;
-    public int lives { get; private set; } = 3;
 
     public void Awake()
     {
@@ -48,7 +47,7 @@ public class WorldManager : MonoBehaviour
     public void ScreenComplete()
     {
         dynamicDetails.DestroyDetails();
-        player.PlayerStop();
+        player.PlayerStop('f');
         dynamicStructures.NextScreen();
         UpdateLevelProgress();
     }
@@ -68,16 +67,8 @@ public class WorldManager : MonoBehaviour
 
     public void PlayerDeath()
     {
-        lives--;
-
-        if (lives == 0)
-        {
-            UnityEngine.Debug.Log("World Death");
-        }
-        else
-        {
-            player.PlayerStart();
-        }
+        dynamicStructures.ResetWorld();
+        player.PlayerStart();
     }
 
 }
