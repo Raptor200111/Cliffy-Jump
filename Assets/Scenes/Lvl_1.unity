@@ -694,7 +694,7 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 454371592}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1974827760}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 63475d301113b654b96a566597a23358, type: 3}
@@ -1773,7 +1773,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa156273c8e92d84195b9ca50c175841, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  popUp: {fileID: 0}
+  configPopUp: {fileID: 0}
+  selectCharPopUp: {fileID: 0}
   character_name: {fileID: 0}
   volumeMusicSlider: {fileID: 0}
   volumeSoundSlider: {fileID: 0}
@@ -2172,6 +2173,59 @@ MonoBehaviour:
       enableFptlForForwardOpaque: 0
       enableBigTilePrepass: 0
       isFptlEnabled: 0
+--- !u!1 &1974827760 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6942373482692220126, guid: 282e46c5401f3c2409e5d9f4061356c4,
+    type: 3}
+  m_PrefabInstance: {fileID: 454371592}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &2001624193
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2001624195}
+  - component: {fileID: 2001624194}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2001624194
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2001624193}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bfe1ce397d522cc4fa61b1b721274287, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <Player>k__BackingField: {fileID: 1974827760}
+  <CoinPrefab>k__BackingField: {fileID: 0}
+  <StarPrefab>k__BackingField: {fileID: 0}
+--- !u!4 &2001624195
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2001624193}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.921422, y: 6.7998137, z: -17.62511}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2013410473
 GameObject:
   m_ObjectHideFlags: 1
@@ -2564,11 +2618,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: WorldManager
       objectReference: {fileID: 0}
-    - target: {fileID: 2638479443185838586, guid: 0d68d3ab97438694fad46ff235293655,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 3263012839607725129, guid: 0d68d3ab97438694fad46ff235293655,
         type: 3}
       propertyPath: player
@@ -2582,17 +2631,17 @@ PrefabInstance:
     - target: {fileID: 7090992577243467355, guid: 0d68d3ab97438694fad46ff235293655,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 15.259053
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7090992577243467355, guid: 0d68d3ab97438694fad46ff235293655,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.1587411
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7090992577243467355, guid: 0d68d3ab97438694fad46ff235293655,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -6.4677167
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7090992577243467355, guid: 0d68d3ab97438694fad46ff235293655,
         type: 3}
@@ -2763,3 +2812,4 @@ SceneRoots:
   - {fileID: 3934539401745188039}
   - {fileID: 1030564538105205858}
   - {fileID: 1440568534}
+  - {fileID: 2001624195}

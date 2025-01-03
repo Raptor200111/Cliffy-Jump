@@ -17,31 +17,6 @@ public class MenuCharSelect : MonoBehaviour
     {
         gameManager = GameManager.Instance;
         oldIndex = PlayerPrefs.GetInt("PlayerDataIndex", 0);
-        List<PlayerModelData> playersList = gameManager.PlayersList;
-        if (playersList == null)
-        {
-            Debug.LogWarning("Select Char scene characters is null");
-        }
-        else if(playersList.Count == 0)
-        {
-            Debug.LogWarning("gameManager's characters is empty");
-        }        
-        else
-        {
-            charsToDisplay = new GameObject[playersList.Count];
-            for (int i = 0; i< playersList.Count; i++)
-            {
-                GameObject chars = playersList[i].modelPrefab;
-                GameObject newInstance = Instantiate(chars, charImage.transform);
-
-                newInstance.transform.localPosition += new Vector3(0f, -120f, 0f);
-                newInstance.transform.localScale *= 125f;
-                newInstance.transform.localRotation = Quaternion.Euler(new Vector3(0f,180f,0f));
-                newInstance.SetActive(false);
-                newInstance.name = playersList[i].modelName;
-                charsToDisplay[i] = newInstance;
-            }
-        }
         
         ChangeChar(oldIndex);
     }

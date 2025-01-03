@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Data;
 using System.Diagnostics.Eventing.Reader;
 using Unity.VisualScripting;
 using UnityEditor.UIElements;
@@ -17,17 +18,18 @@ public class Player : MonoBehaviour
     Rigidbody _rigidbody;
     Animator _animator;
 
-    
-
     int blockLayer;
     int obstaclesLayer;
     int collectiblesLayer;
 
-    public float jumpSpeed = 200.0f;
-    public float groundSpeed = 0.12f;
-    public float gravity = -100f;
+    float jumpSpeed = 30.0f;
+    float groundSpeed = 0.18f;
+    float gravity = -130f;
 
     public GameObject startPoint;
+    public ParticleSystem deathParticle;
+    public ParticleSystem groundParticle;
+
 
     void Start()
     {
@@ -44,26 +46,16 @@ public class Player : MonoBehaviour
         _animator = GetComponent<Animator>();
 
         UnityEngine.Physics.gravity = new Vector3(0, gravity, 0);
+
+        LoadModel();
     }
 
-    public void LoadModel(PlayerModelData modelData)
+    public void LoadModel()//PlayerModelData modelData)
     {
-        // Clean up old model
-        if (currentModelInstance != null)
-        {
-            Destroy(currentModelInstance);
-        }
-
-        // Instantiate the new model
-        if (modelData != null && modelData.modelPrefab != null)
-        {
-            currentModelInstance = Instantiate(modelData.modelPrefab, this.transform);
-            
-            /*if (_animator != null)
-            {
-                _animator.runtimeAnimatorController = modelData.animatorController;
-            }*/
-        }
+        GameObject modelData = WorldManager.Instance.GetModelData();
+        //transform.GetChild(0).gameObject = Instantiate(modelData);
+        //Destroy(transform.GetChild(0).gameObject);
+        Instantiate(modelData, transform.GetChild(0));
     }
 
     void Update()
@@ -84,26 +76,11 @@ public class Player : MonoBehaviour
         {
             ChangePlayerState(State.Jumping);
         }
-
-        _animator.SetFloat("Yvelocity", _rigidbody.velocity.y);
     }
 
     void FixedUpdate()
     {
         transform.position += velocity;
-
-        RaycastHit[] hits = Physics.RaycastAll(transform.position, transform.forward, 0.625f);
-        
-        foreach (RaycastHit hit in hits)
-        {
-            if ( hit.collider.gameObject.layer == blockLayer)
-            {
-                _rigidbody.velocity = Vector3.zero;
-                ChangePlayerState(State.Waiting);
-                UnityEngine.Debug.Log("Front Smash");
-                break;
-            }
-        }
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -113,6 +90,7 @@ public class Player : MonoBehaviour
             //UnityEngine.Debug.Log("Death");
             //ChangePlayerState(State.Waiting);
             ChangePlayerState(State.Dead);
+            Instantiate(deathParticle, transform.position, Quaternion.identity);
         }
         else if (collision.gameObject.layer == collectiblesLayer)
         {
@@ -121,6 +99,7 @@ public class Player : MonoBehaviour
         else if (collision.gameObject.layer == blockLayer && playerState == State.Jumping) 
         {
             ChangePlayerState(State.Moving);
+            Instantiate(groundParticle, transform.position, Quaternion.identity);
         }
     }
 
@@ -128,6 +107,7 @@ public class Player : MonoBehaviour
     {
         transform.position = startPoint.transform.position;
         ChangePlayerState(State.Moving);
+        this.GetComponent<TrailRenderer>().Clear();
     }
 
     public void PlayerStop()
@@ -147,25 +127,25 @@ public class Player : MonoBehaviour
             case State.Waiting:
                 velocity = Vector3.zero;
                 _rigidbody.velocity = Vector3.zero;
-                _animator.SetBool("Running", false);
+                _animator.SetBool("Jumping", false);
                 break;
             case State.Moving:
                 _rigidbody.velocity = Vector3.zero;
                 velocity = transform.forward * groundSpeed;
-                _animator.SetBool("Running", true);
+                _animator.SetBool("Jumping", false);
                 break;
             case State.Jumping:
                 _rigidbody.velocity = new Vector3(0, jumpSpeed, 0);
-                _animator.SetTrigger("Jump");
+                _animator.SetBool("Jumping", true);
                 break;
             case State.Dead:
                 velocity = Vector3.zero;
                 _rigidbody.velocity = Vector3.zero;
                 _animator.SetTrigger("Dead");
+                _animator.SetBool("Jumping", false);
                 break;
 
         }
-        _animator.SetFloat("Yvelocity", _rigidbody.velocity.y);
         playerState = newState;
     }
 
@@ -175,7 +155,8 @@ public class Player : MonoBehaviour
         {
             pos.y = transform.position.y;
             transform.localPosition = pos;
-            transform.forward = fow;
+            //transform.forward = fow;
+            //transform.LookAt(transform.position + fow);
             velocity = 0.2f * fow;
         }
     }
