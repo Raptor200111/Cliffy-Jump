@@ -7,6 +7,7 @@ using Unity.VisualScripting;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.XR;
+using static DynamicDetails;
 using static DynamicStructures;
 using static UnityEngine.Rendering.HighDefinition.ScalableSettingLevelParameter;
 using static WorldManager;
@@ -44,7 +45,7 @@ public class DynamicDetails : MonoBehaviour
         public GameObject movDecoPrefab;
     }
 
-    public DetailType detailType;
+    public DetailType[] detailTypes;
     public int[] indexObstacles;
     private GameObject birdPrefab;
     private GameObject lizardPrefab;
@@ -67,7 +68,7 @@ public class DynamicDetails : MonoBehaviour
     struct NumConstrains { public int max, min; };
 
     public float skyHeight = 10f;
-    private NumConstrains birdMaxMin = new NumConstrains { max = 4, min = 1 };
+    private NumConstrains birdMaxMin = new NumConstrains { max = 5, min = 2 };
     private int maxBirdCount = 5;
 
     private float cubeSize = 2f;
@@ -78,11 +79,11 @@ public class DynamicDetails : MonoBehaviour
         public float ydegrees;
     }
 
-    private NumConstrains lizardMaxMin = new NumConstrains { max = 8, min = 4 };
+    private NumConstrains lizardMaxMin = new NumConstrains { max = 6, min = 4 };
     private float yLizardStart = -5f;
     private float yLizardEndMargin = -2.2f;
 
-    private NumConstrains eyeMaxMin = new NumConstrains { max = 2, min = 6 };
+    private NumConstrains eyeMaxMin = new NumConstrains { max = 4, min = 2 };
     private float yEyeStart = -7f;
     private float yEyeEndMargin = 2f;
 
@@ -102,7 +103,7 @@ public class DynamicDetails : MonoBehaviour
             return;
         }
 
-        if( detailType.movDecoPrefab == null)
+        if( detailTypes[0].movDecoPrefab == null || detailTypes[1].movDecoPrefab)
         {
             Debug.LogError("prefab not assigned!");
             return;
@@ -267,12 +268,24 @@ public class DynamicDetails : MonoBehaviour
         movDecoGO.name = "movDeco";
 
 
+        CreateMovDeco(detailTypes[0]);
+
+        if (level_screen> 7)
+        {
+            CreateMovDeco(detailTypes[1]);
+        }
+        
+        CreateCoinStar(coinStarsGO);
+    }
+
+    public void CreateMovDeco(DetailType detailType)
+    {
         if (detailType.movDecoType == MovDecoType.Birds && detailType.movDecoPrefab != null)
-        {    
-            birdPrefab = detailType.movDecoPrefab;
-            int groupCount = CalcMaxMovDeco(birdMaxMin); // Generate 1 to 3 groups
+        {
+            
             int birdCount = UnityEngine.Random.Range(1, maxBirdCount);
-            CreateCoinStar(coinStarsGO);
+            birdPrefab = detailType.movDecoPrefab;
+            int groupCount = CalcMaxMovDeco(birdMaxMin);
             CreateBirdGroups(movDecoGO, groupCount, birdCount);
         }
         else if (detailType.movDecoType == MovDecoType.Lizard && detailType.movDecoPrefab != null)
@@ -280,16 +293,14 @@ public class DynamicDetails : MonoBehaviour
         {
             lizardPrefab = detailType.movDecoPrefab;
             int lizardCount = CalcMaxMovDeco(lizardMaxMin);
-            CreateCoinStar(coinStarsGO);
             CreateLizards(movDecoGO, lizardCount);
         }
         else if (detailType.movDecoType == MovDecoType.Eye && detailType.movDecoPrefab != null)
         {
             eyePrefab = detailType.movDecoPrefab;
             int eyeCount = CalcMaxMovDeco(eyeMaxMin);
-            CreateCoinStar(coinStarsGO);
             CreateEyes(movDecoGO, eyeCount);
-        }   
+        }
     }
 
     public void DestroyDetails()
