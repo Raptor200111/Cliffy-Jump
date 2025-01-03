@@ -103,7 +103,7 @@ public class DynamicDetails : MonoBehaviour
             return;
         }
 
-        if( detailTypes[0].movDecoPrefab == null || detailTypes[1].movDecoPrefab)
+        if( detailTypes[0].movDecoPrefab == null || detailTypes[1].movDecoPrefab == null)
         {
             Debug.LogError("prefab not assigned!");
             return;
@@ -257,7 +257,12 @@ public class DynamicDetails : MonoBehaviour
     }
 
     public void CreateDetails(int level_screen)
-    {        
+    {
+        if (detailTypes == null || worldData == null || allBlocks == null)
+        {
+            Start();
+        }
+        
         if (level_screen < 0) level_screen = 0;
         else if (level_screen > worldData.levels.Count - 1) level_screen = worldData.levels.Count - 1;
         level = level_screen;

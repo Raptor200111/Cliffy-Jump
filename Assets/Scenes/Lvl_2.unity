@@ -446,9 +446,12 @@ MonoBehaviour:
   blockPrefab: {fileID: 6805433014911285189, guid: ddd9deb0b93885642a3609557d9bc807,
     type: 3}
   jsonFile: {fileID: 4900000, guid: 5a893668f69f0354c968fc86a784194c, type: 3}
-  detailType:
-    movDecoType: 2
+  detailTypes:
+  - movDecoType: 2
     movDecoPrefab: {fileID: 405713630963078473, guid: 11c8e38629216af4e84ac87067e1ae75,
+      type: 3}
+  - movDecoType: 1
+    movDecoPrefab: {fileID: 1168342127478715031, guid: e44cfa63ce3d1af4195632ac29c13d0b,
       type: 3}
   indexObstacles: 02000000030000000400000005000000
   skyHeight: 10

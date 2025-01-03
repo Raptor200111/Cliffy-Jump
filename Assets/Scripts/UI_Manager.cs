@@ -10,18 +10,13 @@ public class UI_Manager : MonoBehaviour
     public GameObject[] NumStars;
     [SerializeField] private GameObject resumePanel;
     [SerializeField] private GameObject pauseButton;
-    [SerializeField] private WorldManager worldManager;
 
     private void Start()
     {
         SetVisibilityOnPause(false);
         numCoinsText.text = $"{GameManager.Instance.CoinsCollected}";
-        if(worldManager == null)
-        {
-            Debug.LogWarning("worldManager not assigned");
-            return;
-        }
-        if(WorldManager.Instance.CurrentScreen < 0 || worldManager.TotalNumScreens <= 0)
+
+        if(WorldManager.Instance.CurrentScreen < 0 || WorldManager.Instance.TotalNumScreens <= 0)
         {
             levelProgress.text = $"{0} %";
         }

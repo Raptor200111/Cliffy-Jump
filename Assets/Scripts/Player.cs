@@ -105,11 +105,11 @@ public class Player : MonoBehaviour
             ChangePlayerState(State.Dead);
             Instantiate(deathParticle, transform.position, Quaternion.identity);
         }
-        else if (collision.gameObject.layer == collectiblesLayer)
+        if (collision.gameObject.layer == collectiblesLayer)
         {
             AddCollectibles(collision.gameObject);
         }
-        else if (collision.gameObject.layer == blockLayer && playerState == State.Jumping) 
+        if (collision.gameObject.layer == blockLayer && playerState == State.Jumping) 
         {
             ChangePlayerState(State.Moving);
             Instantiate(groundParticle, transform.position, Quaternion.identity);
