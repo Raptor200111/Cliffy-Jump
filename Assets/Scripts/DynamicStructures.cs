@@ -113,12 +113,11 @@ public class DynamicStructures : MonoBehaviour
 
     public void HiddenObjectsChange()
     {
-        /*if (screen == 0)
+        if (screen == 0)
         {
-            screen = 9;
+            screen = 7;
         }
-        else*/
-        if (screen < 9)
+        else if (screen < 9)
         {
             screen++;
         }
