@@ -8,7 +8,7 @@ public class StopSign : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            other.GetComponent<Player>().PlayerStop();
+            other.GetComponent<Player>().PlayerStop('s');
         }
     }
 }
