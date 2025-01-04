@@ -163,10 +163,12 @@ public class Player : MonoBehaviour
                 _animator.SetBool("Jumping", false);
                 break;
             case State.Jumping:
+                SoundManager.PlaySound(SoundType.JUMP);
                 _rigidbody.velocity = new Vector3(0, jumpSpeed, 0);
                 _animator.SetBool("Jumping", true);
                 break;
             case State.Dead:
+                SoundManager.PlaySound(SoundType.DIE);
                 velocity = Vector3.zero;
                 _rigidbody.velocity = Vector3.zero;
                 _animator.SetTrigger("Dead");
@@ -197,6 +199,7 @@ public class Player : MonoBehaviour
         }
         else if (collectible.CompareTag("Coin"))
         {
+            SoundManager.PlaySound(SoundType.COIN);
             GameManager.Instance.AddCoin(collectible);
         }
         else
