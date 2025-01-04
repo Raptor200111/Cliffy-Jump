@@ -35,8 +35,7 @@ public class Player : MonoBehaviour
     void Start()
     {
         godMode = false;
-        transform.position = startPoint.transform.position;
-
+        
         blockLayer = LayerMask.NameToLayer("Blocks");
         obstaclesLayer = LayerMask.NameToLayer("Obstacles");
         collectiblesLayer = LayerMask.NameToLayer("Collectibles");
@@ -50,6 +49,7 @@ public class Player : MonoBehaviour
         UnityEngine.Physics.gravity = new Vector3(0, gravity, 0);
 
         LoadModel();
+        PlayerReset();
     }
 
     public void LoadModel()//PlayerModelData modelData)
@@ -57,7 +57,8 @@ public class Player : MonoBehaviour
         GameObject modelData = GameManager.Instance.Characters[PlayerPrefs.GetInt("PlayerDataIndex", 0)];
         //transform.GetChild(0).gameObject = Instantiate(modelData);
         //Destroy(transform.GetChild(0).gameObject);
-        Instantiate(modelData, transform.GetChild(0));
+        GameObject aux = Instantiate(modelData, transform.GetChild(0));
+        aux.SetActive(true);
     }
 
     void Update()
@@ -94,7 +95,6 @@ public class Player : MonoBehaviour
         if (other.gameObject.layer == obstaclesLayer && !godMode)
         {
             ChangePlayerState(State.Dead);
-            Instantiate(deathParticle, transform.position, Quaternion.identity);
         }
     }
 
@@ -103,7 +103,6 @@ public class Player : MonoBehaviour
         if (collision.gameObject.layer == obstaclesLayer && !godMode)
         {
             ChangePlayerState(State.Dead);
-            Instantiate(deathParticle, transform.position, Quaternion.identity);
         }
         if (collision.gameObject.layer == collectiblesLayer)
         {
@@ -116,11 +115,18 @@ public class Player : MonoBehaviour
         }
     }
 
-    public void PlayerStart()
+    public void PlayerReset()
     {
-        //playerState = State.Dead;
+        velocity = Vector3.zero;
+        _rigidbody.velocity = Vector3.zero;
         transform.SetPositionAndRotation(startPoint.transform.position, Quaternion.Euler(0, 90, 0));
         this.GetComponent<TrailRenderer>().Clear();
+    }
+
+    public void PlayerStart()
+    {
+        PlayerReset();
+        _animator.SetTrigger("Reset");
         ChangePlayerState(State.Moving);
     }
 
@@ -142,12 +148,6 @@ public class Player : MonoBehaviour
         }
     }
 
-    public void PlayerDeathAnimationComplete()
-    {
-        WorldManager.Instance.PlayerDeath();
-    }
-
-
     void ChangePlayerState(State newState)
     {
         switch (newState)
@@ -167,10 +167,11 @@ public class Player : MonoBehaviour
                 _animator.SetBool("Jumping", true);
                 break;
             case State.Dead:
-                velocity = Vector3.zero;
-                _rigidbody.velocity = Vector3.zero;
                 _animator.SetTrigger("Dead");
                 _animator.SetBool("Jumping", false);
+                Instantiate(deathParticle, transform.position, Quaternion.identity);
+                PlayerReset();
+                WorldManager.Instance.PlayerDeath();
                 break;
 
         }
@@ -184,7 +185,6 @@ public class Player : MonoBehaviour
             pos.y = transform.position.y;
             transform.localPosition = pos;
             transform.forward = fow;
-            //transform.LookAt(transform.position + fow);
             velocity = fow * groundSpeed;
         }
     }
