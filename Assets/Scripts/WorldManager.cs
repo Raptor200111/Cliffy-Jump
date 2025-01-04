@@ -61,6 +61,7 @@ public class WorldManager : MonoBehaviour
     public void WorldComplete()
     {
         UnityEngine.Debug.Log("World Complete");
+        SoundManager.PlaySound(SoundType.WIN);
         GameManager.Instance.SaveLevelProgress(CurrentScreen/(float)TotalNumScreens);
         GameManager.Instance.changeScene(StageName.MENU);
     }
@@ -69,6 +70,14 @@ public class WorldManager : MonoBehaviour
     {
         dynamicStructures.ResetWorld();
         //player.PlayerStart();
+    }
+
+    public void ReStart(WorldInfo worldInfo)
+    {
+        dynamicStructures.screen = 0;
+        player = worldInfo.Player.GetComponent<Player>();
+        dynamicStructures.ResetWorldInfo(worldInfo);
+        dynamicDetails.ResetWorldInfo(worldInfo);
     }
 
     public GameObject GetModelData()

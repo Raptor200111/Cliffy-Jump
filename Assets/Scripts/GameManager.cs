@@ -27,8 +27,9 @@ public class GameManager : MonoBehaviour
 
     public int CurrentWorldScore { get; private set; } = 0;
     public event Action<int> OnLevelScoreChanged;
-
+    public int actualLevel;
     [field: SerializeField] public List<GameObject> Characters { get; private set; }
+    [field: SerializeField] public List<WorldInfo> WorldInfos { get; private set; }
     public float[] MaxLevelProgress { get; private set; } = new float[2] { 0f, 0f };
     public int[] MaxLevelScore { get; private set; } = new int[2] { 0, 0 };
 
@@ -43,7 +44,8 @@ public class GameManager : MonoBehaviour
             GameManager.Instance = this;
             stageName = StageName.MENU;
             soundManager = SoundManager.Instance;
-            
+            CoinsCollected = PlayerPrefs.GetInt("Coins", 0);
+
 
             DontDestroyOnLoad(gameObject);
         }
@@ -67,6 +69,26 @@ public class GameManager : MonoBehaviour
         soundManager.SetBackgroundMusic(stageName);
 
     }
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Alpha1)) { 
+            
+            if(WorldManager.Instance != null )
+            {               
+                changeScene(StageName.LVL_1);
+                WorldManager.Instance.ReStart(WorldInfos[0]);
+            }
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            changeScene(StageName.LVL_2);
+            if (WorldManager.Instance != null)
+            {
+                changeScene(StageName.LVL_1);
+                WorldManager.Instance.ReStart(WorldInfos[1]);
+            }
+        }
+    }
 
     public void changeScene(StageName stage) {
         stageName = stage;
@@ -78,12 +100,15 @@ public class GameManager : MonoBehaviour
                 break;
             case StageName.LVL_1:
                 SceneManager.LoadScene(1);
+                soundManager.SetBackgroundMusic(StageName.LVL_1);
                 break;
             case StageName.LVL_2:
                 SceneManager.LoadScene(2);
+                soundManager.SetBackgroundMusic(StageName.LVL_2);
                 break;
             case StageName.CREDITS:
                 SceneManager.LoadScene(3);
+                soundManager.SetBackgroundMusic(StageName.CREDITS);
                 break;
         }
     }
@@ -110,6 +135,7 @@ public class GameManager : MonoBehaviour
     {
         CoinsCollected += 1;
         coin.GetComponent<Collectible>().Disappear();
+        PlayerPrefs.SetInt("Coins", CoinsCollected);
         OnCoinsChanged?.Invoke(CoinsCollected);
     }
 

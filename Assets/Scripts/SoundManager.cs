@@ -9,7 +9,11 @@ using UnityEngine.Audio;
 // TO DO: add sounds && MusicSoundParams=> playerprefs
 public enum SoundType
 {
-    JUMP
+    JUMP,
+    REVIVE,
+    DIE,
+    WIN, 
+    COIN
 // DIE
 //    BIRD_MOVE
 //    HAMMER
@@ -76,6 +80,7 @@ public class SoundManager : MonoBehaviour
     {
         SoundList sL = Instance.soundList[(int)sound];
         AudioClip randomClip = sL.sound;
+        source= Instance.soundEffectSource;
 
         if (Instance.musicsoundparams.onSound != true) return;
         if (source)

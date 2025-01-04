@@ -44,13 +44,23 @@ public class UI_Manager : MonoBehaviour
     public void OnGoToMenu()
     {
         GameManager.Instance.changeScene(StageName.MENU);
+        if (WorldManager.Instance.CurrentScreen < 0 || WorldManager.Instance.TotalNumScreens <= 0)
+        {
+            GameManager.Instance.SaveLevelProgress(0);
+
+        }
+        else
+        {
+            float progress = WorldManager.Instance.CurrentScreen / (float)WorldManager.Instance.TotalNumScreens;
+            levelProgress.text = $"{progress}  %";
+        }
     }
 
     public void UpdateCoins(int coins)
     {
         if (numCoinsText != null)
         {
-            numCoinsText.text = $"{coins}";
+            numCoinsText.text = $"{coins}";            
         }
     }
     public void UpdateStars(int stars)

@@ -148,7 +148,13 @@ public class DynamicStructures : MonoBehaviour
         animator.SetTrigger("rise");
     }
 
-    
+    public void ResetWorldInfo(WorldInfo worldInfo)
+    {
+        jsonFile = worldInfo.jsonFile;
+        prefabs = worldInfo.prefabs;
+        Start();
+    }
+
 }
 
 /*

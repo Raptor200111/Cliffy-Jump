@@ -4,6 +4,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
 using System;
+using Unity.VisualScripting;
 
 public class MenuCharSelect : MonoBehaviour
 {
@@ -18,10 +19,15 @@ public class MenuCharSelect : MonoBehaviour
         gameManager = GameManager.Instance;
         oldIndex = PlayerPrefs.GetInt("PlayerDataIndex", 0);
         charsToDisplay = GameManager.Instance.Characters.ToArray();
-        foreach (GameObject c in GameManager.Instance.Characters)
-        {
-            GameObject a = Instantiate(c, charImage.transform);
-            a.transform.localScale = a.transform.localScale * 125f;
+        if (GameManager.Instance.Characters != null) {
+            charsToDisplay =new  GameObject[GameManager.Instance.Characters.Count];
+            for( int i = 0; i< GameManager.Instance.Characters.Count; i++)
+            {
+                GameObject a = Instantiate(GameManager.Instance.Characters[i], charImage.transform);
+                a.transform.localScale = a.transform.localScale * 125f;
+                a.name = GameManager.Instance.Characters[i].name;
+                charsToDisplay[i] = a;
+            } 
         }
         ChangeChar(oldIndex);
  
@@ -64,7 +70,16 @@ public class MenuCharSelect : MonoBehaviour
     {
         PlayerPrefs.SetInt("PlayerSelected", 0);
         gameManager.SetSelectedPlayer(oldIndex); 
-        GameManager.Instance.changeScene(StageName.MENU);
+        if(GameManager.Instance.actualLevel == 1)
+        {
+            GameManager.Instance.changeScene(StageName.LVL_1);
+
+        }
+        else
+        {
+            GameManager.Instance.changeScene(StageName.LVL_2);
+
+        }
     }
 
     // Update is called once per frame

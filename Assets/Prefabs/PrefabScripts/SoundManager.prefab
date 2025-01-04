@@ -242,8 +242,36 @@ MonoBehaviour:
   - name: 
     volume: 0.872
     mixer: {fileID: 0}
-    sound: {fileID: 8300000, guid: 7c47b20bb9874304a809dc5580d403ba, type: 3}
+    sound: {fileID: 8300000, guid: 4e349dc959014a845b9aa317d1c2b7f0, type: 3}
+  - name: 
+    volume: 0.872
+    mixer: {fileID: 0}
+    sound: {fileID: 8300000, guid: d654174ef194bd7479bf4b8d8f753318, type: 3}
+  - name: 
+    volume: 0.872
+    mixer: {fileID: 0}
+    sound: {fileID: 8300000, guid: 566d2ea6240b489479a6e9fd608c2621, type: 3}
+  - name: 
+    volume: 0.872
+    mixer: {fileID: 0}
+    sound: {fileID: 8300000, guid: cfce0cea076109f478783201b2a9f57f, type: 3}
+  - name: 
+    volume: 0.872
+    mixer: {fileID: 0}
+    sound: {fileID: 8300000, guid: c5cb2ac29e89dbf43a9b644caaad45e6, type: 3}
   bgMusics:
+  - name: 
+    volume: 0.372
+    mixer: {fileID: 0}
+    sound: {fileID: 8300000, guid: e26b86a2e02e28b4e92587703ab08ebd, type: 3}
+  - name: 
+    volume: 0.372
+    mixer: {fileID: 0}
+    sound: {fileID: 8300000, guid: e26b86a2e02e28b4e92587703ab08ebd, type: 3}
+  - name: 
+    volume: 0.372
+    mixer: {fileID: 0}
+    sound: {fileID: 8300000, guid: e26b86a2e02e28b4e92587703ab08ebd, type: 3}
   - name: 
     volume: 0.372
     mixer: {fileID: 0}

@@ -460,4 +460,12 @@ public class DynamicDetails : MonoBehaviour
         float radius = 1f;
         return new Vector3(Mathf.Cos(angle) * radius, 0f, Mathf.Sin(angle) * radius);
     }
+
+
+    public void ResetWorldInfo(WorldInfo worldInfo)
+    {
+        indexObstacles = worldInfo.indexObstacles;
+        detailTypes = worldInfo.detailTypes;
+        Start();
+    }
 }

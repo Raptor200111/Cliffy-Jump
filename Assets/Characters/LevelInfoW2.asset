@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7d897fd028c4914b8bb8b80874ed684, type: 3}
+  m_Name: LevelInfoW2
+  m_EditorClassIdentifier: 
+  jsonFile: {fileID: 4900000, guid: 07a6961e42136284bba7c875c8675784, type: 3}
+  prefabs:
+  - {fileID: 4455145235322616555, guid: 15c4d3146aa9e684986ec2ee6e4b1f32, type: 3}
+  - {fileID: 7075927542026288898, guid: fb68eba7eac09354ab33b3fc9a4e9206, type: 3}
+  - {fileID: 4445358294782660318, guid: 5b4db8bff3c4bde49875085bb08870a9, type: 3}
+  - {fileID: 5986174051929522909, guid: 192d2e4a0f031d44a90ac14c4a4fb7e5, type: 3}
+  - {fileID: 8544952872848645659, guid: 7fe963b68af04194594caa291771ce42, type: 3}
+  - {fileID: 5544760852526940447, guid: 3877270bfde090d44b39837d369d306b, type: 3}
+  - {fileID: 8206119097514107443, guid: 62f398a07c0c2fb489e8f31087491f22, type: 3}
+  - {fileID: 6267168366473714771, guid: fbac5ff6419d4f84e8e3b04ba157fb52, type: 3}
+  - {fileID: 1618551979723355087, guid: 385074b849f0be74495f877e48b1d01f, type: 3}
+  - {fileID: 1657729248290657224, guid: 27e27027321c6084a8531287aecc4b43, type: 3}
+  - {fileID: 1657729248290657224, guid: 5155a084917d6224ebed3ee198718ef9, type: 3}
+  detailTypes:
+  - movDecoType: 2
+    movDecoPrefab: {fileID: 405713630963078473, guid: 11c8e38629216af4e84ac87067e1ae75,
+      type: 3}
+  - movDecoType: 1
+    movDecoPrefab: {fileID: 1168342127478715031, guid: e44cfa63ce3d1af4195632ac29c13d0b,
+      type: 3}
+  indexObstacles: 0400000005000000060000000700000008000000090000000a000000
+  player: {fileID: 0}
+  Player: {fileID: 991961958024365566, guid: 7ffe609cd32d26246bd34b7bf652d3c6, type: 3}
