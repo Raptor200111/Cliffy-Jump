@@ -18,7 +18,7 @@ public class DynamicStructures : MonoBehaviour
 
     GameObject[][] allObjects;
 
-    int numberOfScreens = 3;
+    public int numberOfScreens { get; private set; } = 3;
     public int screen = 0;
 
     public List<GameObject> prefabs;

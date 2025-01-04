@@ -54,7 +54,18 @@ public class WorldManager : MonoBehaviour
     public void UpdateLevelProgress()
     {
         CurrentScreen += 1;
-        OnLevelProgressChanged?.Invoke(CurrentScreen/(float)TotalNumScreens);
+        if(CurrentScreen > 0 && TotalNumScreens > 0)
+        {
+            OnLevelProgressChanged?.Invoke(CurrentScreen / (float)TotalNumScreens);
+            return;
+        }
+        else if (TotalNumScreens <= 0) 
+        {
+            TotalNumScreens = dynamicStructures.numberOfScreens;
+        }
+        if(CurrentScreen < 0) { CurrentScreen = dynamicStructures.screen;  }
+        OnLevelProgressChanged?.Invoke(CurrentScreen / (float)TotalNumScreens);
+
         //GameManager.Instance.SaveLevelProgress(currentWorldProgress);
     }
 
