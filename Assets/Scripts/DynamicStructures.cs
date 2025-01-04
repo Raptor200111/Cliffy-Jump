@@ -95,14 +95,14 @@ public class DynamicStructures : MonoBehaviour
     
     public void ResetWorld()
     {
-        screen -= 1;
+        screen = -1;
         NextScreen();
     }
     
 
     public void NextScreen()
     {
-        //WorldManager.Instance.DestroyDetails();
+        WorldManager.Instance.DestroyDetails();
         animator.SetTrigger("hide");
     }
 

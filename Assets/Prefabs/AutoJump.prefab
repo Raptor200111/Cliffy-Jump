@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6218410217365197512}
   - component: {fileID: 3047283145440445817}
   - component: {fileID: 9054293691034373495}
-  m_Layer: 8
+  m_Layer: 11
   m_Name: AutoJump
   m_TagString: Untagged
   m_Icon: {fileID: 0}
