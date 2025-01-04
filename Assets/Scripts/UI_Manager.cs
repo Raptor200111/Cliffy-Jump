@@ -24,16 +24,16 @@ public class UI_Manager : MonoBehaviour
             float progress = WorldManager.Instance.CurrentScreen / (float)WorldManager.Instance.TotalNumScreens;
             levelProgress.text = $"{progress}  %";
         }
-    }
 
-    private void OnEnable()
-    {
+
+
         GameManager.Instance.OnCoinsChanged += UpdateCoins;
         WorldManager.Instance.OnLevelProgressChanged += UpdateLevelProgress;
         GameManager.Instance.OnLevelScoreChanged += UpdateStars;
     }
 
-    
+
+
     private void OnDisable()
     {
         GameManager.Instance.OnCoinsChanged -= UpdateCoins;

@@ -3,12 +3,14 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using System.Diagnostics.Eventing.Reader;
+using System.Security.Cryptography.X509Certificates;
 using Unity.VisualScripting;
 using UnityEditor.UIElements;
 using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    public static Player Instance;
     private GameObject currentModelInstance;
 
     enum State {Waiting, Moving, Jumping, Dead};
@@ -31,6 +33,18 @@ public class Player : MonoBehaviour
     public ParticleSystem groundParticle;
 
     public bool godMode = false;
+    public void Awake()
+    {
+        if (Player.Instance == null)
+        {
+            Player.Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
 
     void Start()
     {
@@ -47,7 +61,12 @@ public class Player : MonoBehaviour
         _animator = GetComponent<Animator>();
 
         UnityEngine.Physics.gravity = new Vector3(0, gravity, 0);
+        _rigidbody = GetComponent<Rigidbody>();
 
+        if (_rigidbody == null)
+        {
+            Debug.LogError("Rigidbody component not found on Player!");
+        }
         LoadModel();
         PlayerReset();
     }
@@ -57,7 +76,9 @@ public class Player : MonoBehaviour
         GameObject modelData = GameManager.Instance.Characters[PlayerPrefs.GetInt("PlayerDataIndex", 0)];
         //transform.GetChild(0).gameObject = Instantiate(modelData);
         //Destroy(transform.GetChild(0).gameObject);
-        GameObject aux = Instantiate(modelData, transform.GetChild(0));
+        //GameObject aux = Instantiate(modelData, transform.GetChild(0));
+        PlayerModelData model = GameManager.Instance.playerModels[PlayerPrefs.GetInt("PlayerDataIndex", 0)];
+        GameObject aux = Instantiate(model.modelPrefab, this.transform);
         aux.SetActive(true);
     }
 
@@ -117,9 +138,19 @@ public class Player : MonoBehaviour
 
     public void PlayerReset()
     {
+        if (startPoint == null)
+        {
+            GameObject pos = new GameObject();
+            int lvl = (int)GameManager.Instance.stageName - 1;
+            if (lvl < 0) { lvl = 0; }
+            pos.transform.position = GameManager.Instance.StartPos[0];
+            startPoint = pos;
+        }
         velocity = Vector3.zero;
         _rigidbody.velocity = Vector3.zero;
-        transform.SetPositionAndRotation(startPoint.transform.position, Quaternion.Euler(0, 90, 0));
+        //transform.SetPositionAndRotation(startPoint.transform.position, Quaternion.Euler(0, 90, 0));
+        transform.position = startPoint.transform.position;
+        transform.LookAt(startPoint.transform.position + new Vector3(1f, 0f, 0f));
         this.GetComponent<TrailRenderer>().Clear();
     }
 
@@ -206,5 +237,10 @@ public class Player : MonoBehaviour
         {
             //add live
         }
+    }
+
+    public void ResTart()
+    {
+        Start();
     }
 }

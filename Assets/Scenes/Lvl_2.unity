@@ -250,6 +250,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: GUI_Panel
       objectReference: {fileID: 0}
+    - target: {fileID: 7263594170407813381, guid: 91f61eac1358682448b5d2fe1761dbc3,
+        type: 3}
+      propertyPath: pauseButton
+      value: 
+      objectReference: {fileID: 29878944}
+    - target: {fileID: 7263594170407813381, guid: 91f61eac1358682448b5d2fe1761dbc3,
+        type: 3}
+      propertyPath: resumePanel
+      value: 
+      objectReference: {fileID: 29878945}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -258,6 +268,18 @@ PrefabInstance:
 --- !u!224 &29878943 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 2940757168589618739, guid: 91f61eac1358682448b5d2fe1761dbc3,
+    type: 3}
+  m_PrefabInstance: {fileID: 29878942}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &29878944 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5149822351303580440, guid: 91f61eac1358682448b5d2fe1761dbc3,
+    type: 3}
+  m_PrefabInstance: {fileID: 29878942}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &29878945 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6320483291494645016, guid: 91f61eac1358682448b5d2fe1761dbc3,
     type: 3}
   m_PrefabInstance: {fileID: 29878942}
   m_PrefabAsset: {fileID: 0}

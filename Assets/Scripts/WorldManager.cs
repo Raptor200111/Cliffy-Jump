@@ -36,7 +36,7 @@ public class WorldManager : MonoBehaviour
     public void DoneRising()
     {
         dynamicDetails.CreateDetails(dynamicStructures.screen);
-        player.PlayerStart();
+        Player.Instance.GetComponent<Player>().PlayerStart();
     }
 
     public void DestroyDetails()
@@ -75,7 +75,7 @@ public class WorldManager : MonoBehaviour
     public void ReStart(WorldInfo worldInfo)
     {
         dynamicStructures.screen = 0;
-        player = worldInfo.Player.GetComponent<Player>();
+        player = Player.Instance.GetComponent<Player>();
         dynamicStructures.ResetWorldInfo(worldInfo);
         dynamicDetails.ResetWorldInfo(worldInfo);
     }

@@ -28,6 +28,7 @@ public class GameManager : MonoBehaviour
     public int CurrentWorldScore { get; private set; } = 0;
     public event Action<int> OnLevelScoreChanged;
     public int actualLevel;
+    public List<PlayerModelData> playerModels;
     [field: SerializeField] public List<GameObject> Characters { get; private set; }
     [field: SerializeField] public List<WorldInfo> WorldInfos { get; private set; }
     public float[] MaxLevelProgress { get; private set; } = new float[2] { 0f, 0f };
@@ -36,6 +37,8 @@ public class GameManager : MonoBehaviour
     //[field: SerializeField] public List<GameObject> Characters {get; private set; }
     public StageName stageName { get; private set; } = StageName.MENU;
     private SoundManager soundManager;
+
+    public Vector3[] StartPos = new Vector3[2];
     // Start is called before the first frame update
     public void Awake()
     {
@@ -45,6 +48,14 @@ public class GameManager : MonoBehaviour
             stageName = StageName.MENU;
             soundManager = SoundManager.Instance;
             CoinsCollected = PlayerPrefs.GetInt("Coins", 0);
+            Characters = new List<GameObject>();
+            foreach (PlayerModelData playerModel in playerModels)
+            {
+                GameObject a = Instantiate(playerModel.modelPrefab, this.transform);
+                a.name = playerModel.modelName;
+                a.SetActive(false);
+                Characters.Add(a);
+            }
 
 
             DontDestroyOnLoad(gameObject);
@@ -70,22 +81,30 @@ public class GameManager : MonoBehaviour
 
     }
     private void Update()
-    {
+    {        
         if (Input.GetKeyDown(KeyCode.Alpha1)) { 
-            
-            if(WorldManager.Instance != null )
-            {               
                 changeScene(StageName.LVL_1);
+
+            if (WorldManager.Instance != null )
+            {
+                GameObject startpos = new GameObject();
                 WorldManager.Instance.ReStart(WorldInfos[0]);
+                startpos.transform.position = StartPos[0];
+                Player.Instance.startPoint = startpos;
+                Player.Instance.ResTart();
             }
         }
         else if (Input.GetKeyDown(KeyCode.Alpha2))
         {
             changeScene(StageName.LVL_2);
+
             if (WorldManager.Instance != null)
             {
-                changeScene(StageName.LVL_1);
+                GameObject startpos = new GameObject();
                 WorldManager.Instance.ReStart(WorldInfos[1]);
+                startpos.transform.position = StartPos[1];
+                Player.Instance.startPoint = startpos;
+                Player.Instance.ResTart();
             }
         }
     }
@@ -97,18 +116,40 @@ public class GameManager : MonoBehaviour
             case StageName.MENU:
                 SceneManager.LoadScene(0);
                 soundManager.SetBackgroundMusic(StageName.MENU);
-                break;
+                if (Player.Instance != null)
+                {
+                    Player.Instance.enabled = false;
+                }
+                    break;
             case StageName.LVL_1:
                 SceneManager.LoadScene(1);
+                if(Player.Instance != null)
+                {
+                    GameObject startpos = new GameObject();
+                    startpos.transform.position = StartPos[0];
+                    Player.Instance.startPoint = startpos;
+                    Player.Instance.ResTart();
+                    Player.Instance.enabled = true;
+                }
                 soundManager.SetBackgroundMusic(StageName.LVL_1);
                 break;
             case StageName.LVL_2:
                 SceneManager.LoadScene(2);
+                if (Player.Instance != null)
+                {
+                    GameObject startpos = new GameObject();
+                    startpos.transform.position = StartPos[1];
+                    Player.Instance.startPoint = startpos;
+                    Player.Instance.ResTart();
+                    Player.Instance.enabled = true;
+
+                }
                 soundManager.SetBackgroundMusic(StageName.LVL_2);
                 break;
             case StageName.CREDITS:
                 SceneManager.LoadScene(3);
                 soundManager.SetBackgroundMusic(StageName.CREDITS);
+                Player.Instance.enabled = false;
                 break;
         }
     }

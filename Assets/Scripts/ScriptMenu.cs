@@ -96,9 +96,9 @@ public class ScriptMenu : MonoBehaviour
     public void OnSelectLevel(int i_level)
     {
         level = i_level;
-        playButton.SetActive(true);
         lvl1Button.SetActive(false);
         lvl2Button.SetActive(false);
+        playButton.SetActive(true);
     }
 
     public void OnPlay()

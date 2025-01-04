@@ -44,6 +44,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bfe1ce397d522cc4fa61b1b721274287, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  actualLevel: 0
+  playerModels:
+  - {fileID: 11400000, guid: 2cf2754aff7d648429fe06d58cbf93f5, type: 2}
+  - {fileID: 11400000, guid: 8479c0c3711025a499d230270f96cb91, type: 2}
+  - {fileID: 11400000, guid: 18d5cda950749c14ba6ad5c3d43b8150, type: 2}
   <Characters>k__BackingField:
   - {fileID: 1870403862695774902, guid: 41e8d318f87d635418e7d7cce4db447f, type: 3}
   - {fileID: 470663491150344104, guid: 7e628fd9b23b2ec4391fc667bb86d4d9, type: 3}
@@ -51,3 +56,6 @@ MonoBehaviour:
   <WorldInfos>k__BackingField:
   - {fileID: 11400000, guid: 39af45b386d75d345860932bf4e0669b, type: 2}
   - {fileID: 11400000, guid: 6565dc92ae005ff4da43390553d5005a, type: 2}
+  StartPos:
+  - {x: -6, y: 6, z: -14}
+  - {x: 4, y: 6, z: -10}

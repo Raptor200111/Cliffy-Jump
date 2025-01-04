@@ -85,7 +85,7 @@ public class EyeController : MovDeco
         else
         {
             idle = false;
-            //Disappear();
+            eyeball.transform.LookAt(Player.Instance.transform);
         }        
     }
 
