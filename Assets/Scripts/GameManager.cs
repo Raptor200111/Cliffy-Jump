@@ -27,7 +27,7 @@ public class GameManager : MonoBehaviour
 
     public int CurrentWorldScore { get; private set; } = 0;
     public event Action<int> OnLevelScoreChanged;
-
+    public int actualLevel;
     [field: SerializeField] public List<GameObject> Characters { get; private set; }
     [field: SerializeField] public List<WorldInfo> WorldInfos { get; private set; }
     public float[] MaxLevelProgress { get; private set; } = new float[2] { 0f, 0f };

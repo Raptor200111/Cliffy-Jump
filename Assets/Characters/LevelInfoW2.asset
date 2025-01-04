@@ -33,3 +33,5 @@ MonoBehaviour:
     movDecoPrefab: {fileID: 1168342127478715031, guid: e44cfa63ce3d1af4195632ac29c13d0b,
       type: 3}
   indexObstacles: 0400000005000000060000000700000008000000090000000a000000
+  player: {fileID: 0}
+  Player: {fileID: 991961958024365566, guid: 7ffe609cd32d26246bd34b7bf652d3c6, type: 3}

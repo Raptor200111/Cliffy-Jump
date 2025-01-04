@@ -124,7 +124,9 @@ public class ScriptMenu : MonoBehaviour
 
     public void OnGoToSelectPlayer()
     {
+        GameManager.Instance.actualLevel = level;
         selectCharPopUp.SetActive(true);
+
     }
     public void OnExitConfig()
     {

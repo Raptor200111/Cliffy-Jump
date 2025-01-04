@@ -10,5 +10,6 @@ public class WorldInfo : ScriptableObject
     public List<GameObject> prefabs;
     public DetailType[] detailTypes;
     public int[] indexObstacles;
+    public GameObject Player; 
 
 }

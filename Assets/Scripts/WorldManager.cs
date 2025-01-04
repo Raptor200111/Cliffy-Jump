@@ -75,6 +75,7 @@ public class WorldManager : MonoBehaviour
     public void ReStart(WorldInfo worldInfo)
     {
         dynamicStructures.screen = 0;
+        player = worldInfo.Player.GetComponent<Player>();
         dynamicStructures.ResetWorldInfo(worldInfo);
         dynamicDetails.ResetWorldInfo(worldInfo);
     }
