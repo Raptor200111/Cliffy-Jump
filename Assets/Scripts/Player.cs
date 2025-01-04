@@ -170,7 +170,10 @@ public class Player : MonoBehaviour
                 _animator.SetTrigger("Dead");
                 _animator.SetBool("Jumping", false);
                 Instantiate(deathParticle, transform.position, Quaternion.identity);
-                PlayerReset();
+                velocity = Vector3.zero;
+                _rigidbody.velocity = Vector3.zero;
+                transform.SetPositionAndRotation(startPoint.transform.position, Quaternion.Euler(0, 90, 0));
+                this.GetComponent<TrailRenderer>().Clear();
                 WorldManager.Instance.PlayerDeath();
                 break;
 
