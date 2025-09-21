@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public enum StageName
 {
@@ -12,13 +11,12 @@ public enum StageName
     LVL_1,
     LVL_2,
     CREDITS
-
 }
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
-
+    
     public bool IsGamePaused { get; private set; } = false;
     public bool IsGameOver { get; private set; } = false;
 
@@ -36,14 +34,21 @@ public class GameManager : MonoBehaviour
     //[field: SerializeField] public List<GameObject> Characters {get; private set; }
     public StageName stageName { get; private set; } = StageName.MENU;
     private SoundManager soundManager;
+    private WorldManager worldManager;
     // Start is called before the first frame update
     public void Awake()
     {
         if (GameManager.Instance == null)
         {
             GameManager.Instance = this;
+            
             stageName = StageName.MENU;
             soundManager = SoundManager.Instance;
+            worldManager = WorldManager.Instance;
+            if (worldManager == null)
+            {
+                Debug.LogWarning("Gamemanager's worldManager null");
+            }
             CoinsCollected = PlayerPrefs.GetInt("Coins", 0);
 
 
@@ -73,19 +78,19 @@ public class GameManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Alpha1)) { 
             
-            if(WorldManager.Instance != null )
+            if(worldManager != null )
             {               
                 changeScene(StageName.LVL_1);
-                WorldManager.Instance.ReStart(WorldInfos[0]);
+                worldManager.ReStart(WorldInfos[0]);
             }
         }
         else if (Input.GetKeyDown(KeyCode.Alpha2))
         {
-            changeScene(StageName.LVL_2);
-            if (WorldManager.Instance != null)
+            //changeScene(StageName.LVL_2);
+            if (worldManager != null)
             {
-                changeScene(StageName.LVL_1);
-                WorldManager.Instance.ReStart(WorldInfos[1]);
+                changeScene(StageName.LVL_2);
+                worldManager.ReStart(WorldInfos[1]);
             }
         }
     }
@@ -95,19 +100,19 @@ public class GameManager : MonoBehaviour
         switch (stage)
         {
             case StageName.MENU:
-                SceneManager.LoadScene(0);
+                UnityEngine.SceneManagement.SceneManager.LoadScene(0);
                 soundManager.SetBackgroundMusic(StageName.MENU);
                 break;
             case StageName.LVL_1:
-                SceneManager.LoadScene(1);
+                UnityEngine.SceneManagement.SceneManager.LoadScene(1);
                 soundManager.SetBackgroundMusic(StageName.LVL_1);
                 break;
             case StageName.LVL_2:
-                SceneManager.LoadScene(2);
+                UnityEngine.SceneManagement.SceneManager.LoadScene(2);
                 soundManager.SetBackgroundMusic(StageName.LVL_2);
                 break;
             case StageName.CREDITS:
-                SceneManager.LoadScene(3);
+                UnityEngine.SceneManagement.SceneManager.LoadScene(3);
                 soundManager.SetBackgroundMusic(StageName.CREDITS);
                 break;
         }
@@ -127,7 +132,7 @@ public class GameManager : MonoBehaviour
 
     public void QuitGame()
     {
-        Debug.Log("Quitting Game...");
+        //Debug.Log("Quitting Game...");
         Application.Quit();
     }
 

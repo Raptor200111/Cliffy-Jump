@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class UI_Manager : MonoBehaviour
 {
@@ -16,12 +17,14 @@ public class UI_Manager : MonoBehaviour
         SetVisibilityOnPause(false);
         numCoinsText.text = $"{GameManager.Instance.CoinsCollected}";
 
-        if(WorldManager.Instance.CurrentScreen < 0 || WorldManager.Instance.TotalNumScreens <= 0)
+        var wm = WorldManager.Instance;
+
+        if (wm.CurrentScreen < 0 || wm.TotalNumScreens <= 0)
         {
             levelProgress.text = $"{0} %";
         }
         else {
-            float progress = WorldManager.Instance.CurrentScreen / (float)WorldManager.Instance.TotalNumScreens;
+            float progress = wm.CurrentScreen / (float)wm.TotalNumScreens;
             levelProgress.text = $"{progress}  %";
         }
     }
@@ -44,14 +47,17 @@ public class UI_Manager : MonoBehaviour
     public void OnGoToMenu()
     {
         GameManager.Instance.changeScene(StageName.MENU);
-        if (WorldManager.Instance.CurrentScreen < 0 || WorldManager.Instance.TotalNumScreens <= 0)
+
+        var wm = WorldManager.Instance;
+
+        if (wm.CurrentScreen < 0 || wm.TotalNumScreens <= 0)
         {
             GameManager.Instance.SaveLevelProgress(0);
 
         }
         else
         {
-            float progress = WorldManager.Instance.CurrentScreen / (float)WorldManager.Instance.TotalNumScreens;
+            float progress = wm.CurrentScreen / (float)wm.TotalNumScreens;
             levelProgress.text = $"{progress}  %";
         }
     }

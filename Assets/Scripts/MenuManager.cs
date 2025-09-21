@@ -1,13 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using TMPro;
 using UnityEngine.UI;
-using Unity.VisualScripting;
 
 
-public class ScriptMenu : MonoBehaviour
+public class MenuManager : MonoBehaviour
 {
     // Start is called before the first frame update
     public GameObject configPopUp;
@@ -35,6 +33,7 @@ public class ScriptMenu : MonoBehaviour
     private GameManager gameManager;
     private SoundManager soundManager;
     public int level;
+
     void Start()
     {
         gameManager = GameManager.Instance;
@@ -176,5 +175,4 @@ public class ScriptMenu : MonoBehaviour
         volumeMusicSlider.onValueChanged.RemoveListener(ChangeMusicVolume);
         volumeSoundSlider.onValueChanged.RemoveListener(ChangeSoundVolume);
     }
-
 }

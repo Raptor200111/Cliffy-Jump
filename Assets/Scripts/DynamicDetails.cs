@@ -1,17 +1,10 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Drawing.Text;
 using System.Linq;
 using Unity.VisualScripting;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
-using UnityEngine.XR;
-using static DynamicDetails;
 using static DynamicStructures;
-using static UnityEngine.Rendering.HighDefinition.ScalableSettingLevelParameter;
-using static WorldManager;
-
 
 /*
  bird:

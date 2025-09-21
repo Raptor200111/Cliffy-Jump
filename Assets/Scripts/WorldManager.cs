@@ -6,9 +6,9 @@ using static DynamicStructures;
 
 public class WorldManager : MonoBehaviour
 {
-    //enum State { Loading, Moving, Jumping };
-
     public static WorldManager Instance;
+    //public static WorldManager Instance;
+    //enum State { Loading, Moving, Jumping };
     [SerializeField] public Player player;
     [SerializeField] public DynamicStructures dynamicStructures;
     [SerializeField] public DynamicDetails dynamicDetails;
@@ -20,6 +20,7 @@ public class WorldManager : MonoBehaviour
 
     public int TotalNumScreens { get; private set; } = 0;
 
+    
     public void Awake()
     {
         if (Instance == null)
@@ -32,6 +33,7 @@ public class WorldManager : MonoBehaviour
             Destroy(gameObject);
         }
     }
+    
 
     public void DoneRising()
     {

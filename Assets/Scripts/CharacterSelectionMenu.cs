@@ -6,50 +6,46 @@ using UnityEngine.SceneManagement;
 using System;
 using Unity.VisualScripting;
 
-public class MenuCharSelect : MonoBehaviour
+public class CharacterSelectionMenu : MonoBehaviour
 {
     private int oldIndex;
-    [SerializeField] private GameObject charImage;
-    [SerializeField] private TMP_Text charName;
-    [SerializeField] private GameObject[] charsToDisplay;
+    [SerializeField] private GameObject characterImage;
+    [SerializeField] private TMP_Text characterName;
+    [SerializeField] private GameObject[] charactersToDisplay;
     private GameManager gameManager;
     // Start is called before the first frame update
     void Start()
     {
         gameManager = GameManager.Instance;
         oldIndex = PlayerPrefs.GetInt("PlayerDataIndex", 0);
-        charsToDisplay = GameManager.Instance.Characters.ToArray();
-        if (GameManager.Instance.Characters != null) {
-            charsToDisplay =new  GameObject[GameManager.Instance.Characters.Count];
-            for( int i = 0; i< GameManager.Instance.Characters.Count; i++)
+        var aux = GameManager.Instance.Characters.ToArray();
+        if (aux != null) {
+            charactersToDisplay = new  GameObject[aux.Length];
+            for( int i = 0; i< aux.Length; i++)
             {
-                GameObject a = Instantiate(GameManager.Instance.Characters[i], charImage.transform);
+                GameObject a = Instantiate(aux[i], characterImage.transform);
                 a.transform.localScale = a.transform.localScale * 125f;
-                a.name = GameManager.Instance.Characters[i].name;
-                charsToDisplay[i] = a;
-            } 
+                a.name = aux[i].name;
+                charactersToDisplay[i] = a;
+                charactersToDisplay[i].SetActive(false);
+            }
         }
+
         ChangeChar(oldIndex);
- 
     }
 
     private void ChangeChar(int newIndex) 
     {
-        if(oldIndex < 0)
-        {
-            oldIndex = 0;
-        }
-        if(newIndex < 0) { newIndex = 0; }
-        charsToDisplay[oldIndex].SetActive(false);
-        charsToDisplay[newIndex].SetActive(true);
-        charName.text = charsToDisplay[newIndex].name;
+        charactersToDisplay[oldIndex].SetActive(false);
+        charactersToDisplay[newIndex].SetActive(true);
+        characterName.text = charactersToDisplay[newIndex].name;
         oldIndex = newIndex;
     }
 
     public void NextChar() 
     {
         int newIndex = oldIndex+1;
-        if(newIndex > charsToDisplay.Length-1) {  newIndex = 0; } 
+        if(newIndex > charactersToDisplay.Length-1) {  newIndex = 0; } 
         ChangeChar(newIndex);
     }
 
@@ -59,7 +55,7 @@ public class MenuCharSelect : MonoBehaviour
         int newIndex = oldIndex-1;
         if(newIndex < 0)
         {
-            newIndex = charsToDisplay.Length - 1;
+            newIndex = charactersToDisplay.Length - 1;
         }
 
         ChangeChar(newIndex);
@@ -69,16 +65,16 @@ public class MenuCharSelect : MonoBehaviour
     public void SelectChar()
     {
         PlayerPrefs.SetInt("PlayerSelected", 0);
-        gameManager.SetSelectedPlayer(oldIndex); 
-        if(GameManager.Instance.actualLevel == 1)
+        gameManager.SetSelectedPlayer(oldIndex);
+
+        //ToDo: Change this to not level, and check if the player has chosen a character before or not
+        if (GameManager.Instance.actualLevel == 1)
         {
             GameManager.Instance.changeScene(StageName.LVL_1);
-
         }
         else
         {
             GameManager.Instance.changeScene(StageName.LVL_2);
-
         }
     }
 
